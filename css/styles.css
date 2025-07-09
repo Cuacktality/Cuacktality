@@ -6,6 +6,7 @@
   src: url('../fonts/Symtext.woff2') format('woff2'),
        url('../fonts/Symtext.woff') format('woff'),
        url('../fonts/Symtext.ttf') format('truetype');
+  font-display: swap; /* Mejora la carga de fuentes */
 }
 
 @font-face {
@@ -13,10 +14,11 @@
   src: url('../fonts/Stanberry.woff2') format('woff2'),
        url('../fonts/Stanberry.woff') format('woff'),
        url('../fonts/Stanberry.ttf') format('truetype');
+  font-display: swap; /* Mejora la carga de fuentes */
 }
 
 /* ================================
-   🌌 RESET Y BASE
+ 🌌 RESET Y ESTILOS BASE
 ================================ */
 * {
   margin: 0;
@@ -26,23 +28,32 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 80px; /* Ajuste para el header fijo */
 }
 
 body {
   font-family: 'Stanberry', sans-serif;
   background-color: #111;
   color: #f0f0f0;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Previene el scroll horizontal */
+  line-height: 1.6; /* Propiedad añadida para mejor legibilidad */
+}
+
+a {
+  text-decoration: none;
+  color: inherit; /* Propiedad añadida para que los enlaces hereden el color */
 }
 
 /* ================================
-   🌀 HERO
+ 🌀 HERO
 ================================ */
 .hero {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  display: flex; /* Añadido para centrar el contenido */
+  align-items: center; /* Añadido para centrar el contenido */
+  justify-content: center; /* Añadido para centrar el contenido */
 }
 
 .hero img {
@@ -65,16 +76,17 @@ body {
   text-align: center;
   max-width: 80%;
   backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente para el blur */
   padding: 0.8em 1.2em;
   border-radius: 8px;
   animation: fadeInHero 1.8s ease-out forwards;
   opacity: 0;
+  box-shadow: 0 0 15px rgba(174, 187, 246, 0.5); /* Sombra añadida */
 }
 
 @keyframes fadeInHero {
   to { opacity: 1; }
 }
-
 
 .arrow {
   position: absolute;
@@ -86,15 +98,16 @@ body {
   animation: bounce 1.5s infinite;
   text-decoration: none;
   z-index: 10;
+  display: block; /* Asegura que la flecha sea un bloque para el posicionamiento */
 }
 
 @keyframes bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%      { transform: translateX(-50%) translateY(-10px); }
+  50% { transform: translateX(-50%) translateY(-10px); }
 }
 
 /* ================================
-   🚀 HEADER
+ 🚀 HEADER
 ================================ */
 header {
   position: fixed;
@@ -107,6 +120,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra añadida */
 }
 
 .nombre-container {
@@ -152,32 +166,55 @@ header {
 }
 
 /* ================================
-   🌐 NAVEGACIÓN
+ 🌐 NAVEGACIÓN
 ================================ */
 nav ul {
   list-style: none;
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem; /* Espacio entre elementos de navegación ajustado */
 }
 
 nav ul li a {
   color: #93f9b9;
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease; /* Transición de transformación añadida */
+  padding: 0.5rem 0.2rem; /* Padding ajustado */
+  position: relative; /* Para el pseudo-elemento after */
 }
+
 nav ul li a:hover {
   color: #fff;
+  transform: translateY(-2px); /* Efecto de elevación al pasar el ratón */
+}
+
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background-color: #aebaf6;
+  transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
 }
 
 /* ================================
-   ☰ MENÚ HAMBURGUESA Y LATERAL
+ ☰ MENÚ HAMBURGUESA Y LATERAL
 ================================ */
 .hamburguesa {
   display: none;
   font-size: 2rem;
   color: #93f9b9;
   cursor: pointer;
+  z-index: 1001;
+  background: none; /* Fondo transparente */
+  border: none; /* Sin borde */
+  padding: 0.2rem; /* Padding ajustado */
 }
 
 .sidebar {
@@ -186,14 +223,17 @@ nav ul li a:hover {
   right: -100%;
   width: 70%;
   max-width: 300px;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(20,20,25,0.95), rgba(10,10,15,0.98));
+  height: calc(100% - 60px); /* Altura ajustada al header */
+  background: linear-gradient(to bottom, rgba(20, 20, 25, 0.95), rgba(10, 10, 15, 0.98));
   backdrop-filter: blur(6px);
   transition: right 0.5s ease, opacity 0.5s ease;
   opacity: 0;
   z-index: 999;
-  padding: 2rem 1rem;
-  box-shadow: -4px 0 10px rgba(0,255,255,0.2);
+  padding: 2rem 1.5rem; /* Padding ajustado */
+  box-shadow: -4px 0 15px rgba(0, 255, 255, 0.3); /* Sombra ajustada */
+  display: flex; /* Añadido para flexbox */
+  flex-direction: column; /* Añadido para flexbox */
+  align-items: flex-start; /* Añadido para flexbox */
 }
 
 .sidebar.open {
@@ -214,14 +254,15 @@ nav ul li a:hover {
 
 @keyframes pulsoBarra {
   0%, 100% { opacity: 0.3; }
-  50%      { opacity: 0.8; }
+  50% { opacity: 0.8; }
 }
 
 .sidebar ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem; /* Espacio ajustado */
+  width: 100%; /* Ocupa todo el ancho */
 }
 
 .sidebar ul li {
@@ -234,18 +275,26 @@ nav ul li a:hover {
 .sidebar ul li a {
   color: #aebaf6;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.3rem; /* Tamaño de fuente ajustado */
+  display: block; /* Para que ocupe todo el ancho del li */
+  padding: 0.5rem 0; /* Padding ajustado */
+  transition: color 0.3s ease, transform 0.3s ease; /* Transición de transformación añadida */
+}
+
+.sidebar ul li a:hover {
+  color: #93f9b9; /* Color ajustado al pasar el ratón */
+  transform: translateX(5px); /* Efecto de deslizamiento */
 }
 
 @keyframes fadeIn {
   to {
-    opacity: 1;
-    transform: translateX(0);
+      opacity: 1;
+      transform: translateX(0);
   }
 }
 
 /* ================================
-   📄 SECCIONES
+ 📄 SECCIONES
 ================================ */
 main section {
   position: relative;
@@ -262,7 +311,7 @@ h2 {
 }
 
 /* ================================
-   🖼️ FONDOS BLUR DIFERENCIADOS
+ 🖼️ FONDOS BLUR DIFERENCIADOS
 ================================ */
 main section::before {
   content: "";
@@ -274,7 +323,7 @@ main section::before {
 }
 
 /* ================================
-   🌫️ FONDOS BLUR INDIVIDUALES
+ 🌫️ FONDOS BLUR INDIVIDUALES
 ================================ */
 
 #desarrollo3d,
@@ -350,30 +399,34 @@ main section::before {
   z-index: -1;
 }
 
-
-
 /* ================================
-   🎨 GALERÍA
+ 🎨 GALERÍA
 ================================ */
 .galeria {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem; /* Ajustado */
   justify-content: center;
+  margin-top: 2rem; /* Añadido */
 }
 
 .galeria img {
   max-width: 300px;
+  width: 100%; /* Para que se adapte mejor en móvil */
+  height: auto; /* Para que se adapte mejor en móvil */
   border-radius: 8px;
   box-shadow: 0 0 10px #93f9b9;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición de sombra añadida */
+  object-fit: cover; /* Asegura que la imagen cubra el área */
 }
+
 .galeria img:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 20px #93f9b9; /* Sombra más pronunciada al pasar el ratón */
 }
 
 /* ================================
-   🎮 IFRAME
+ 🎮 IFRAME
 ================================ */
 iframe {
   border: none;
@@ -382,10 +435,12 @@ iframe {
   height: 60vh;
   box-shadow: 0 0 15px #aebaf6;
   border-radius: 10px;
+  margin-top: 2rem;
+  background-color: #000; /* Fondo por si el iframe tarda en cargar */
 }
 
 /* ================================
-   📨 FORMULARIO
+ 📨 FORMULARIO
 ================================ */
 form {
   display: flex;
@@ -414,10 +469,14 @@ form button {
   cursor: pointer;
   transition: background 0.3s ease;
 }
+
 form button:hover {
   background-color: #93f9b9;
 }
 
+/* ================================
+ ✨ INTRO OVERLAY (ANIMACIÓN DE CARGA)
+================================ */
 .intro-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -438,10 +497,13 @@ form button:hover {
   border-radius: 50%;
   border: 2px solid #93f9b9;
   animation: giro 2s ease-out forwards;
+  display: flex; /* Añadido para centrar el cierre */
+  align-items: center; /* Añadido para centrar el cierre */
+  justify-content: center; /* Añadido para centrar el cierre */
 }
 
 .cierre {
-  position: absolute;
+  position: absolute; /* Cambiado de relative a absolute */
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -449,12 +511,13 @@ form button:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px rgba(174, 187, 246, 0.7); /* Sombra añadida */
 }
 
 /* Animación de giro */
 @keyframes giro {
-  0%   { transform: rotate(0deg); opacity: 1; }
-  50%  { transform: rotate(180deg); }
+  0% { transform: rotate(0deg); opacity: 1; }
+  50% { transform: rotate(180deg); }
   100% { transform: rotate(360deg); opacity: 0; }
 }
 
@@ -472,142 +535,73 @@ form button:hover {
 }
 
 .intro-overlay::before { left: 0; }
-.intro-overlay::after  { right: 0; }
+.intro-overlay::after { right: 0; }
 
 @keyframes abrirPuertas {
-  0%   { width: 50%; }
+  0% { width: 50%; }
   100% { width: 0; }
 }
 
+/* ================================
+ 👤 SECCIÓN DE SELECCIÓN DE PERSONAJES
+================================ */
 .selector-personajes {
   margin-top: 2rem;
-  padding: 1rem;
+  padding: 2rem;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 12px;
   backdrop-filter: blur(6px);
-  
+  box-shadow: 0 0 25px rgba(147, 249, 185, 0.2);
+  width: 100%;
+  max-width: 1200px;
 }
+
 .selector-personajes h3 {
-    margin-bottom: 1.5rem;
-  }
-/* Contenedor principal en fila */
-.contenedor-personajes {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-/* Render rotativo a la izquierda */
-.visor-rotativo {
-  display: flex;
-  justify-content: center;
+  font-family: 'Stanberry', sans-serif;
+  font-size: 1.2rem;
+  color: #f0f0f0;
   margin-bottom: 1rem;
+  text-align: left;
+  opacity: 0.8;
 }
 
-.rotador-container {
-      position: relative;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    justify-content: center;
-  }
-
-  .info-personaje {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #93f9b9;
-    font-size: 0.9rem;
-    line-height: 1.4;
-    max-width: 160px;
-    padding: 0.5rem;
-    position: relative;
-  }
-  
-  /* Ícono flotante ahora dentro del wrapper */
-  .icono-wrapper {
-    position: relative;
-    height: 80px;
-    width: 100%;
-  }
-  
-  /* Ícono flotante sobre el nombre */
-  .icono-activo {
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 70px;
-    border-radius: 8px;
-    object-fit: cover;
-    animation: salto 0.5s ease-out forwards;
-    box-shadow: 0 0 10px rgba(147, 249, 185, 0.4);
-  }
-  
-  /* Responsivo: ficha se adapta en móvil */
-  @media (max-width: 768px) {
-    .contenedor-personajes {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .rotador-container {
-      flex-direction: column;
-    }
-  
-    .info-personaje {
-      max-width: 100%;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-  
-    .personajes-lista {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-  
-    .boton-rotador {
-      margin: 0.5rem;
-    }
-  }
-   
-  /* Animación de salto */
-  @keyframes salto {
-    0% {
-      transform: translateX(-50%) translateY(0) scale(0.7);
-      opacity: 0;
-    }
-    40% {
-      transform: translateX(-50%) translateY(-20px) scale(1.1);
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(-50%) translateY(0) scale(1);
-      opacity: 1;
-    }
-  }
-  
-  
-  
-
-.boton-rotador {
-  font-size: 2rem;
-  background: none;
-  border: none;
-  padding: 0.2rem;
-  color: #93f9b9;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+/* Contenedor principal para la disposición izquierda-derecha */
+.selector-contenido-principal {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+  justify-content: center; /* Centra los bloques cuando se envuelven */
+  align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+  gap: 2rem; /* Espacio entre los bloques de info y visor */
+  margin-bottom: 2rem; /* Espacio antes de la lista de personajes */
 }
 
-.boton-rotador:hover {
-  transform: scale(1.2);
+.info-personaje {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  text-align: left;
 }
 
+/* Contenedor para el visor del personaje y sus controles */
+.visor-y-controles {
+  display: flex;
+  flex-direction: column; /* Apila la imagen y los botones verticalmente */
+  align-items: center; /* Centra la imagen y los botones horizontalmente */
+  gap: 1rem; /* Espacio entre la imagen y el contenedor de botones */
+  flex: 1;
+  min-width: 300px; /* Ancho mínimo para el visor */
+}
+
+/* Contenedor para los botones del rotador */
+.rotador-botones-container {
+  display: flex;
+  gap: 1rem; /* Espacio entre los botones */
+  justify-content: center; /* Centra los botones dentro de este contenedor */
+  width: 100%; /* Asegura que ocupe el ancho completo para centrar */
+}
 
 #modeloPersonaje {
   width: 300px;
@@ -615,58 +609,48 @@ form button:hover {
   object-fit: contain;
   background-color: rgba(255, 255, 255, 0.03);
   border-radius: 8px;
-  transition: opacity 0.4s ease;animation: pulsoRender 0.5s ease;
-}
-
-@keyframes pulsoRender {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0px transparent;
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px #93f9b9;
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0px transparent;
-  }
-} /* Pulso en visor */
-#modeloPersonaje.pulsando {
+  transition: opacity 0.4s ease;
   animation: pulsoRender 0.5s ease;
+  box-shadow: 0 0 0px transparent;
 }
 
-@keyframes pulsoRender {
-  0% { transform: scale(1); box-shadow: none; }
-  50% { transform: scale(1.05); box-shadow: 0 0 20px #93f9b9; }
-  100% { transform: scale(1); box-shadow: none; }
+.boton-rotador {
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  padding: 0.2rem;
+  color: #93f9b9;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+  outline: none;
 }
 
-#modeloPersonaje.iluminado {
-  box-shadow: 0 0 20px #93f9b9;
-  transition: box-shadow 0.5s ease-in-out;
+.boton-rotador:hover {
+  transform: scale(1.2);
+  color: #aebaf6;
 }
 
-
-/* Slider centrado debajo del render */
+/* Slider centrado debajo del render (si aún se usa, aunque la estructura ha cambiado) */
 #rotador {
   width: 80%;
 }
- 
+
 .personajes-lista {
   display: flex;
   flex-direction: row;
   gap: 1rem;
   overflow-x: auto;
-  padding: 1rem 0;
-  padding-left: 1rem; /* 👈 da espacio al primero */
+  padding: 1rem; /* Padding uniforme para evitar cortes */
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
   scrollbar-color: #93f9b9 transparent;
   -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
   scroll-behavior: smooth;
+  width: 100%;
+  justify-content: center; /* Centra la lista de personajes */
+  margin-top: 2rem; /* Espacio añadido para separación del visor */
+  flex-wrap: nowrap; /* Asegura que no haga grid, solo scroll horizontal */
 }
-
 
 .personajes-lista img {
   width: 90px;
@@ -676,102 +660,200 @@ form button:hover {
   cursor: pointer;
   flex-shrink: 0;
   scroll-snap-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, border-bottom 0.3s ease;
   position: relative;
   border-bottom: 4px solid transparent;
-  transition: border-bottom 0.3s ease;
 }
+
 .personajes-lista img.activo {
   border-bottom: 4px solid #93f9b9; /* brillo verde elegante */
+  box-shadow: 0 0 15px rgba(147, 249, 185, 0.7); /* Sombra al estar activo */
 }
+
 .personajes-lista img.oculto {
   opacity: 0;
   pointer-events: none;
-  display:none;
+  display: none; /* Asegura que no ocupe espacio */
 }
-.personajes-lista img:hover {
-  transform: scale(1.05);
-}
+
 .personajes-lista img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px #93f9b9;
-}  
+}
+
+.info-horizontal {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+}
+
+.icono-wrapper {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  margin-bottom: 1rem; /* Separación con la información textual */
+}
+
+.icono-activo {
+  position: absolute;
+  top: -80px;
+  top: 0;
+  left: 50%; /* Centrado horizontal */
+  transform: translateX(-50%);
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+  object-fit: cover;
+  animation: salto 0.5s ease-out forwards;
+  box-shadow: 0 0 10px rgba(147, 249, 185, 0.4);
+  z-index: 10;
+}
+
+.datos-personaje {
+  flex: 1;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #93f9b9;
+}
+
+.datos-personaje p {
+  margin-bottom: 0.6rem;
+}
+
+#juegoPersonaje {
+  margin-bottom: 1.2rem;
+}
+
 @keyframes salto {
   0% {
-    transform: translateX(-50%) translateY(0) scale(0.7);
-    opacity: 0;
+      transform: translateX(-50%) translateY(0) scale(0.7);
+      opacity: 0;
   }
   40% {
-    transform: translateX(-50%) translateY(-20px) scale(1.1);
-    opacity: 1;
+      transform: translateX(-50%) translateY(-20px) scale(1.1);
+      opacity: 1;
   }
   100% {
-    transform: translateX(-50%) translateY(0) scale(1);
+      transform: translateX(-50%) translateY(0) scale(1);
+      opacity: 1;
+  }
+}
+
+@keyframes glowVisor {
+  0% {
+    box-shadow: 0 0 0px transparent;
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 0 20px #93f9b9;
+    filter: brightness(1.4);
+  }
+  100% {
+    box-shadow: 0 0 0px transparent;
+    filter: brightness(1);
+  }
+}
+
+@keyframes pulseFrame {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1);
     opacity: 1;
   }
 }
 
+#modeloPersonaje.pulsando {
+  animation: pulseFrame 0.6s ease-out;
+}
+
+#modeloPersonaje.iluminando {
+  animation: glowVisor 0.6s ease-out;
+}
 
 
 /* ================================
-   🦶 FOOTER
+ 🦶 FOOTER
 ================================ */
 footer {
   text-align: center;
-  padding: 1em;
+  padding: 1.5em;
   background: #000;
   font-size: 0.9em;
   color: #999;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* ================================
-   📱 RESPONSIVE
+ 📱 RESPONSIVE
 ================================ */
 @media (max-width: 768px) {
   header {
-    flex-direction: column;
-    height: auto;
-    padding: 1rem;
-    gap: 0.5rem;
-    align-items: flex-start;
+      flex-direction: column;
+      height: auto;
+      padding: 1rem;
+      gap: 0.5rem;
+      align-items: flex-start;
   }
 
   .nombre-estilo .nombre {
-    font-size: 1.3rem;
+      font-size: 1.3rem;
   }
 
   .nombre-estilo .apellido {
-    font-size: 0.9rem;
+      font-size: 0.9rem;
   }
 
   nav ul {
-    display: none;
+      display: none;
   }
 
   .nav-desktop {
-    display: none;
+      display: none;
   }
 
   .hamburguesa {
-    display: block;
+      display: block;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
   }
 
   main section {
-    padding: 100px 2em 60px;
+      padding: 100px 1.5em 60px;
+  }
+
+  h2 {
+      font-size: 2em;
+      margin-bottom: 1.5rem;
   }
 
   .galeria {
-    flex-direction: column;
-    align-items: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+  }
+
+  .galeria img {
+      max-width: 90%;
   }
 
   iframe {
-    height: 40vh;
+      height: 40vh;
+      width: 95%;
   }
 
   .arrow {
-    font-size: 2rem;
-    bottom: 40px;
+      font-size: 2rem;
+      bottom: 40px;
   }
 
   /* Animación por item en el menú lateral */
@@ -780,4 +862,65 @@ footer {
   .sidebar ul li:nth-child(3) { --i: 3; }
   .sidebar ul li:nth-child(4) { --i: 4; }
   .sidebar ul li:nth-child(5) { --i: 5; }
+
+  /* Estilos responsivos para el selector de personajes */
+  .selector-contenido-principal {
+      flex-direction: column; /* Apila la información y el visor verticalmente */
+      align-items: center; /* Centra los elementos */
+      gap: 1.5rem;
+  }
+
+  .info-personaje {
+      max-width: 100%;
+      text-align: center;
+      align-items: center; /* Centra el contenido de la información */
+      padding: 0.5rem;
+  }
+
+  .visor-y-controles {
+      min-width: auto;
+      width: 100%;
+  }
+
+  #modeloPersonaje {
+      width: 250px;
+      height: 250px;
+  }
+
+  .rotador-botones-container {
+      flex-direction: row; /* Asegura que los botones estén en fila en móvil */
+      justify-content: center;
+  }
+
+  .personajes-lista {
+      flex-wrap: nowrap; /* Mantiene el scroll horizontal, evita la cuadrícula */
+      justify-content: center; /* Centra la lista de personajes */
+      padding-left: 0.5rem;
+      margin-top: 1.5rem;
+  }
+
+  .personajes-lista img {
+      width: 80px;
+      height: 80px;
+  }
+
+  .icono-activo {
+      top: -25px;
+      width: 80px;
+      height: 80px;
+  }
+
+  .datos-personaje {
+      text-align: center;
+      max-width: 100%;
+      font-size: 0.95rem;
+      padding: 0.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .datos-personaje {
+    max-width: 600px;
+    font-size: 1.05rem;
+  }
 }

@@ -67,38 +67,37 @@
       </div>
       <div class="selector-personajes">
         <h3>Selecciona un personaje</h3>
-        
-        <div class="visor-rotativo">
-            <div class="rotador-container">
-                <div class="info-personaje">
-                    <div class="icono-wrapper"></div> <!-- espacio exclusivo para el ícono flotante -->
-                  
-                    <div class="datos-personaje">
-                      <h4 id="nombrePersonaje">Nombre</h4>
-                      <p id="universoPersonaje">Universo:</p>
-                      <p id="juegoPersonaje">Videojuego:</p>
-                    </div>
-                  </div>                
+      
+        <div class="selector-contenido-principal">
+            <!-- 🧾 Panel de información a la izquierda -->
+            <div class="info-personaje">
+                <div class="icono-wrapper"></div>
+              
+                <div class="datos-personaje">
+                  <h4 id="nombrePersonaje">Nombre</h4>
+                  <p id="juegoPersonaje">Universo:</p>
+                  <p id="descripcionPersonaje">Descripción:</p>
+                </div>
+              </div>              
           
-              <button onclick="rotar(-1)" class="boton-rotador">⬅️</button>
+            <!-- 🎥 Render y controles en columna -->
+            <div class="visor-y-controles">
               <img id="modeloPersonaje" src="assets/renders/personaje1_00.png" alt="Render rotativo" />
-              <button onclick="rotar(1)" class="boton-rotador">➡️</button>
+              <div class="rotador-botones-container">
+                <button class="boton-rotador" onclick="rotar(-1)">⬅️</button>
+                <button class="boton-rotador" onclick="rotar(1)">➡️</button>
+              </div>
             </div>
           </div>
           
-          <div class="personajes-lista">
-            <img src="assets/thumbnails/personaje1.png" onclick="mostrarPersonaje('personaje1')">
-            <img src="assets/thumbnails/personaje2.png" onclick="mostrarPersonaje('personaje2')">
-            <img src="assets/thumbnails/personaje3.png" onclick="mostrarPersonaje('personaje3')">
-            <img src="assets/thumbnails/personaje1.png" onclick="mostrarPersonaje('personaje1')">
-            <img src="assets/thumbnails/personaje2.png" onclick="mostrarPersonaje('personaje2')">
-            <img src="assets/thumbnails/personaje3.png" onclick="mostrarPersonaje('personaje3')">
-            <img src="assets/thumbnails/personaje1.png" onclick="mostrarPersonaje('personaje1')">
-            <img src="assets/thumbnails/personaje2.png" onclick="mostrarPersonaje('personaje2')">
-            <img src="assets/thumbnails/personaje3.png" onclick="mostrarPersonaje('personaje3')">
-            <!-- agrega más personajes según necesites -->
-          </div>          
-      </div>      
+      
+        <!-- 🖱️ Scroll horizontal -->
+        <div class="personajes-lista">
+          <img src="assets/thumbnails/personaje1.png" onclick="mostrarPersonaje('personaje1')" />
+          <img src="assets/thumbnails/personaje2.png" onclick="mostrarPersonaje('personaje2')" />
+          <img src="assets/thumbnails/personaje3.png" onclick="mostrarPersonaje('personaje3')" />
+        </div>
+      </div>
     </section>
 
     <section id="dibujo">
@@ -197,25 +196,25 @@
  <script>
     // 🧠 Datos informativos por personaje
     const datosPersonajes = {
-      personaje1: {
-        nombre: "Nexus-01",
-        universo: "Metyd Prime",
-        juego: "Interconexión Digital",
-        thumbnail: "assets/thumbnails/personaje1.png"
-      },
-      personaje2: {
-        nombre: "Zaira",
-        universo: "Orbital 9",
-        juego: "Circuit Breakers",
-        thumbnail: "assets/thumbnails/personaje2.png"
-      },
-      personaje3: {
-        nombre: "Aegon",
-        universo: "Fragmenta",
-        juego: "Echo Pulse",
-        thumbnail: "assets/thumbnails/personaje3.png"
-      }
-    };
+  personaje1: {
+    nombre: "Nexus-01",
+    universo: "Metyd Prime", 
+    thumbnail: "assets/thumbnails/personaje1.png",
+    descripcion: "Unidad sintética diseñada para mapear emociones humanas. Comanda protocolos de defensa y análisis existencial."
+  },
+  personaje2: {
+    nombre: "Zaira",
+    universo: "Orbital 9", 
+    thumbnail: "assets/thumbnails/personaje2.png",
+    descripcion: "Agente psiónica con habilidades de reconexión neural. Habita el borde entre la realidad y el impulso cuántico."
+  },
+  personaje3: {
+    nombre: "Aegon",
+    universo: "Fragmenta", 
+    thumbnail: "assets/thumbnails/personaje3.png",
+    descripcion: "Guardián del colapso dimensional. Porta un núcleo fragmentado que alberga memorias prohibidas de antiguos universos."
+  }
+};
     
     // 🔁 Estado actual del visor
     let personajeActual = 'personaje1';
@@ -231,8 +230,8 @@
       // Actualizar panel informativo
       const datos = datosPersonajes[nombre];
       document.getElementById("nombrePersonaje").textContent = datos.nombre;
-      document.getElementById("universoPersonaje").textContent = `Universo: ${datos.universo}`;
-      document.getElementById("juegoPersonaje").textContent = `Videojuego: ${datos.juego}`;
+      document.getElementById("juegoPersonaje").textContent = `${datos.universo}`; 
+      document.getElementById("descripcionPersonaje").textContent = `${datos.descripcion}`;
     
       // Resetear clases en íconos del listado
       document.querySelectorAll('.personajes-lista img').forEach(img => {
@@ -265,11 +264,11 @@
     
       render.src = ruta;
       render.classList.add('pulsando');
-      render.classList.add('iluminado');
+      render.classList.add('iluminando');
     
       setTimeout(() => {
         render.classList.remove('pulsando');
-        render.classList.remove('iluminado');
+        render.classList.remove('iluminando');
       }, 600);
     
       console.log(`Mostrando: ${personajeActual}_${angulo}`);
@@ -278,18 +277,19 @@
     // 🧬 Mostrar ícono flotante sobre el panel informativo
     function mostrarIconoEnPanel(src) {
   const wrapper = document.querySelector('.icono-wrapper');
-  
-  // Eliminar ícono anterior
   const anterior = document.querySelector('.icono-activo');
   if (anterior) anterior.remove();
 
-  // Crear nuevo ícono flotante
   const icono = document.createElement('img');
   icono.src = src;
   icono.classList.add('icono-activo');
   wrapper.appendChild(icono);
 }
 
+
+window.addEventListener('DOMContentLoaded', () => {
+  mostrarPersonaje('personaje1');
+});
     </script>    
 </body>
 </html>
