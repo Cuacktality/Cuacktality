@@ -37,6 +37,13 @@ body {
   color: #f0f0f0;
   line-height: 1.6; /* Propiedad añadida para mejor legibilidad */
   overflow-x: visible !important;
+  overscroll-behavior-y: contain;
+}
+
+html,
+body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 a {
@@ -44,6 +51,48 @@ a {
   color: inherit; /* Propiedad añadida para que los enlaces hereden el color */
 }
 
+.section {
+  opacity: 0;
+  transform: translateZ(-120px) scale(0.8) rotateX(6deg);
+  filter: blur(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease, filter 0.8s ease;
+  will-change: opacity, transform, filter;
+}
+
+.section.mostrar {
+  opacity: 1;
+  transform: translateZ(0px) scale(1) rotateX(0deg);
+  filter: blur(0px);
+}
+
+.section::before {
+  opacity: 0;
+  transform: scale(1.2);
+  filter: blur(25px);
+  transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+  will-change: opacity, transform, filter;
+}
+
+.section.mostrar::before {
+  opacity: 0.6;
+  transform: scale(1);
+  filter: blur(10px);
+}
+
+.section.mostrar h2 {
+  animation: fadeInTitle 0.2s ease forwards;
+}
+
+@keyframes fadeInTitle {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 /* ================================
  🌀 HERO
 ================================ */
@@ -67,26 +116,30 @@ a {
 
 .frase-hero {
   position: absolute;
-  top: 50%;
+  /* Acércala a la flecha */
+  top: 65%; /* bajamos del 50% al 65% para acercarla */
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 1.8rem;
+
+  /* Más ancha */
+  max-width: 90%;
+
+  /* Estética más opaca y oscura */
+  backdrop-filter: blur(4px);
+  background-color: rgba(40, 40, 40, 0.4); /* más oscuro y opaco */
+
+  padding: 1em 1.5em;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(174, 187, 246, 0.6);
+
+  font-size: 1.4rem;
   font-family: "Stanberry", sans-serif;
   color: #aebaf6;
   text-align: center;
-  max-width: 80%;
-  backdrop-filter: blur(4px);
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.4
-  ); /* Fondo semi-transparente para el blur */
-  padding: 0.8em 1.2em;
-  border-radius: 8px;
+
   animation: fadeInHero 1.8s ease-out forwards;
   opacity: 0;
-  box-shadow: 0 0 15px rgba(174, 187, 246, 0.5); /* Sombra añadida */
+  z-index: 5; /* asegura que esté debajo de la imagen flotante */
 }
 
 @keyframes fadeInHero {
@@ -101,11 +154,42 @@ a {
   bottom: 60px;
   transform: translateX(-50%);
   font-size: 2.5rem;
-  color: #93f9b9;
+  color: #93d0f9;
   animation: bounce 1.5s infinite;
   text-decoration: none;
   z-index: 10;
   display: block; /* Asegura que la flecha sea un bloque para el posicionamiento */
+}
+
+.filtro-oscuro {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.35); /* Ajusta la opacidad */
+  z-index: -1;
+}
+
+.personaje-flotante {
+  position: absolute;
+  top: calc(65% - 120px); /* ligeramente sobre la frase */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px; /* tamaño fijo base */
+  height: 100%;
+  z-index: 6;
+  /*animation: flotar 3s ease-in-out infinite;  animación de flotación */
+  opacity: 1;
+}
+
+/* Flotación suave */
+@keyframes flotar {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
 }
 
 @keyframes bounce {
@@ -166,13 +250,14 @@ header {
 .nombre {
   font-family: "Symtext", sans-serif;
   font-size: 1.6rem;
-  color: #93f9b9;
+  color: #93bff9;
 }
 
 .apellido {
   font-family: "Symtext", sans-serif;
   font-size: 1rem;
-  color: #aebaf6;
+  color: #ee9b3c;
+  /* color: #7164a1; */
   opacity: 0.8;
   letter-spacing: 1px;
 }
@@ -187,7 +272,7 @@ nav ul {
 }
 
 nav ul li a {
-  color: #93f9b9;
+  color: #93bff9;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease, transform 0.3s ease; /* Transición de transformación añadida */
@@ -208,6 +293,7 @@ nav ul li a::after {
   width: 0;
   height: 2px;
   background-color: #aebaf6;
+  /* background-color: #aebaf6; */
   transition: width 0.3s ease;
 }
 
@@ -221,7 +307,7 @@ nav ul li a:hover::after {
 .hamburguesa {
   display: none;
   font-size: 2rem;
-  color: #93f9b9;
+  color: #93bff9;
   cursor: pointer;
   z-index: 1001;
   background: none; /* Fondo transparente */
@@ -264,7 +350,7 @@ nav ul li a:hover::after {
   left: -4px;
   width: 2px;
   height: 100%;
-  background: linear-gradient(to bottom, #93f9b9, #aebaf6);
+  background: linear-gradient(to bottom, #93bff9, #aebaf6);
   animation: pulsoBarra 4s infinite ease-in-out;
 }
 
@@ -303,7 +389,7 @@ nav ul li a:hover::after {
 }
 
 .sidebar ul li a:hover {
-  color: #93f9b9; /* Color ajustado al pasar el ratón */
+  color: #93bff9; /* Color ajustado al pasar el ratón */
   transform: translateX(5px); /* Efecto de deslizamiento */
 }
 
@@ -383,7 +469,7 @@ main section::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("../assets/fondoDibujo.jpg");
+  background-image: url("../assets/fondoDibujo.png");
   background-size: cover;
   background-position: center;
   filter: blur(10px);
@@ -415,7 +501,7 @@ main section::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("../assets/fondoSoftware.jpg");
+  background-image: url("../assets/fondoSoftware.png");
   background-size: cover;
   background-position: center;
   filter: blur(10px);
@@ -454,14 +540,14 @@ main section::before {
   width: 100%; /* Para que se adapte mejor en móvil */
   height: auto; /* Para que se adapte mejor en móvil */
   border-radius: 8px;
-  box-shadow: 0 0 10px #93f9b9;
+  box-shadow: 0 0 10px #93bff9;
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición de sombra añadida */
   object-fit: cover; /* Asegura que la imagen cubra el área */
 }
 
 .galeria img:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 20px #93f9b9; /* Sombra más pronunciada al pasar el ratón */
+  box-shadow: 0 0 20px #93bff9; /* Sombra más pronunciada al pasar el ratón */
 }
 
 /* ================================
@@ -510,7 +596,7 @@ form button {
 }
 
 form button:hover {
-  background-color: #93f9b9;
+  background-color: #93bff9;
 }
 
 /* ================================
@@ -535,7 +621,7 @@ form button:hover {
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  border: 2px solid #93f9b9;
+  border: 2px solid #93bff9;
   animation: giro 2s ease-out forwards;
   display: flex; /* Añadido para centrar el cierre */
   align-items: center; /* Añadido para centrar el cierre */
@@ -681,7 +767,7 @@ form button:hover {
   background: none;
   border: none;
   padding: 0.2rem;
-  color: #93f9b9;
+  color: #93bff9;
   cursor: pointer;
   transition: transform 0.2s ease, color 0.2s ease;
   outline: none;
@@ -723,7 +809,7 @@ form button:hover {
 }
 
 .personajes-lista img.activo {
-  border-bottom: 4px solid #93f9b9; /* brillo verde elegante */
+  border-bottom: 4px solid #93bff9; /* brillo verde elegante */
   box-shadow: 0 0 15px rgba(147, 249, 185, 0.7); /* Sombra al estar activo */
 }
 
@@ -735,7 +821,7 @@ form button:hover {
 
 .personajes-lista img:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 10px #93f9b9;
+  box-shadow: 0 0 10px #93bff9;
 }
 
 .info-horizontal {
@@ -772,7 +858,7 @@ form button:hover {
   width: 100%;
   font-size: 1rem;
   line-height: 1.6;
-  color: #93f9b9;
+  color: #93bff9;
 }
 
 .datos-personaje p {
@@ -804,7 +890,7 @@ form button:hover {
     filter: brightness(1);
   }
   50% {
-    box-shadow: 0 0 20px #93f9b9;
+    box-shadow: 0 0 20px #93bff9;
     filter: brightness(1.4);
   }
   100% {
@@ -841,11 +927,12 @@ form button:hover {
 ================================ */
 footer {
   text-align: center;
-  padding: 1.5em;
+  padding: 1.2em 0;
   background: #000;
-  font-size: 0.9em;
+  font-size: 0.85em;
   color: #999;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 30px;
 }
 
 /* ================================
@@ -997,7 +1084,7 @@ footer {
 
   .personaje-item:hover img {
     transform: scale(1.05);
-    box-shadow: 0 0 10px #93f9b9;
+    box-shadow: 0 0 10px #93bff9;
   }
 
   .personaje-item .nombre-personaje {
@@ -1016,12 +1103,12 @@ footer {
   }
 
   .personaje-item.activo img {
-    border-bottom: 4px solid #93f9b9;
+    border-bottom: 4px solid #93bff9;
     box-shadow: 0 0 15px rgba(147, 249, 185, 0.7);
   }
 
   .personaje-item.activo .nombre-personaje {
-    color: #93f9b9;
+    color: #93bff9;
     font-weight: bold;
     text-shadow: 0 0 6px rgba(147, 249, 185, 0.4);
   }
@@ -1050,6 +1137,10 @@ footer {
     font-size: 0.95rem;
     padding: 0.5rem;
   }
+
+  .personaje-flotante {
+    width: 80px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -1073,7 +1164,7 @@ footer {
 .personajes-lista::-webkit-scrollbar-thumb {
   background: linear-gradient(
     to right,
-    #93f9b9,
+    #93bff9,
     #aebaf6
   ); /* Color tipo sistema */
   border-radius: 4px;
@@ -1084,12 +1175,12 @@ footer {
   background: linear-gradient(
     to right,
     #aebaf6,
-    #93f9b9
+    #93bff9
   ); /* Reverso al pasar el ratón */
 }
 
 /* Firefox */
 .personajes-lista {
   scrollbar-width: thin;
-  scrollbar-color: #93f9b9 transparent;
+  scrollbar-color: #93bff9 transparent;
 }

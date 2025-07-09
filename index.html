@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portafolio de Daniel: Desarrollo 3D, Animación, Videojuegos y Software Interactivo"
+      content="Portafolio de Daniel: Diseño Gráfico, Animación, Videojuegos y Software"
     />
     <title>Daniel | Portafolio Creativo</title>
     <link rel="stylesheet" href="css/styles.css" />
@@ -103,18 +103,29 @@
 
     <!-- 🌀 Hero de entrada -->
     <section class="hero" id="inicio">
+      <!-- Imagen de fondo -->
       <img src="assets/FG_006.png" alt="Fondo principal" />
-      <div class="frase-hero">
-        <!-- “Lo visible sólo es la máscara de lo que quiere mostrarse.” -->
+      <div class="filtro-oscuro"></div>
+
+      <!-- Imagen flotante del personaje, ahora FUERA del cuadro de texto -->
+      <img
+        class="personaje-flotante"
+        src="assets/characters/VCT.png"
+        alt="Personaje flotante"
+      />
+
+      <!-- Cuadro de texto con la frase -->
+      <!-- <div class="frase-hero">
         “Acá entre nos... Quiero que sepas la verdad.”
-      </div>
+      </div> -->
+
       <a href="#desarrollo3d" class="arrow">⬇️</a>
     </section>
 
     <header>
       <div class="nombre-container">
         <img
-          src="assets/VCT.png"
+          src="assets/LG.png"
           alt="Logo personal"
           class="logo"
           id="logoMetyd"
@@ -129,7 +140,7 @@
 
       <nav class="nav-desktop">
         <ul>
-          <li><a href="#desarrollo3d">Desarrollo 3D / Animación</a></li>
+          <li><a href="#desarrollo3d">Diseño Gráfico / Animación</a></li>
           <li><a href="#dibujo">Dibujo</a></li>
           <li><a href="#videojuegos">Videojuegos</a></li>
           <li><a href="#software">Software</a></li>
@@ -143,7 +154,7 @@
       <ul>
         <li>
           <a href="#desarrollo3d" onclick="closeMenu()"
-            >Desarrollo 3D / Animación</a
+            >Diseño Gráfico / Animación</a
           >
         </li>
         <li><a href="#dibujo" onclick="closeMenu()">Dibujo</a></li>
@@ -155,8 +166,8 @@
 
     <!-- 🔽 Secciones verticales -->
     <main>
-      <section id="desarrollo3d" class="parallax">
-        <h2>Desarrollo 3D / Animación</h2>
+      <section class="section animada" id="desarrollo3d">
+        <h2>Diseño Gráfico / Animación</h2>
         <div class="galeria">
           <!-- Imágenes aquí -->
         </div>
@@ -243,14 +254,14 @@
         </div>
       </section>
 
-      <section id="dibujo">
+      <section class="section animada" id="dibujo">
         <h2>Dibujo</h2>
         <div class="galeria">
           <!-- Dibujos o sketchbooks -->
         </div>
       </section>
 
-      <section id="videojuegos">
+      <section class="section animada" id="videojuegos">
         <h2>Videojuegos</h2>
         <iframe
           src="juegos/mi-juego/index.html"
@@ -259,14 +270,15 @@
         ></iframe>
       </section>
 
-      <section id="software">
-        <h2>Software Interactivo</h2>
+      <section class="section animada" id="software">
+        <h2>Software</h2>
         <div id="demo-interactiva">
           <!-- Demo aquí -->
         </div>
       </section>
 
       <section id="contacto">
+        <!-- <section class="section animada" id="contacto"> -->
         <h2>Contacto</h2>
         <form>
           <input type="text" placeholder="Tu nombre" required />
@@ -535,6 +547,28 @@
 
         // Mostrar el primer personaje al cargar la página
         mostrarPersonaje("personaje1");
+      });
+    </script>
+    <script>
+      const secciones = document.querySelectorAll(".section");
+
+      const observer = new IntersectionObserver(
+        (entradas) => {
+          entradas.forEach((entrada) => {
+            if (entrada.isIntersecting) {
+              entrada.target.classList.add("mostrar");
+            } else {
+              entrada.target.classList.remove("mostrar"); // ⚡ Aquí está el "ocultar"
+            }
+          });
+        },
+        {
+          threshold: 0.1, // porcentaje de visibilidad que activa el efecto
+        }
+      );
+
+      secciones.forEach((seccion) => {
+        observer.observe(seccion);
       });
     </script>
   </body>
