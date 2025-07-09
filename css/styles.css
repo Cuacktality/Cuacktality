@@ -554,6 +554,12 @@ form button:hover {
   box-shadow: 0 0 25px rgba(147, 249, 185, 0.2);
   width: 100%;
   max-width: 1200px;
+  overflow-x: visible;
+}
+
+.parallax,
+#desarrollo3d {
+  overflow-x: visible;
 }
 
 .selector-personajes h3 {
@@ -638,18 +644,15 @@ form button:hover {
 .personajes-lista {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  flex-wrap: nowrap;
   overflow-x: auto;
-  padding: 1rem; /* Padding uniforme para evitar cortes */
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  scrollbar-color: #93f9b9 transparent;
-  -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
-  scroll-behavior: smooth;
+  gap: 1rem;
+  padding: 1rem 0.5rem;
   width: 100%;
-  justify-content: center; /* Centra la lista de personajes */
-  margin-top: 2rem; /* Espacio añadido para separación del visor */
-  flex-wrap: nowrap; /* Asegura que no haga grid, solo scroll horizontal */
+  box-sizing: border-box;
+  max-width: none;
 }
 
 .personajes-lista img {
@@ -657,11 +660,9 @@ form button:hover {
   height: 90px;
   object-fit: cover;
   border-radius: 8px;
-  cursor: pointer;
-  flex-shrink: 0;
+  flex-shrink: 0;                       /* 👈 evita que se achiquen al hacer scroll */
   scroll-snap-align: center;
-  transition: transform 0.3s, box-shadow 0.3s, border-bottom 0.3s ease;
-  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
   border-bottom: 4px solid transparent;
 }
 
@@ -888,26 +889,38 @@ footer {
   }
 
   .rotador-botones-container {
-      flex-direction: row; /* Asegura que los botones estén en fila en móvil */
-      justify-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
   }
 
   .personajes-lista {
-      flex-wrap: nowrap; /* Mantiene el scroll horizontal, evita la cuadrícula */
-      justify-content: center; /* Centra la lista de personajes */
-      padding-left: 0.5rem;
-      margin-top: 1.5rem;
+    overflow-x: auto !important;
+    flex-wrap: nowrap;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0.5rem;
   }
 
   .personajes-lista img {
-      width: 80px;
-      height: 80px;
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    scroll-snap-align: center;
   }
 
   .icono-activo {
-      top: -25px;
-      width: 80px;
-      height: 80px;
+    top: -10px; /* más cerca del texto */
+    width: 80px;
+    height: 80px;
+  }
+
+  .icono-wrapper {
+    height: 80px;
+    margin-bottom: 0.5rem;
   }
 
   .datos-personaje {
@@ -923,4 +936,31 @@ footer {
     max-width: 600px;
     font-size: 1.05rem;
   }
+}
+
+/* ================================
+🎨 Scroll personalizado para .personajes-lista
+================================ */
+.personajes-lista::-webkit-scrollbar {
+  height: 8px; /* Altura del scroll horizontal */
+}
+
+.personajes-lista::-webkit-scrollbar-track {
+  background: transparent; /* Fondo invisible */
+}
+
+.personajes-lista::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #93f9b9, #aebaf6); /* Color tipo sistema */
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(147, 249, 185, 0.4); /* Sombra elegante */
+}
+
+.personajes-lista::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, #aebaf6, #93f9b9); /* Reverso al pasar el ratón */
+}
+
+/* Firefox */
+.personajes-lista {
+  scrollbar-width: thin;
+  scrollbar-color: #93f9b9 transparent;
 }
