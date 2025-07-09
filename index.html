@@ -70,13 +70,21 @@
         
         <div class="visor-rotativo">
             <div class="rotador-container">
+                <div class="info-personaje">
+                    <div class="icono-wrapper"></div> <!-- espacio exclusivo para el ícono flotante -->
+                  
+                    <div class="datos-personaje">
+                      <h4 id="nombrePersonaje">Nombre</h4>
+                      <p id="universoPersonaje">Universo:</p>
+                      <p id="juegoPersonaje">Videojuego:</p>
+                    </div>
+                  </div>                
+          
               <button onclick="rotar(-1)" class="boton-rotador">⬅️</button>
               <img id="modeloPersonaje" src="assets/renders/personaje1_00.png" alt="Render rotativo" />
               <button onclick="rotar(1)" class="boton-rotador">➡️</button>
             </div>
           </div>
-          
-          
           
           <div class="personajes-lista">
             <img src="assets/thumbnails/personaje1.png" onclick="mostrarPersonaje('personaje1')">
@@ -186,61 +194,102 @@
       }, 2100); // espera a que termine animación
     });
   </script>
-<script>
-    let personajeActual = 'personaje1';   // Nombre base del personaje
-    let anguloActual = 0;                 // Ángulo inicial
-    const totalAngulos = 10;              // Total de imágenes por personaje (de 00 a 09)
-  
-    // Función que cambia el personaje seleccionado
+ <script>
+    // 🧠 Datos informativos por personaje
+    const datosPersonajes = {
+      personaje1: {
+        nombre: "Nexus-01",
+        universo: "Metyd Prime",
+        juego: "Interconexión Digital",
+        thumbnail: "assets/thumbnails/personaje1.png"
+      },
+      personaje2: {
+        nombre: "Zaira",
+        universo: "Orbital 9",
+        juego: "Circuit Breakers",
+        thumbnail: "assets/thumbnails/personaje2.png"
+      },
+      personaje3: {
+        nombre: "Aegon",
+        universo: "Fragmenta",
+        juego: "Echo Pulse",
+        thumbnail: "assets/thumbnails/personaje3.png"
+      }
+    };
+    
+    // 🔁 Estado actual del visor
+    let personajeActual = 'personaje1';
+    let anguloActual = 0;
+    const totalAngulos = 10;
+    
+    // 🌀 Función principal para cambiar personaje
     function mostrarPersonaje(nombre) {
-  personajeActual = nombre;
-  anguloActual = 0;
-  actualizarRender();
-
-  // Primero quitamos clases activas y ocultas a todos
-  document.querySelectorAll('.personajes-lista img').forEach(img => {
-    img.classList.remove('activo', 'oculto');
-  });
-
-  const thumbnails = document.querySelectorAll('.personajes-lista img');
-  thumbnails.forEach(img => {
-    if (img.getAttribute('onclick').includes(nombre)) {
-      img.classList.add('activo', 'oculto'); // 👈 oculta el ícono original
-      mostrarIconoEnVisor(img.src);         // 👈 clona en el visor
+      personajeActual = nombre;
+      anguloActual = 0;
+      actualizarRender();
+    
+      // Actualizar panel informativo
+      const datos = datosPersonajes[nombre];
+      document.getElementById("nombrePersonaje").textContent = datos.nombre;
+      document.getElementById("universoPersonaje").textContent = `Universo: ${datos.universo}`;
+      document.getElementById("juegoPersonaje").textContent = `Videojuego: ${datos.juego}`;
+    
+      // Resetear clases en íconos del listado
+      document.querySelectorAll('.personajes-lista img').forEach(img => {
+        img.classList.remove('activo', 'oculto');
+      });
+    
+      // Ocultar ícono original y mostrar flotante
+      const thumbnails = document.querySelectorAll('.personajes-lista img');
+      thumbnails.forEach(img => {
+        if (img.getAttribute('onclick').includes(nombre)) {
+          img.classList.add('activo', 'oculto');
+          mostrarIconoEnPanel(datos.thumbnail);
+        }
+      });
     }
-  });
-}
-
-function mostrarIconoEnVisor(src) {
-  // Remueve icono previo si existe
-  const previo = document.querySelector('.icono-activo');
-  if (previo) previo.remove();
-
-  // Crea nuevo ícono
-  const visor = document.querySelector('.rotador-container');
-  const icono = document.createElement('img');
-  icono.src = src;
-  icono.classList.add('icono-activo');
-  visor.appendChild(icono);
-} 
-    // Función para rotar izquierda o derecha (-1, +1)
+    
+    // 🎯 Rotar personaje dentro del visor
     function rotar(direccion) {
       anguloActual += direccion;
-  
-      // Control de límites
       if (anguloActual < 0) anguloActual = 0;
       if (anguloActual >= totalAngulos) anguloActual = totalAngulos - 1;
-  
       actualizarRender();
     }
-  
-    // Función que actualiza el visor con la imagen correcta
+    
+    // 🎨 Actualizar imagen del render rotativo
     function actualizarRender() {
       const angulo = String(anguloActual).padStart(2, '0');
       const ruta = `assets/renders/${personajeActual}_${angulo}.png`;
-      document.getElementById('modeloPersonaje').src = ruta;
+      const render = document.getElementById('modeloPersonaje');
+    
+      render.src = ruta;
+      render.classList.add('pulsando');
+      render.classList.add('iluminado');
+    
+      setTimeout(() => {
+        render.classList.remove('pulsando');
+        render.classList.remove('iluminado');
+      }, 600);
+    
       console.log(`Mostrando: ${personajeActual}_${angulo}`);
     }
-  </script>  
+    
+    // 🧬 Mostrar ícono flotante sobre el panel informativo
+    function mostrarIconoEnPanel(src) {
+  const wrapper = document.querySelector('.icono-wrapper');
+  
+  // Eliminar ícono anterior
+  const anterior = document.querySelector('.icono-activo');
+  if (anterior) anterior.remove();
+
+  // Crear nuevo ícono flotante
+  const icono = document.createElement('img');
+  icono.src = src;
+  icono.classList.add('icono-activo');
+  wrapper.appendChild(icono);
+}
+
+    </script>    
 </body>
 </html>

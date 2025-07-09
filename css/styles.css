@@ -508,11 +508,73 @@ form button:hover {
 }
 
 .rotador-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
+      position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .info-personaje {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #93f9b9;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    max-width: 160px;
+    padding: 0.5rem;
+    position: relative;
+  }
+  
+  /* Ícono flotante ahora dentro del wrapper */
+  .icono-wrapper {
+    position: relative;
+    height: 80px;
+    width: 100%;
+  }
+  
+  /* Ícono flotante sobre el nombre */
+  .icono-activo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    object-fit: cover;
+    animation: salto 0.5s ease-out forwards;
+    box-shadow: 0 0 10px rgba(147, 249, 185, 0.4);
+  }
+  
+  /* Responsivo: ficha se adapta en móvil */
+  @media (max-width: 768px) {
+    .info-personaje {
+      max-width: 100%;
+      text-align: center;
+      padding: 1rem;
+    }
+  }
+  
+  /* Animación de salto */
+  @keyframes salto {
+    0% {
+      transform: translateX(-50%) translateY(0) scale(0.7);
+      opacity: 0;
+    }
+    40% {
+      transform: translateX(-50%) translateY(-20px) scale(1.1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-50%) translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  
+  
 
 .boton-rotador {
   font-size: 2rem;
@@ -535,8 +597,38 @@ form button:hover {
   object-fit: contain;
   background-color: rgba(255, 255, 255, 0.03);
   border-radius: 8px;
-  transition: opacity 0.4s ease;
-} 
+  transition: opacity 0.4s ease;animation: pulsoRender 0.5s ease;
+}
+
+@keyframes pulsoRender {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0px transparent;
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #93f9b9;
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0px transparent;
+  }
+} /* Pulso en visor */
+#modeloPersonaje.pulsando {
+  animation: pulsoRender 0.5s ease;
+}
+
+@keyframes pulsoRender {
+  0% { transform: scale(1); box-shadow: none; }
+  50% { transform: scale(1.05); box-shadow: 0 0 20px #93f9b9; }
+  100% { transform: scale(1); box-shadow: none; }
+}
+
+#modeloPersonaje.iluminado {
+  box-shadow: 0 0 20px #93f9b9;
+  transition: box-shadow 0.5s ease-in-out;
+}
+
 
 /* Slider centrado debajo del render */
 #rotador {
@@ -577,6 +669,7 @@ form button:hover {
 .personajes-lista img.oculto {
   opacity: 0;
   pointer-events: none;
+  display:none;
 }
 .personajes-lista img:hover {
   transform: scale(1.05);
@@ -593,28 +686,33 @@ form button:hover {
 }
 .icono-activo {
   position: absolute;
-  bottom: -10px; /* debajo del visor */
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%) scale(1);
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   border-radius: 8px;
   object-fit: cover;
   box-shadow: 0 0 10px rgba(147, 249, 185, 0.4);
-  animation: flotacion 0.6s ease-out forwards;
+  animation: salto 0.5s ease-out forwards;
   z-index: 2;
 }
 
-@keyframes flotacion {
+@keyframes salto {
   0% {
+    transform: translateX(-50%) translateY(0) scale(0.7);
     opacity: 0;
-    transform: translateX(-50%) scale(0.5);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-20px) scale(1.1);
+    opacity: 1;
   }
   100% {
+    transform: translateX(-50%) translateY(0) scale(1);
     opacity: 1;
-    transform: translateX(-50%) scale(1);
   }
 }
+
 
 
 /* ================================
