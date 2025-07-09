@@ -537,7 +537,7 @@ form button:hover {
   /* Ícono flotante sobre el nombre */
   .icono-activo {
     position: absolute;
-    top: 0;
+    top: -20px;
     left: 50%;
     transform: translateX(-50%);
     width: 70px;
@@ -550,13 +550,31 @@ form button:hover {
   
   /* Responsivo: ficha se adapta en móvil */
   @media (max-width: 768px) {
+    .contenedor-personajes {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .rotador-container {
+      flex-direction: column;
+    }
+  
     .info-personaje {
       max-width: 100%;
       text-align: center;
-      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+  
+    .personajes-lista {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    .boton-rotador {
+      margin: 0.5rem;
     }
   }
-  
+   
   /* Animación de salto */
   @keyframes salto {
     0% {
@@ -677,27 +695,7 @@ form button:hover {
 .personajes-lista img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px #93f9b9;
-}
-@media (max-width: 768px) {
-  .contenedor-personajes {
-    flex-direction: column;
-    align-items: center;
-  }   
-}
-.icono-activo {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%) scale(1);
-  width: 80px;
-  height: 80px;
-  border-radius: 8px;
-  object-fit: cover;
-  box-shadow: 0 0 10px rgba(147, 249, 185, 0.4);
-  animation: salto 0.5s ease-out forwards;
-  z-index: 2;
-}
-
+}  
 @keyframes salto {
   0% {
     transform: translateX(-50%) translateY(0) scale(0.7);
