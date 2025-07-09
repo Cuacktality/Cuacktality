@@ -3,16 +3,16 @@
 ================================ */
 @font-face {
   font-family: 'Symtext';
-  src: url('fonts/Symtext.woff2') format('woff2'),
-       url('fonts/Symtext.woff') format('woff'),
-       url('fonts/Symtext.ttf') format('truetype');
+  src: url('../fonts/Symtext.woff2') format('woff2'),
+       url('../fonts/Symtext.woff') format('woff'),
+       url('../fonts/Symtext.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Stanberry';
-  src: url('fonts/Stanberry.woff2') format('woff2'),
-       url('fonts/Stanberry.woff') format('woff')
-       url('fonts/Stanberry.ttf') format('truetype');
+  src: url('../fonts/Stanberry.woff2') format('woff2'),
+       url('../fonts/Stanberry.woff') format('woff'),
+       url('../fonts/Stanberry.ttf') format('truetype');
 }
 
 /* ================================
@@ -93,7 +93,7 @@ h2 {
    🖼️ PARALLAX
 ================================ */
 .parallax {
-  background-image: url('assets/FG_006.png'); /* reemplaza con tu imagen */
+  background-image: url('../assets/FG_006.png'); /* reemplaza con tu imagen */
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
