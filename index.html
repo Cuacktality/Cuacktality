@@ -7,24 +7,36 @@
   <title>Daniel | Portafolio Creativo</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
+    <!-- 🔐 Animación de entrada -->
+    <div class="intro-overlay" id="introOverlay">
+      <div class="puerta">
+        <div class="cierre"></div>
+      </div>
+    </div>
 
   <!-- 🌀 Hero de entrada -->
   <section class="hero" id="inicio">
     <img src="assets/FG_006.png" alt="Fondo principal" />
+    <div class="frase-hero">
+        <!-- “Lo visible sólo es la máscara de lo que quiere mostrarse.” -->
+        “Acá entre nos... Quiero que sepas la verdad.”
+    </div>
     <a href="#desarrollo3d" class="arrow">⬇️</a>
   </section>
-
-  <!-- 🌌 Navegación fija -->
+  
+ 
   <header>
     <div class="nombre-container">
-        <img src="assets/VCT.png" alt="Logo personal" class="logo" />
-        <div class="nombre-estilo">
-          <span class="nombre">Daniel</span>
-          <span class="apellido">Contreras</span>
-        </div>
+        <img src="assets/VCT.png" alt="Logo personal" class="logo" id="logoMetyd" onclick="toggleMenu()" title="Abrir menú" />
+      <div class="nombre-estilo">
+        <span class="nombre">Daniel</span>
+        <span class="apellido">Contreras</span>
       </div>
-    <nav>
+    </div>
+  
+    <nav class="nav-desktop">
       <ul>
         <li><a href="#desarrollo3d">Desarrollo 3D / Animación</a></li>
         <li><a href="#dibujo">Dibujo</a></li>
@@ -35,6 +47,16 @@
     </nav>
   </header>
   
+  <!-- Menú lateral móvil -->
+  <div class="sidebar" id="mobileMenu">
+    <ul>
+      <li><a href="#desarrollo3d" onclick="closeMenu()">Desarrollo 3D / Animación</a></li>
+      <li><a href="#dibujo" onclick="closeMenu()">Dibujo</a></li>
+      <li><a href="#videojuegos" onclick="closeMenu()">Videojuegos</a></li>
+      <li><a href="#software" onclick="closeMenu()">Software</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Contacto</a></li>
+    </ul>
+  </div> 
 
   <!-- 🔽 Secciones verticales -->
   <main>
@@ -92,6 +114,52 @@
       }
     });
   </script>
-
+<script>
+    function toggleMenu() {
+      // Solo activar en pantallas pequeñas
+      if (window.innerWidth > 768) return;
+  
+      const menu = document.getElementById('mobileMenu');
+      const logo = document.getElementById('logoMetyd');
+  
+      menu.classList.toggle('open');
+  
+      if (menu.classList.contains('open')) {
+        logo.classList.add('logo-transformada');
+      } else {
+        logo.classList.remove('logo-transformada');
+      }
+    }
+  
+    function closeMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const logo = document.getElementById('logoMetyd');
+  
+      menu.classList.remove('open');
+      logo.classList.remove('logo-transformada');
+    }
+  </script>
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', () => {
+        const menu = document.getElementById('mobileMenu');
+        const logo = document.getElementById('logoMetyd');
+        if (menu.classList.contains('open')) {
+          menu.classList.remove('open');
+          logo.classList.remove('logo-transformada');
+        }
+      });
+    });
+  </script>
+  
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const overlay = document.getElementById('introOverlay');
+        overlay.style.display = 'none';
+      }, 2100); // espera a que termine animación
+    });
+  </script>
+    
 </body>
 </html>
