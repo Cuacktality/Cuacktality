@@ -502,41 +502,74 @@ form button:hover {
 
 /* Render rotativo a la izquierda */
 .visor-rotativo {
-  flex: 1;
-  min-width: 280px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
+
+.rotador-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.boton-rotador {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  padding: 0.2rem;
+  color: #93f9b9;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.boton-rotador:hover {
+  transform: scale(1.2);
+}
+
 
 #modeloPersonaje {
   width: 300px;
   height: 300px;
   object-fit: contain;
-  /* background-color: rgba(255, 255, 255, 0.03); */
+  background-color: rgba(255, 255, 255, 0.03);
   border-radius: 8px;
   transition: opacity 0.4s ease;
-}
+} 
 
 /* Slider centrado debajo del render */
 #rotador {
   width: 80%;
 }
-
-/* Lista de personajes a la derecha */
+ 
 .personajes-lista {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
-  align-items: center;
+  overflow-x: auto;
+  padding: 1rem 0;
+  padding-left: 1rem; /* 👈 da espacio al primero */
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: #93f9b9 transparent;
+  -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
 }
 
+
 .personajes-lista img {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
+  flex-shrink: 0;
+  scroll-snap-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
 }
+.personajes-lista img:hover {
+  transform: scale(1.05);
+}
+
 .personajes-lista img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px #93f9b9;
@@ -545,13 +578,7 @@ form button:hover {
   .contenedor-personajes {
     flex-direction: column;
     align-items: center;
-  }
-
-  .personajes-lista {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+  }   
 }
 
 

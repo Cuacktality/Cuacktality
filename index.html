@@ -68,18 +68,28 @@
       <div class="selector-personajes">
         <h3>Selecciona un personaje</h3>
         
-        <div class="contenedor-personajes">
-          <div class="visor-rotativo">
-            <img id="modeloPersonaje" src="assets/renders/personaje1_00.png" alt="Render rotativo" />
-            <input type="range" min="0" max="9" value="0" id="rotador" />
+        <div class="visor-rotativo">
+            <div class="rotador-container">
+              <button onclick="rotar(-1)" class="boton-rotador">⬅️</button>
+              <img id="modeloPersonaje" src="assets/renders/personaje1_00.png" alt="Render rotativo" />
+              <button onclick="rotar(1)" class="boton-rotador">➡️</button>
+            </div>
           </div>
-      
+          
+          
+          
           <div class="personajes-lista">
             <img src="assets/thumbnails/personaje1.png" onclick="mostrarPersonaje('personaje1')">
             <img src="assets/thumbnails/personaje2.png" onclick="mostrarPersonaje('personaje2')">
             <img src="assets/thumbnails/personaje3.png" onclick="mostrarPersonaje('personaje3')">
-          </div>
-        </div>
+            <img src="assets/thumbnails/personaje1.png" onclick="mostrarPersonaje('personaje1')">
+            <img src="assets/thumbnails/personaje2.png" onclick="mostrarPersonaje('personaje2')">
+            <img src="assets/thumbnails/personaje3.png" onclick="mostrarPersonaje('personaje3')">
+            <img src="assets/thumbnails/personaje1.png" onclick="mostrarPersonaje('personaje1')">
+            <img src="assets/thumbnails/personaje2.png" onclick="mostrarPersonaje('personaje2')">
+            <img src="assets/thumbnails/personaje3.png" onclick="mostrarPersonaje('personaje3')">
+            <!-- agrega más personajes según necesites -->
+          </div>          
       </div>      
     </section>
 
@@ -176,19 +186,36 @@
       }, 2100); // espera a que termine animación
     });
   </script>
-    <script>
-        let personajeActual = 'personaje1';
-      
-        function mostrarPersonaje(nombre) {
-          personajeActual = nombre;
-          document.getElementById('rotador').value = 0;
-          document.getElementById('modeloPersonaje').src = 'assets/renders/${nombre}_00.png';
-        }
-      
-        document.getElementById('rotador').addEventListener('input', () => {
-          const angulo = String(document.getElementById('rotador').value).padStart(2, '0');
-          document.getElementById('modeloPersonaje').src = 'assets/renders/${personajeActual}_${angulo}.png';
-        });
-      </script>
+<script>
+    let personajeActual = 'personaje1';   // Nombre base del personaje
+    let anguloActual = 0;                 // Ángulo inicial
+    const totalAngulos = 10;              // Total de imágenes por personaje (de 00 a 09)
+  
+    // Función que cambia el personaje seleccionado
+    function mostrarPersonaje(nombre) {
+      personajeActual = nombre;
+      anguloActual = 0;
+      actualizarRender();
+    }
+  
+    // Función para rotar izquierda o derecha (-1, +1)
+    function rotar(direccion) {
+      anguloActual += direccion;
+  
+      // Control de límites
+      if (anguloActual < 0) anguloActual = 0;
+      if (anguloActual >= totalAngulos) anguloActual = totalAngulos - 1;
+  
+      actualizarRender();
+    }
+  
+    // Función que actualiza el visor con la imagen correcta
+    function actualizarRender() {
+      const angulo = String(anguloActual).padStart(2, '0');
+      const ruta = `assets/renders/${personajeActual}_${angulo}.png`;
+      document.getElementById('modeloPersonaje').src = ruta;
+      console.log(`Mostrando: ${personajeActual}_${angulo}`);
+    }
+  </script>  
 </body>
 </html>
