@@ -193,11 +193,36 @@
   
     // Función que cambia el personaje seleccionado
     function mostrarPersonaje(nombre) {
-      personajeActual = nombre;
-      anguloActual = 0;
-      actualizarRender();
+  personajeActual = nombre;
+  anguloActual = 0;
+  actualizarRender();
+
+  // Primero quitamos clases activas y ocultas a todos
+  document.querySelectorAll('.personajes-lista img').forEach(img => {
+    img.classList.remove('activo', 'oculto');
+  });
+
+  const thumbnails = document.querySelectorAll('.personajes-lista img');
+  thumbnails.forEach(img => {
+    if (img.getAttribute('onclick').includes(nombre)) {
+      img.classList.add('activo', 'oculto'); // 👈 oculta el ícono original
+      mostrarIconoEnVisor(img.src);         // 👈 clona en el visor
     }
-  
+  });
+}
+
+function mostrarIconoEnVisor(src) {
+  // Remueve icono previo si existe
+  const previo = document.querySelector('.icono-activo');
+  if (previo) previo.remove();
+
+  // Crea nuevo ícono
+  const visor = document.querySelector('.rotador-container');
+  const icono = document.createElement('img');
+  icono.src = src;
+  icono.classList.add('icono-activo');
+  visor.appendChild(icono);
+} 
     // Función para rotar izquierda o derecha (-1, +1)
     function rotar(direccion) {
       anguloActual += direccion;

@@ -508,6 +508,7 @@ form button:hover {
 }
 
 .rotador-container {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -553,6 +554,7 @@ form button:hover {
   scrollbar-width: thin;
   scrollbar-color: #93f9b9 transparent;
   -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
+  scroll-behavior: smooth;
 }
 
 
@@ -565,11 +567,20 @@ form button:hover {
   flex-shrink: 0;
   scroll-snap-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  border-bottom: 4px solid transparent;
+  transition: border-bottom 0.3s ease;
+}
+.personajes-lista img.activo {
+  border-bottom: 4px solid #93f9b9; /* brillo verde elegante */
+}
+.personajes-lista img.oculto {
+  opacity: 0;
+  pointer-events: none;
 }
 .personajes-lista img:hover {
   transform: scale(1.05);
 }
-
 .personajes-lista img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px #93f9b9;
@@ -579,6 +590,30 @@ form button:hover {
     flex-direction: column;
     align-items: center;
   }   
+}
+.icono-activo {
+  position: absolute;
+  bottom: -10px; /* debajo del visor */
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(147, 249, 185, 0.4);
+  animation: flotacion 0.6s ease-out forwards;
+  z-index: 2;
+}
+
+@keyframes flotacion {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
 }
 
 
