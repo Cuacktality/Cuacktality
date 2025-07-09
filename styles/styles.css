@@ -1,0 +1,83 @@
+/* Estilos generales */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
+    background-color: #111;
+    color: #f0f0f0;
+  }
+  
+  /* Navegación */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 1em;
+    z-index: 999;
+  }
+  
+  header h1 {
+    display: inline;
+    margin-right: 2rem;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: inline-flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li a {
+    color: #00ffe0;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  nav ul li a:hover {
+    color: #fff;
+  }
+  
+  /* Secciones */
+  section {
+    padding: 120px 5% 80px;
+    min-height: 100vh;
+  }
+  
+  .parallax {
+    background-image: url('assets/fondo.jpg'); /* cambia esto por tu imagen */
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+  }
+  
+  /* Galería básica */
+  .galeria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .galeria img {
+    max-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #00ffe0;
+    transition: transform 0.3s;
+  }
+  .galeria img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1em;
+    background: #000;
+    font-size: 0.9em;
+    color: #999;
+  }
