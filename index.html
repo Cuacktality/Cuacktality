@@ -10,7 +10,7 @@
     <title>Daniel | Portafolio Creativo</title>
     <link rel="stylesheet" href="css/styles.css" />
 
-    <style>
+    <!-- <style>
       /*
      * Ajustes específicos para el problema de visualización de personajes y mejoras estéticas.
      */
@@ -90,7 +90,7 @@
           height: 250px !important;
         }
       }
-    </style>
+    </style> -->
   </head>
 
   <body>
@@ -439,12 +439,10 @@
         },
       };
 
-      // 🔁 Estado actual del visor
       let personajeActual = "personaje1";
       let anguloActual = 0;
       const totalAngulos = 10;
 
-      // 🌀 Función principal para cambiar personaje
       function mostrarPersonaje(nombre) {
         personajeActual = nombre;
         anguloActual = 0;
@@ -468,7 +466,15 @@
         // Ocultar ícono original y mostrar flotante
         const thumbnails = document.querySelectorAll(".personajes-lista img");
         thumbnails.forEach((img) => {
-          if (img.getAttribute("onclick").includes(nombre)) {
+          // Obtener el valor exacto del nombre del personaje desde el atributo onclick
+          const onclickAttr = img.getAttribute("onclick");
+          const regex = /mostrarPersonaje\('([^']+)'\)/;
+          const match = onclickAttr.match(regex);
+
+          // Verificar si hay una coincidencia y si el nombre extraído coincide exactamente
+          if (match && match[1] === nombre) {
+            // La miniatura activa debe permanecer visible en la lista,
+            // solo se le añade la clase 'activo' para resaltarla.
             img.classList.add("activo", "oculto");
             mostrarIconoEnPanel(datos.thumbnail);
           }
@@ -514,7 +520,6 @@
       }
 
       window.addEventListener("DOMContentLoaded", () => {
-        mostrarPersonaje("personaje1");
         setTimeout(() => {
           const overlay = document.getElementById("introOverlay");
           overlay.style.display = "none";
