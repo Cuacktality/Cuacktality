@@ -97,12 +97,14 @@ a {
  🌀 HERO
 ================================ */
 .hero {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
   display: flex; /* Añadido para centrar el contenido */
   align-items: center; /* Añadido para centrar el contenido */
   justify-content: center; /* Añadido para centrar el contenido */
+
+  position: relative;
+  height: 100vh;
+  /*overflow: visible; /* permite que el personaje se muestre completo */
+  overflow: hidden;
 }
 
 .hero img {
@@ -115,31 +117,26 @@ a {
 }
 
 .frase-hero {
+  animation: fadeInHero 2s ease-out forwards;
   position: absolute;
-  /* Acércala a la flecha */
-  top: 65%; /* bajamos del 50% al 65% para acercarla */
+  top: 20%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
 
-  /* Más ancha */
   max-width: 90%;
+  width: 460px;
 
-  /* Estética más opaca y oscura */
   backdrop-filter: blur(4px);
-  background-color: rgba(40, 40, 40, 0.4); /* más oscuro y opaco */
-
+  background-color: rgba(40, 40, 40, 0.4);
   padding: 1em 1.5em;
-  border-radius: 12px;
-  box-shadow: 0 0 25px rgba(174, 187, 246, 0.6);
 
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-family: "Stanberry", sans-serif;
   color: #aebaf6;
   text-align: center;
 
-  animation: fadeInHero 1.8s ease-out forwards;
   opacity: 0;
-  z-index: 5; /* asegura que esté debajo de la imagen flotante */
+  z-index: 7;
 }
 
 @keyframes fadeInHero {
@@ -151,7 +148,7 @@ a {
 .arrow {
   position: absolute;
   left: 50%;
-  bottom: 60px;
+  bottom: 40px;
   transform: translateX(-50%);
   font-size: 2.5rem;
   color: #93d0f9;
@@ -165,20 +162,43 @@ a {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.35); /* Ajusta la opacidad */
+  background-color: rgba(0, 0, 0, 0.55); /* Ajusta la opacidad */
   z-index: -1;
 }
 
 .personaje-flotante {
   position: absolute;
-  top: calc(65% - 120px); /* ligeramente sobre la frase */
+  bottom: -190px;
   left: 50%;
   transform: translateX(-50%);
-  width: 120px; /* tamaño fijo base */
-  height: 100%;
+
+  height: auto;
+  width: auto;
+  max-width: 95vh; /* limita el ancho en pantallas grandes */
+  max-height: 95vh; /* limita la altura para evitar cortes */
+
+  object-fit: contain;
   z-index: 6;
-  /*animation: flotar 3s ease-in-out infinite;  animación de flotación */
-  opacity: 1;
+}
+@keyframes fadeInHero {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+@keyframes entrada-flotante {
+  0% {
+    transform: translateX(-50%) translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
 }
 
 /* Flotación suave */
@@ -237,7 +257,6 @@ header {
 .logo-transformada {
   transform: rotate(90deg) scale(0.8);
   filter: brightness(1.2);
-  /* Eliminamos el halo */
   box-shadow: none;
 }
 
@@ -416,6 +435,26 @@ h2 {
   font-size: 2em;
   margin-bottom: 1rem;
 }
+/* ================================
+ 🖼️ CONTENEDOR WEBGL VIDEOJUEGOS
+================================ */
+.iframe-container {
+  position: relative;
+  width: 100%;
+  max-width: 960px; /* límite máximo */
+  aspect-ratio: 16 / 10; /* mantiene proporción sin altura fija */
+  margin: 0 auto; /* centra el contenedor */
+  overflow: hidden;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 
 /* ================================
  🖼️ FONDOS BLUR DIFERENCIADOS
@@ -445,6 +484,16 @@ main section::before {
   overflow: hidden;
 }
 
+#videojuegos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+#videojuegos h2 {
+  align-self: flex-start;
+  margin-left: 1rem; /* o lo que prefieras */
+}
 /* Fondo desenfocado de Desarrollo 3D */
 #desarrollo3d::before {
   content: "";
@@ -553,7 +602,7 @@ main section::before {
 /* ================================
  🎮 IFRAME
 ================================ */
-iframe {
+/* iframe {
   border: none;
   width: 90%;
   max-width: 960px;
@@ -562,6 +611,17 @@ iframe {
   border-radius: 10px;
   margin-top: 2rem;
   background-color: #000; /* Fondo por si el iframe tarda en cargar */
+/* } */
+
+#videojuegos iframe {
+  border: none;
+  width: 90%;
+  max-width: 960px;
+  height: 60vh;
+  box-shadow: 0 0 15px #aebaf6;
+  border-radius: 10px;
+  margin-top: 2rem;
+  background-color: #000;
 }
 
 /* ================================
@@ -1139,7 +1199,9 @@ footer {
   }
 
   .personaje-flotante {
-    width: 80px;
+    max-width: 60vh;
+    max-height: 60vh;
+    bottom: -110px;
   }
 }
 

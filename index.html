@@ -8,89 +8,8 @@
       content="Portafolio de Daniel: Diseño Gráfico, Animación, Videojuegos y Software"
     />
     <title>Daniel | Portafolio Creativo</title>
+    <link rel="icon" type="image/x-icon" href="assets/LG.png" />
     <link rel="stylesheet" href="css/styles.css" />
-
-    <!-- <style>
-      /*
-     * Ajustes específicos para el problema de visualización de personajes y mejoras estéticas.
-     */
-
-      /* Permitir el desplazamiento horizontal en el body para que el contenido desbordado sea visible */
-      body {
-        overflow-x: visible !important; /* ¡Crucial! Permite que el contenido se desborde horizontalmente si es necesario */
-      }
-
-      /* Centrar el selector de personajes y asegurar un buen espaciado */
-      .selector-personajes {
-        margin: 2rem auto !important; /* Centra el bloque horizontalmente con margen superior/inferior */
-        padding: 2rem !important; /* Espaciado interno */
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0.4
-        ) !important; /* Fondo semi-transparente */
-        border-radius: 12px !important; /* Bordes redondeados */
-        backdrop-filter: blur(6px) !important; /* Efecto de desenfoque */
-        box-shadow: 0 0 25px rgba(147, 249, 185, 0.2) !important; /* Sombra sutil */
-        width: 100% !important; /* Ocupa todo el ancho disponible */
-        max-width: 1200px !important; /* Limita el ancho máximo en pantallas grandes */
-        overflow-x: visible !important; /* Asegura que no oculte el scroll de sus hijos */
-        box-sizing: border-box !important; /* Incluye padding y borde en el ancho total */
-      }
-
-      /* Asegura que la lista de personajes se muestre en una sola fila y permita el desplazamiento */
-      .personajes-lista {
-        white-space: nowrap !important; /* Evita que los elementos se envuelvan a la siguiente línea */
-        overflow-x: auto !important; /* Habilita el desplazamiento horizontal si el contenido excede el ancho */
-        -webkit-overflow-scrolling: touch !important; /* Mejora el desplazamiento en dispositivos iOS */
-        display: flex !important; /* Asegura el comportamiento flex para los elementos */
-        gap: 1rem !important; /* Espacio entre los personajes */
-        padding: 1rem 0.5rem !important; /* Padding para la lista */
-        /* Se eliminó 'width: 100%' y 'min-width' aquí. La lista se expandirá por el contenido de sus hijos. */
-        box-sizing: border-box !important; /* Incluye el padding y el borde en el ancho total */
-        scroll-snap-type: none !important; /* Deshabilita el "snap" en el scroll para un desplazamiento libre */
-      }
-
-      .personajes-lista img {
-        flex-shrink: 0 !important; /* ¡Crucial! Evita que las imágenes se encojan y fuerza el desbordamiento */
-        width: 90px !important; /* Ancho fijo para cada imagen */
-        height: 90px !important; /* Alto fijo para cada imagen */
-        object-fit: cover !important; /* Asegura que la imagen cubra el área sin distorsionarse */
-        border-radius: 8px !important; /* Bordes redondeados */
-        transition: transform 0.3s, box-shadow 0.3s !important; /* Transiciones suaves */
-        border-bottom: 4px solid transparent !important; /* Borde inferior transparente por defecto */
-        scroll-snap-align: none !important; /* Deshabilita el "snap" de los elementos */
-      }
-
-      /* Media query para pantallas más pequeñas, ajusta el tamaño de las miniaturas y la disposición */
-      @media (max-width: 768px) {
-        .personajes-lista img {
-          width: 80px !important; /* Reduce el tamaño de las miniaturas en móviles */
-          height: 80px !important;
-        }
-        /* Ajustes para el contenedor principal en móviles para mejor estética */
-        .selector-contenido-principal {
-          flex-direction: column !important; /* Apila los elementos verticalmente */
-          align-items: center !important; /* Centra los elementos */
-          gap: 1.5rem !important; /* Espacio entre los bloques */
-        }
-        .info-personaje {
-          max-width: 100% !important; /* Ocupa todo el ancho disponible */
-          text-align: center !important; /* Centra el texto */
-          align-items: center !important; /* Centra los elementos internos */
-          padding: 0.5rem !important; /* Espaciado interno */
-        }
-        .visor-y-controles {
-          min-width: auto !important; /* Ancho mínimo automático */
-          width: 100% !important; /* Ocupa todo el ancho disponible */
-        }
-        #modeloPersonaje {
-          width: 250px !important; /* Tamaño del modelo en móviles */
-          height: 250px !important;
-        }
-      }
-    </style> -->
   </head>
 
   <body>
@@ -107,18 +26,18 @@
       <img src="assets/FG_006.png" alt="Fondo principal" />
       <div class="filtro-oscuro"></div>
 
+      <!-- Cuadro de texto con la frase -->
+      <div class="frase-hero">
+        <!-- “Acá entre nos... Quiero que sepas la verdad.” -->
+        “Con preparación y disciplina somos amos de nuestro destino”
+      </div>
+
       <!-- Imagen flotante del personaje, ahora FUERA del cuadro de texto -->
       <img
         class="personaje-flotante"
         src="assets/characters/VCT.png"
         alt="Personaje flotante"
       />
-
-      <!-- Cuadro de texto con la frase -->
-      <!-- <div class="frase-hero">
-        “Acá entre nos... Quiero que sepas la verdad.”
-      </div> -->
-
       <a href="#desarrollo3d" class="arrow">⬇️</a>
     </section>
 
@@ -265,8 +184,8 @@
         <h2>Videojuegos</h2>
         <iframe
           src="juegos/mi-juego/index.html"
-          width="960"
-          height="600"
+          loading="lazy"
+          allowfullscreen
         ></iframe>
       </section>
 
