@@ -180,16 +180,7 @@
         </div>
       </section>
 
-      <!-- <section class="section animada" id="videojuegos">
-        <h2>Videojuegos</h2>
-        <iframe
-          src="games/shoot/index.html"
-          loading="lazy"
-          allowfullscreen
-        ></iframe>
-      </section> -->
-
-      <section id="videojuegos">
+      <section class="section animada" id="videojuegos">
         <h2>Videojuegos</h2>
 
         <div class="layout-juegos">
@@ -536,70 +527,59 @@
 
       let juegoActual = 0;
 
-      function cambiarJuego(direccion) {
+      // Función para mostrar un juego por índice
+      function mostrarJuego(indice) {
+        const juego = juegos[indice];
         const iframe = document.getElementById("iframeJuego");
         const icono = document.getElementById("iconoJuego");
         const titulo = document.getElementById("tituloJuego");
         const descripcion = document.getElementById("descripcionJuego");
+
+        // Actualizar información
+        icono.src = juego.icono;
+        titulo.textContent = juego.titulo;
+        descripcion.textContent = juego.descripcion;
+
+        // Reiniciar iframe
+        iframe.src = "";
+        setTimeout(() => {
+          iframe.src = juego.url;
+
+          // 💡 Efecto de iluminación
+          const iframeWrapper = document.querySelector(".iframe-wrapper");
+          iframeWrapper.classList.add("iluminando");
+          setTimeout(() => {
+            iframeWrapper.classList.remove("iluminando");
+          }, 600);
+        }, 100);
+      }
+
+      // Función para cambiar de juego con flechas
+      function cambiarJuego(direccion) {
         const contenedor = document.querySelector(".contenedor-juego");
 
-        // Transición visual: desvanecer
+        // 🔄 Animación de fade-out
         contenedor.style.opacity = "0";
 
-        // Actualizar juego después del fade-out
         setTimeout(() => {
           juegoActual =
             (juegoActual + direccion + juegos.length) % juegos.length;
 
-          icono.src = juegos[juegoActual].icono;
-          titulo.textContent = juegos[juegoActual].titulo;
-          descripcion.textContent = juegos[juegoActual].descripcion;
+          mostrarJuego(juegoActual);
 
-          iframe.src = ""; // cerrar juego anterior
-          setTimeout(() => {
-            iframe.src = juegos[juegoActual].url;
-          }, 100); // cargar nuevo
-
-          // Recuperar la opacidad
+          // 🔄 Recuperar visibilidad
           contenedor.style.opacity = "1";
         }, 400);
       }
-    </script>
-    <script>
-      window.addEventListener("DOMContentLoaded", () => {
-        // Ocultar overlay de introducción si existe (opcional)
-        const overlay = document.getElementById("introOverlayJuego");
-        if (overlay) {
-          setTimeout(() => {
-            overlay.style.display = "none";
-          }, 2100);
-        }
 
-        // Forzar reflow en el layout de la sección (opcional)
+      // Mostrar juego inicial al cargar
+      window.addEventListener("DOMContentLoaded", () => {
         const contenedorJuegos = document.querySelector(".contenedor-juego");
         if (contenedorJuegos) {
           contenedorJuegos.offsetWidth;
         }
-
-        // Mostrar el primer juego automáticamente
         mostrarJuego(0);
       });
-
-      // Asegúrate de tener esta función como parte de tu sistema
-      function mostrarJuego(indice) {
-        const juego = juegos[indice];
-
-        document.getElementById("tituloJuego").textContent = juego.titulo;
-        document.getElementById("descripcionJuego").textContent =
-          juego.descripcion;
-        document.getElementById("iconoJuego").src = juego.icono;
-
-        const iframe = document.getElementById("iframeJuego");
-        iframe.src = ""; // vacía primero
-        setTimeout(() => {
-          iframe.src = juego.url;
-        }, 100);
-      }
     </script>
   </body>
 </html>
