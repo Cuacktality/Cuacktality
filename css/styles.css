@@ -435,26 +435,6 @@ h2 {
   font-size: 2em;
   margin-bottom: 1rem;
 }
-/* ================================
- 🖼️ CONTENEDOR WEBGL VIDEOJUEGOS
-================================ */
-/* .iframe-container {
-  position: relative;
-  width: 100%;
-  max-width: 960px; 
-  aspect-ratio: 16 / 10; 
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.iframe-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-} */
 
 /* ================================
  🖼️ FONDOS BLUR DIFERENCIADOS
@@ -477,81 +457,23 @@ main section::before {
 
 #desarrollo3d,
 #dibujo,
+#videojuegos,
 #software {
   position: relative;
   z-index: 0;
   overflow: hidden;
 }
 
-/* #videojuegos {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem 1rem;
-} */
-#videojuegos h2 {
-  align-self: flex-start;
-  margin-left: 1rem; /* o lo que prefieras */
-}
-#videojuegos {
-  position: relative;
+.layout-juegos {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  padding: 2rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
+  flex-wrap: nowrap;
 }
 
-.contenedor-juego {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-grow: 1;
-  transition: opacity 0.4s ease;
-  flex-wrap: wrap;
-}
-
-/* Panel de Información */
-.info-juego {
-  max-width: 280px;
-  flex: 1 1 280px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  text-align: center;
-}
-
-/* Estilo del icono */
-#iconoJuego {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-}
-
-/* Visor del juego */
-.iframe-wrapper {
-  flex: 2 1 640px;
-  width: 100%;
-  max-width: 640px;
-  aspect-ratio: 16 / 10;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: #000;
-  box-shadow: 0 0 15px #aebaf6;
-}
-
-.iframe-wrapper iframe {
-  border: none;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* Flechas laterales */
 .flecha {
   font-size: 2rem;
   background: none;
@@ -559,8 +481,48 @@ main section::before {
   color: #93d0f9;
   cursor: pointer;
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+}
+
+.contenedor-juego {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-info {
+  width: 100%;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+#iconoJuego {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+.panel-juego {
+  flex-grow: 1;
+  max-width: 950px;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px #aebaf6;
+  background-color: #000;
+}
+
+.panel-juego iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
 }
 
 /* Fondo desenfocado de Desarrollo 3D */
@@ -667,31 +629,6 @@ main section::before {
   transform: scale(1.05);
   box-shadow: 0 0 20px #93bff9; /* Sombra más pronunciada al pasar el ratón */
 }
-
-/* ================================
- 🎮 IFRAME
-================================ */
-/* iframe {
-  border: none;
-  width: 90%;
-  max-width: 960px;
-  height: 60vh;
-  box-shadow: 0 0 15px #aebaf6;
-  border-radius: 10px;
-  margin-top: 2rem;
-  background-color: #000; /* Fondo por si el iframe tarda en cargar */
-/* } */
-
-/* #videojuegos iframe {
-  border: none;
-  width: 90%;
-  max-width: 960px;
-  height: 60vh;
-  box-shadow: 0 0 15px #aebaf6;
-  border-radius: 10px;
-  margin-top: 2rem;
-  background-color: #000;
-} */
 
 /* ================================
  📨 FORMULARIO
@@ -1272,14 +1209,7 @@ footer {
     max-height: 60vh;
     bottom: -110px;
   }
-
-  .contenedor-juego {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-  }
-
-  #videojuegos {
+  .layout-juegos {
     flex-direction: column;
   }
 
@@ -1288,17 +1218,17 @@ footer {
     align-items: center;
   }
 
-  .iframe-wrapper {
+  .panel-juego {
     max-width: 100%;
     aspect-ratio: 16 / 9;
   }
 
-  .info-juego {
+  .panel-info {
     max-width: 100%;
   }
 
   .flecha {
-    margin: 1rem;
+    margin-top: 1rem;
   }
 }
 

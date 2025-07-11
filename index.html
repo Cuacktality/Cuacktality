@@ -189,31 +189,30 @@
         ></iframe>
       </section> -->
 
-      <section class="section animada" id="videojuegos">
+      <section id="videojuegos">
         <h2>Videojuegos</h2>
 
-        <!-- Flecha Izquierda (fuera del contenido principal) -->
-        <button class="flecha flecha-izquierda" onclick="cambiarJuego(-1)">
-          ⬅️
-        </button>
+        <div class="layout-juegos">
+          <button class="flecha flecha-izquierda" onclick="cambiarJuego(-1)">
+            ⬅️
+          </button>
 
-        <!-- Contenedor Central: Info + Juego -->
-        <div class="contenedor-juego">
-          <div class="info-juego">
-            <img id="iconoJuego" src="..." alt="Icono del juego" />
-            <h4 id="tituloJuego">Título</h4>
-            <p id="descripcionJuego">Descripción del juego actual</p>
+          <div class="contenedor-juego">
+            <div class="panel-info">
+              <img id="iconoJuego" src="..." alt="Icono del juego" />
+              <h4 id="tituloJuego">Título</h4>
+              <p id="descripcionJuego">Descripción del juego actual</p>
+            </div>
+
+            <div class="panel-juego">
+              <iframe id="iframeJuego" src="..." allowfullscreen></iframe>
+            </div>
           </div>
 
-          <div class="iframe-wrapper">
-            <iframe id="iframeJuego" src="..." allowfullscreen></iframe>
-          </div>
+          <button class="flecha flecha-derecha" onclick="cambiarJuego(1)">
+            ➡️
+          </button>
         </div>
-
-        <!-- Flecha Derecha -->
-        <button class="flecha flecha-derecha" onclick="cambiarJuego(1)">
-          ➡️
-        </button>
       </section>
 
       <section class="section animada" id="software">
@@ -564,6 +563,42 @@
           // Recuperar la opacidad
           contenedor.style.opacity = "1";
         }, 400);
+      }
+    </script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        // Ocultar overlay de introducción si existe (opcional)
+        const overlay = document.getElementById("introOverlayJuego");
+        if (overlay) {
+          setTimeout(() => {
+            overlay.style.display = "none";
+          }, 2100);
+        }
+
+        // Forzar reflow en el layout de la sección (opcional)
+        const contenedorJuegos = document.querySelector(".contenedor-juego");
+        if (contenedorJuegos) {
+          contenedorJuegos.offsetWidth;
+        }
+
+        // Mostrar el primer juego automáticamente
+        mostrarJuego(0);
+      });
+
+      // Asegúrate de tener esta función como parte de tu sistema
+      function mostrarJuego(indice) {
+        const juego = juegos[indice];
+
+        document.getElementById("tituloJuego").textContent = juego.titulo;
+        document.getElementById("descripcionJuego").textContent =
+          juego.descripcion;
+        document.getElementById("iconoJuego").src = juego.icono;
+
+        const iframe = document.getElementById("iframeJuego");
+        iframe.src = ""; // vacía primero
+        setTimeout(() => {
+          iframe.src = juego.url;
+        }, 100);
       }
     </script>
   </body>
