@@ -438,12 +438,12 @@ h2 {
 /* ================================
  🖼️ CONTENEDOR WEBGL VIDEOJUEGOS
 ================================ */
-.iframe-container {
+/* .iframe-container {
   position: relative;
   width: 100%;
-  max-width: 960px; /* límite máximo */
-  aspect-ratio: 16 / 10; /* mantiene proporción sin altura fija */
-  margin: 0 auto; /* centra el contenedor */
+  max-width: 960px; 
+  aspect-ratio: 16 / 10; 
+  margin: 0 auto;
   overflow: hidden;
 }
 
@@ -454,7 +454,7 @@ h2 {
   width: 100%;
   height: 100%;
   border: none;
-}
+} */
 
 /* ================================
  🖼️ FONDOS BLUR DIFERENCIADOS
@@ -477,23 +477,92 @@ main section::before {
 
 #desarrollo3d,
 #dibujo,
-#videojuegos,
 #software {
   position: relative;
   z-index: 0;
   overflow: hidden;
 }
 
-#videojuegos {
+/* #videojuegos {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem 1rem;
-}
+} */
 #videojuegos h2 {
   align-self: flex-start;
   margin-left: 1rem; /* o lo que prefieras */
 }
+#videojuegos {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contenedor-juego {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-grow: 1;
+  transition: opacity 0.4s ease;
+  flex-wrap: wrap;
+}
+
+/* Panel de Información */
+.info-juego {
+  max-width: 280px;
+  flex: 1 1 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+}
+
+/* Estilo del icono */
+#iconoJuego {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Visor del juego */
+.iframe-wrapper {
+  flex: 2 1 640px;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #000;
+  box-shadow: 0 0 15px #aebaf6;
+}
+
+.iframe-wrapper iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Flechas laterales */
+.flecha {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #93d0f9;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+}
+
 /* Fondo desenfocado de Desarrollo 3D */
 #desarrollo3d::before {
   content: "";
@@ -613,7 +682,7 @@ main section::before {
   background-color: #000; /* Fondo por si el iframe tarda en cargar */
 /* } */
 
-#videojuegos iframe {
+/* #videojuegos iframe {
   border: none;
   width: 90%;
   max-width: 960px;
@@ -622,7 +691,7 @@ main section::before {
   border-radius: 10px;
   margin-top: 2rem;
   background-color: #000;
-}
+} */
 
 /* ================================
  📨 FORMULARIO
@@ -1049,10 +1118,10 @@ footer {
     max-width: 90%;
   }
 
-  iframe {
+  /* iframe {
     height: 40vh;
     width: 95%;
-  }
+  } */
 
   .arrow {
     font-size: 2rem;
@@ -1203,6 +1272,34 @@ footer {
     max-height: 60vh;
     bottom: -110px;
   }
+
+  .contenedor-juego {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  #videojuegos {
+    flex-direction: column;
+  }
+
+  .contenedor-juego {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .iframe-wrapper {
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .info-juego {
+    max-width: 100%;
+  }
+
+  .flecha {
+    margin: 1rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -1211,7 +1308,6 @@ footer {
     font-size: 1.05rem;
   }
 }
-
 /* ================================
 🎨 Scroll personalizado para .personajes-lista
 ================================ */

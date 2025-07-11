@@ -180,13 +180,40 @@
         </div>
       </section>
 
-      <section class="section animada" id="videojuegos">
+      <!-- <section class="section animada" id="videojuegos">
         <h2>Videojuegos</h2>
         <iframe
           src="games/shoot/index.html"
           loading="lazy"
           allowfullscreen
         ></iframe>
+      </section> -->
+
+      <section class="section animada" id="videojuegos">
+        <h2>Videojuegos</h2>
+
+        <!-- Flecha Izquierda (fuera del contenido principal) -->
+        <button class="flecha flecha-izquierda" onclick="cambiarJuego(-1)">
+          ⬅️
+        </button>
+
+        <!-- Contenedor Central: Info + Juego -->
+        <div class="contenedor-juego">
+          <div class="info-juego">
+            <img id="iconoJuego" src="..." alt="Icono del juego" />
+            <h4 id="tituloJuego">Título</h4>
+            <p id="descripcionJuego">Descripción del juego actual</p>
+          </div>
+
+          <div class="iframe-wrapper">
+            <iframe id="iframeJuego" src="..." allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <!-- Flecha Derecha -->
+        <button class="flecha flecha-derecha" onclick="cambiarJuego(1)">
+          ➡️
+        </button>
       </section>
 
       <section class="section animada" id="software">
@@ -489,6 +516,55 @@
       secciones.forEach((seccion) => {
         observer.observe(seccion);
       });
+    </script>
+
+    <script>
+      const juegos = [
+        {
+          titulo: "Shoot",
+          descripcion: "Lo suficientemente adictivo.",
+          icono: "assets/games/shoot.png",
+          url: "games/shoot/index.html",
+        },
+        {
+          titulo: "ProtoMetyd",
+          descripcion: "Versión prototipo del universo Metyd",
+          icono: "assets/games/protometyd.png",
+          url: "games/metyd/index.html",
+        },
+        // más juegos...
+      ];
+
+      let juegoActual = 0;
+
+      function cambiarJuego(direccion) {
+        const iframe = document.getElementById("iframeJuego");
+        const icono = document.getElementById("iconoJuego");
+        const titulo = document.getElementById("tituloJuego");
+        const descripcion = document.getElementById("descripcionJuego");
+        const contenedor = document.querySelector(".contenedor-juego");
+
+        // Transición visual: desvanecer
+        contenedor.style.opacity = "0";
+
+        // Actualizar juego después del fade-out
+        setTimeout(() => {
+          juegoActual =
+            (juegoActual + direccion + juegos.length) % juegos.length;
+
+          icono.src = juegos[juegoActual].icono;
+          titulo.textContent = juegos[juegoActual].titulo;
+          descripcion.textContent = juegos[juegoActual].descripcion;
+
+          iframe.src = ""; // cerrar juego anterior
+          setTimeout(() => {
+            iframe.src = juegos[juegoActual].url;
+          }, 100); // cargar nuevo
+
+          // Recuperar la opacidad
+          contenedor.style.opacity = "1";
+        }, 400);
+      }
     </script>
   </body>
 </html>
