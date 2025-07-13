@@ -633,24 +633,35 @@ main section::before {
 /* ================================
  📨 FORMULARIO
 ================================ */
-form {
+.contacto-formulario button:hover {
+  background-color: #93bff9;
+}
+.contacto-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Formulario */
+.contacto-formulario {
+  flex: 1 1 320px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 600px;
-  margin: auto;
-  width: 100%;
 }
 
-form input,
-form textarea {
-  padding: 0.8rem;
-  border: none;
-  border-radius: 5px;
+.contacto-formulario input,
+.contacto-formulario textarea {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  resize: vertical;
   font-family: inherit;
 }
 
-form button {
+.contacto-formulario button {
   background-color: #aebaf6;
   border: none;
   padding: 0.8rem;
@@ -661,8 +672,48 @@ form button {
   transition: background 0.3s ease;
 }
 
-form button:hover {
-  background-color: #93bff9;
+/* Info del perfil */
+.contacto-info {
+  flex: 1 1 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+/* Foto circular principal */
+.foto-principal img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 8px #93d0f9;
+}
+
+/* Foto secundaria más pequeña */
+.foto-secundaria img {
+  /* width: 80px; */
+  height: 60px;
+  /* border-radius: 50%; */
+  object-fit: cover;
+  opacity: 0.7;
+} /* Fila con nombre y correo */
+.fila-doble {
+  display: flex;
+  gap: 1rem;
+}
+
+.fila-doble .campo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mensaje ocupa todo el ancho */
+.fila-unica {
+  display: flex;
+  flex-direction: column;
 }
 
 /* ================================
@@ -1243,6 +1294,20 @@ footer {
 
   .flecha {
     margin-top: 1rem;
+  }
+
+  .fila-doble {
+    flex-direction: column;
+  }
+
+  .contacto-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contacto-formulario,
+  .contacto-info {
+    max-width: 100%;
   }
 }
 
