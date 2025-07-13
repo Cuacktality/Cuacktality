@@ -1145,23 +1145,48 @@ footer {
     --i: 5;
   }
 
-  /* Estilos responsivos para el selector de personajes */
   .selector-contenido-principal {
-    flex-direction: column; /* Apila la información y el visor verticalmente */
-    align-items: center; /* Centra los elementos */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 1.5rem;
   }
 
+  .info-personaje,
+  .visor-y-controles,
+  .personajes-lista {
+    width: 100%;
+    max-width: 300px;
+  }
+
   .info-personaje {
-    max-width: 100%;
     text-align: center;
-    align-items: center; /* Centra el contenido de la información */
+    align-items: center;
+    padding: 0.8rem;
+  }
+
+  .icono-wrapper {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0.5rem;
+  }
+
+  .icono-activo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    top: 0;
+  }
+
+  .datos-personaje {
+    text-align: center;
+    font-size: 0.95rem;
     padding: 0.5rem;
   }
 
   .visor-y-controles {
-    min-width: auto;
-    width: 100%;
+    flex-direction: column;
+    align-items: center;
   }
 
   #modeloPersonaje {
@@ -1170,10 +1195,8 @@ footer {
   }
 
   .rotador-botones-container {
-    display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
     gap: 1rem;
     margin-top: 1rem;
   }
@@ -1184,94 +1207,55 @@ footer {
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding: 1rem 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    flex-wrap: nowrap;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
-    gap: 1rem;
-    padding: 1rem;
-    width: 100%;
-    box-sizing: border-box;
-    flex-wrap: nowrap;
-  }
-
-  .personaje-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-    scroll-snap-align: center;
-    width: 90px;
-  }
-
-  .personaje-item img {
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 8px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border-bottom: 4px solid transparent;
-  }
-
-  .personaje-item:hover img {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px #93bff9;
-  }
-
-  .personaje-item .nombre-personaje {
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
-    color: #f0f0f0;
-    text-align: center;
-    white-space: nowrap;
-    text-shadow: 0 0 4px rgba(147, 249, 185, 0.4);
-  }
-
-  .personaje-item.oculto {
-    opacity: 0;
-    pointer-events: none;
-    display: none;
-  }
-
-  .personaje-item.activo img {
-    border-bottom: 4px solid #93bff9;
-    box-shadow: 0 0 15px rgba(147, 249, 185, 0.7);
-  }
-
-  .personaje-item.activo .nombre-personaje {
-    color: #93bff9;
-    font-weight: bold;
-    text-shadow: 0 0 6px rgba(147, 249, 185, 0.4);
   }
 
   .personajes-lista img {
     flex-shrink: 0;
     width: 80px;
     height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
     scroll-snap-align: center;
+    position: relative;
   }
 
-  .icono-activo {
-    top: -10px; /* más cerca del texto */
-    width: 80px;
-    height: 80px;
+  .personajes-lista img::after {
+    content: attr(alt);
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: #93f9b9;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 6px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    white-space: nowrap;
   }
 
-  .icono-wrapper {
-    height: 80px;
-    margin-bottom: 0.5rem;
+  .personajes-lista img:hover::after {
+    opacity: 1;
   }
 
-  .datos-personaje {
-    text-align: center;
-    max-width: 100%;
-    font-size: 0.95rem;
-    padding: 0.5rem;
+  .personajes-lista img.activo {
+    border: 2px solid #93bff9;
+    box-shadow: 0 0 10px rgba(147, 249, 185, 0.5);
   }
 
-  .personaje-flotante {
-    max-width: 60vh;
-    max-height: 60vh;
-    bottom: -110px;
+  .boton-rotador {
+    font-size: 2rem;
   }
+
   .layout-juegos {
     flex-direction: column;
   }
@@ -1309,12 +1293,6 @@ footer {
   }
 }
 
-@media (min-width: 1024px) {
-  .datos-personaje {
-    max-width: 600px;
-    font-size: 1.05rem;
-  }
-}
 /* ================================
 🎨 Scroll personalizado para .personajes-lista
 ================================ */
