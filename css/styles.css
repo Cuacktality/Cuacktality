@@ -816,9 +816,12 @@ main section::before {
   overflow-x: visible;
 }
 
-.parallax,
-#desarrollo3d {
-  overflow-x: visible;
+.titulo-seccion {
+  font-family: "Stanberry", sans-serif;
+  font-size: 2rem;
+  color: #93f9b9;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .selector-personajes h3 {
@@ -830,42 +833,75 @@ main section::before {
   opacity: 0.8;
 }
 
-/* Contenedor principal para la disposición izquierda-derecha */
-.selector-contenido-principal {
-  display: flex;
-  flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
-  justify-content: center; /* Centra los bloques cuando se envuelven */
-  align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
-  gap: 2rem; /* Espacio entre los bloques de info y visor */
-  margin-bottom: 2rem; /* Espacio antes de la lista de personajes */
+/* ================================
+📐 GRID DE INFORMACIÓN, ESPACIO Y VISOR
+================================ */
+.selector-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 1fr; /* Información - Blanco - Visor */
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 2rem;
 }
 
+/* 🎓 INFORMACIÓN DEL PERSONAJE */
 .info-personaje {
-  width: 100%;
-  max-width: 520px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
   padding: 1rem;
-  text-align: left;
+  max-width: 520px;
 }
 
-/* Contenedor para el visor del personaje y sus controles */
-.visor-y-controles {
-  display: flex;
-  flex-direction: column; /* Apila la imagen y los botones verticalmente */
-  align-items: center; /* Centra la imagen y los botones horizontalmente */
-  gap: 1rem; /* Espacio entre la imagen y el contenedor de botones */
-  flex: 1;
-  min-width: 300px; /* Ancho mínimo para el visor */
+.icono-wrapper {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  margin-bottom: 1rem;
 }
 
-/* Contenedor para los botones del rotador */
-.rotador-botones-container {
+.icono-activo {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+  object-fit: cover;
+  animation: salto 0.5s ease-out forwards;
+  box-shadow: 0 0 10px rgba(147, 249, 185, 0.4);
+  z-index: 10;
+}
+
+.datos-personaje {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #93bff9;
+  width: 100%;
+}
+
+.datos-personaje p {
+  margin-bottom: 0.6rem;
+}
+
+#juegoPersonaje {
+  margin-bottom: 1.2rem;
+}
+
+/* 🔳 ESPACIO INTERMEDIO (decorativo o funcional) */
+.espacio-blanco {
+  min-height: 100px;
+}
+
+/* 🎥 VISOR Y CONTROLES */
+.visor-personaje {
   display: flex;
-  gap: 1rem; /* Espacio entre los botones */
-  justify-content: center; /* Centra los botones dentro de este contenedor */
-  width: 100%; /* Asegura que ocupe el ancho completo para centrar */
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 #modeloPersonaje {
@@ -877,6 +913,13 @@ main section::before {
   transition: opacity 0.4s ease;
   animation: pulsoRender 0.5s ease;
   box-shadow: 0 0 0px transparent;
+}
+
+.rotador-botones-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
 }
 
 .boton-rotador {
@@ -894,88 +937,85 @@ main section::before {
   transform: scale(1.2);
   color: #aebaf6;
 }
-
-/* Slider centrado debajo del render (si aún se usa, aunque la estructura ha cambiado) */
-#rotador {
-  width: 80%;
-}
-
-.personajes-lista {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  gap: 1rem;
-  padding: 1rem 0.5rem;
+/* ================================
+🌌 CONTENEDOR GENERAL
+================================ */
+.selector-personajes {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 30px rgba(147, 249, 185, 0.2);
+  max-width: 1200px;
   width: 100%;
-  box-sizing: border-box;
-  max-width: none;
+  overflow-x: visible;
 }
 
-.personajes-lista img {
-  width: 90px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 8px;
-  flex-shrink: 0; /* 👈 evita que se achiquen al hacer scroll */
-  scroll-snap-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-  border-bottom: 4px solid transparent;
+.titulo-seccion {
+  font-family: "Stanberry", sans-serif;
+  font-size: 2rem;
+  color: #93f9b9;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.personajes-lista img.activo {
-  border-bottom: 4px solid #93bff9; /* brillo verde elegante */
-  box-shadow: 0 0 15px rgba(147, 249, 185, 0.7); /* Sombra al estar activo */
+.selector-personajes h3 {
+  font-family: "Stanberry", sans-serif;
+  font-size: 1.3rem;
+  color: #f0f0f0;
+  margin-bottom: 1rem;
+  opacity: 0.85;
 }
 
-.personajes-lista img.oculto {
-  opacity: 0;
-  pointer-events: none;
-  display: none; /* Asegura que no ocupe espacio */
+/* ================================
+🧩 DISTRIBUCIÓN PRINCIPAL: IZQUIERDA / DERECHA
+================================ */
+.selector-grid-kof {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Panel principal / Selector lateral */
+  gap: 2rem;
+  align-items: start;
 }
 
-.personajes-lista img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px #93bff9;
-}
-
-.info-horizontal {
+/* ================================
+ℹ️ INFORMACIÓN DEL PERSONAJE
+================================ */
+.panel-principal {
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  width: 100%;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-personaje {
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(147, 249, 185, 0.06);
 }
 
 .icono-wrapper {
   position: relative;
-  width: 100%;
   height: 90px;
-  margin-bottom: 1rem; /* Separación con la información textual */
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .icono-activo {
-  position: absolute;
-  top: -80px;
-  top: 0;
-  left: 50%; /* Centrado horizontal */
-  transform: translateX(-50%);
   width: 90px;
   height: 90px;
   border-radius: 8px;
   object-fit: cover;
   animation: salto 0.5s ease-out forwards;
   box-shadow: 0 0 10px rgba(147, 249, 185, 0.4);
-  z-index: 10;
 }
 
 .datos-personaje {
-  flex: 1;
-  width: 100%;
+  color: #93bff9;
   font-size: 1rem;
   line-height: 1.6;
-  color: #93bff9;
 }
 
 .datos-personaje p {
@@ -984,6 +1024,116 @@ main section::before {
 
 #juegoPersonaje {
   margin-bottom: 1.2rem;
+}
+
+/* ================================
+🎥 VISOR DEL PERSONAJE
+================================ */
+.visor-personaje {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+#modeloPersonaje {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(147, 249, 185, 0.08);
+  transition: opacity 0.4s ease, transform 0.3s ease;
+}
+
+#modeloPersonaje:hover {
+  transform: scale(1.02);
+}
+
+.rotador-botones-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.boton-rotador {
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  color: #93bff9;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.boton-rotador:hover {
+  transform: scale(1.2);
+  color: #aebaf6;
+}
+
+/* ================================
+🎮 SELECTOR DE PERSONAJES — ESTILO KOF
+================================ */
+.personajes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas tipo fichas */
+  grid-auto-rows: 90px; /* Altura fija */
+  gap: 1rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  box-shadow: inset 0 0 10px rgba(147, 249, 185, 0.05);
+
+  /* Scroll vertical habilitado */
+  max-height: 400px; /* ajustable según tu layout */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #93bff9 transparent;
+}
+
+.personajes-grid img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 2px solid transparent;
+}
+
+.personajes-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #93bff9;
+  border-color: #93bff9;
+}
+
+.personajes-grid img.activo {
+  border: 2px solid #93bff9;
+  box-shadow: 0 0 15px rgba(147, 249, 185, 0.7);
+}
+
+/* ================================
+🌟 ANIMACIONES PERSONALIZADAS
+================================ */
+@keyframes salto {
+  0% {
+    transform: translateY(10px) scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulsoRender {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes salto {
