@@ -85,106 +85,93 @@
     <!-- 🔽 Secciones verticales -->
     <main>
       <section class="section animada" id="desarrollo3d">
-  <h2 class="titulo-seccion">Diseño Gráfico / Animación</h2>
+        <h2 class="titulo-seccion">Diseño Gráfico / Animación</h2>
 
-  <div class="selector-personajes">
-    <h3>Selecciona un personaje</h3>
+        <div class="selector-personajes">
+          <h3>Selecciona un personaje</h3>
 
-    <div class="selector-grid-kof">
-      <!-- ℹ️ Panel principal con visor e info -->
-      <div class="panel-principal">
-        <div class="info-personaje">
-          <div class="icono-wrapper">
-            <img id="iconoPersonaje" src="" alt="Icono personaje" class="icono-activo" />
-          </div>
-          <h4 id="nombrePersonaje">Nombre</h4>
-          <p id="juegoPersonaje">Universo:</p>
-          <p id="descripcionPersonaje">Descripción:</p>
-        </div>
+          <div class="selector-contenido-principal">
+            <!-- ℹ️ Información del personaje -->
+            <div class="info-personaje">
+              <div class="icono-wrapper">
+                <img
+                  id="iconoPersonaje"
+                  src="assets/icons/personaje1.png"
+                  alt="Icono personaje"
+                  class="icono-activo"
+                />
+              </div>
+              <div class="datos-personaje">
+                <h4 id="nombrePersonaje">Nombre</h4>
+                <p id="juegoPersonaje">Universo:</p>
+                <p id="descripcionPersonaje">Descripción:</p>
+              </div>
+            </div>
 
-        <div class="visor-personaje">
-          <img id="modeloPersonaje" src="assets/renders/personaje1_00.png" alt="Render personaje" />
-          <div class="rotador-botones-container">
-            <button class="boton-rotador" onclick="rotar(-1)">⬅️</button>
-            <button class="boton-rotador" onclick="rotar(1)">➡️</button>
-          </div>
-        </div>
-      </div>
+            <!-- 🎥 Visor y controles -->
+            <div class="visor-y-controles">
+              <img
+                id="modeloPersonaje"
+                src="assets/renders/personaje1_00.png"
+                alt="Render personaje"
+              />
+              <div class="rotador-botones-container">
+                <button class="boton-rotador" onclick="rotar(-1)">⬅️</button>
+                <button class="boton-rotador" onclick="rotar(1)">➡️</button>
+              </div>
+            </div>
 
-      <!-- 🎮 Selector tipo KOF -->
-      <div class="personajes-grid">
-            <img
-              src="assets/thumbnails/personaje1.png"
-              onclick="mostrarPersonaje('personaje1')"
-            />
-            <img
-              src="assets/thumbnails/personaje2.png"
-              onclick="mostrarPersonaje('personaje2')"
-            />
-            <img
-              src="assets/thumbnails/personaje3.png"
-              onclick="mostrarPersonaje('personaje3')"
-            />
-            <img
-              src="assets/thumbnails/personaje4.png"
-              onclick="mostrarPersonaje('personaje4')"
-            />
-            <img
-              src="assets/thumbnails/personaje5.png"
-              onclick="mostrarPersonaje('personaje5')"
-            />
-            <img
-              src="assets/thumbnails/personaje6.png"
-              onclick="mostrarPersonaje('personaje6')"
-            />
-            <img
-              src="assets/thumbnails/personaje7.png"
-              onclick="mostrarPersonaje('personaje7')"
-            />
-            <img
-              src="assets/thumbnails/personaje8.png"
-              onclick="mostrarPersonaje('personaje8')"
-            />
-            <img
-              src="assets/thumbnails/personaje9.png"
-              onclick="mostrarPersonaje('personaje9')"
-            />
-            <img
-              src="assets/thumbnails/personaje10.png"
-              onclick="mostrarPersonaje('personaje10')"
-            />
-            <img
-              src="assets/thumbnails/personaje11.png"
-              onclick="mostrarPersonaje('personaje11')"
-            />
-            <img
-              src="assets/thumbnails/personaje12.png"
-              onclick="mostrarPersonaje('personaje12')"
-            />
-            <img
-              src="assets/thumbnails/personaje10.png"
-              onclick="mostrarPersonaje('personaje13')"
-            />
-            <img
-              src="assets/thumbnails/personaje11.png"
-              onclick="mostrarPersonaje('personaje14')"
-            />
-            <img
-              src="assets/thumbnails/personaje12.png"
-              onclick="mostrarPersonaje('personaje15')"
-            />
-            <img
-              src="assets/thumbnails/personaje10.png"
-              onclick="mostrarPersonaje('personaje16')"
-            />
-            <img
-              src="assets/thumbnails/personaje11.png"
-              onclick="mostrarPersonaje('personaje17')"
-            />
-            <img
-              src="assets/thumbnails/personaje12.png"
-              onclick="mostrarPersonaje('personaje18')"
-            />
+            <!-- 🎮 Selector tipo grid vertical estilo arcade -->
+            <div class="personajes-lista">
+              <img
+                src="assets/thumbnails/personaje1.png"
+                onclick="mostrarPersonaje('personaje1')"
+              />
+              <img
+                src="assets/thumbnails/personaje2.png"
+                onclick="mostrarPersonaje('personaje2')"
+              />
+              <img
+                src="assets/thumbnails/personaje3.png"
+                onclick="mostrarPersonaje('personaje3')"
+              />
+              <img
+                src="assets/thumbnails/personaje4.png"
+                onclick="mostrarPersonaje('personaje4')"
+              />
+              <img
+                src="assets/thumbnails/personaje5.png"
+                onclick="mostrarPersonaje('personaje5')"
+              />
+              <img
+                src="assets/thumbnails/personaje6.png"
+                onclick="mostrarPersonaje('personaje6')"
+              />
+              <img
+                src="assets/thumbnails/personaje7.png"
+                onclick="mostrarPersonaje('personaje7')"
+              />
+              <img
+                src="assets/thumbnails/personaje8.png"
+                onclick="mostrarPersonaje('personaje8')"
+              />
+              <img
+                src="assets/thumbnails/personaje9.png"
+                onclick="mostrarPersonaje('personaje9')"
+              />
+              <img
+                src="assets/thumbnails/personaje10.png"
+                onclick="mostrarPersonaje('personaje10')"
+              />
+              <img
+                src="assets/thumbnails/personaje11.png"
+                onclick="mostrarPersonaje('personaje11')"
+              />
+              <img
+                src="assets/thumbnails/personaje12.png"
+                onclick="mostrarPersonaje('personaje12')"
+              />
+            </div>
           </div>
         </div>
       </section>

@@ -802,143 +802,7 @@ main section::before {
 }
 
 /* ================================
- 👤 SECCIÓN DE SELECCIÓN DE PERSONAJES
-================================ */
-.selector-personajes {
-  margin-top: 2rem;
-  padding: 2rem;
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 12px;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 0 25px rgba(147, 249, 185, 0.2);
-  width: 100%;
-  max-width: 1200px;
-  overflow-x: visible;
-}
-
-.titulo-seccion {
-  font-family: "Stanberry", sans-serif;
-  font-size: 2rem;
-  color: #93f9b9;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.selector-personajes h3 {
-  font-family: "Stanberry", sans-serif;
-  font-size: 1.2rem;
-  color: #f0f0f0;
-  margin-bottom: 1rem;
-  text-align: left;
-  opacity: 0.8;
-}
-
-/* ================================
-📐 GRID DE INFORMACIÓN, ESPACIO Y VISOR
-================================ */
-.selector-grid {
-  display: grid;
-  grid-template-columns: 1fr 0.5fr 1fr; /* Información - Blanco - Visor */
-  gap: 2rem;
-  align-items: start;
-  margin-bottom: 2rem;
-}
-
-/* 🎓 INFORMACIÓN DEL PERSONAJE */
-.info-personaje {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background-color: rgba(255, 255, 255, 0.03);
-  border-radius: 8px;
-  padding: 1rem;
-  max-width: 520px;
-}
-
-.icono-wrapper {
-  position: relative;
-  width: 100%;
-  height: 90px;
-  margin-bottom: 1rem;
-}
-
-.icono-activo {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90px;
-  height: 90px;
-  border-radius: 8px;
-  object-fit: cover;
-  animation: salto 0.5s ease-out forwards;
-  box-shadow: 0 0 10px rgba(147, 249, 185, 0.4);
-  z-index: 10;
-}
-
-.datos-personaje {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #93bff9;
-  width: 100%;
-}
-
-.datos-personaje p {
-  margin-bottom: 0.6rem;
-}
-
-#juegoPersonaje {
-  margin-bottom: 1.2rem;
-}
-
-/* 🔳 ESPACIO INTERMEDIO (decorativo o funcional) */
-.espacio-blanco {
-  min-height: 100px;
-}
-
-/* 🎥 VISOR Y CONTROLES */
-.visor-personaje {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-#modeloPersonaje {
-  width: 300px;
-  height: 300px;
-  object-fit: contain;
-  background-color: rgba(255, 255, 255, 0.03);
-  border-radius: 8px;
-  transition: opacity 0.4s ease;
-  animation: pulsoRender 0.5s ease;
-  box-shadow: 0 0 0px transparent;
-}
-
-.rotador-botones-container {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  width: 100%;
-}
-
-.boton-rotador {
-  font-size: 2.5rem;
-  background: none;
-  border: none;
-  padding: 0.2rem;
-  color: #93bff9;
-  cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease;
-  outline: none;
-}
-
-.boton-rotador:hover {
-  transform: scale(1.2);
-  color: #aebaf6;
-}
-/* ================================
-🌌 CONTENEDOR GENERAL
+👤 SECCIÓN PRINCIPAL DE PERSONAJES
 ================================ */
 .selector-personajes {
   margin-top: 2rem;
@@ -952,14 +816,6 @@ main section::before {
   overflow-x: visible;
 }
 
-.titulo-seccion {
-  font-family: "Stanberry", sans-serif;
-  font-size: 2rem;
-  color: #93f9b9;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
 .selector-personajes h3 {
   font-family: "Stanberry", sans-serif;
   font-size: 1.3rem;
@@ -969,44 +825,33 @@ main section::before {
 }
 
 /* ================================
-🧩 DISTRIBUCIÓN PRINCIPAL: IZQUIERDA / DERECHA
+📐 GRID PRINCIPAL: INFO + VISOR + SELECTOR
 ================================ */
-.selector-grid-kof {
+.selector-contenido-principal {
   display: grid;
-  grid-template-columns: 2fr 1fr; /* Panel principal / Selector lateral */
+  grid-template-columns: 1.2fr 1fr 0.8fr;
   gap: 2rem;
   align-items: start;
+  margin-bottom: 2rem;
+  height: 100%;
+  align-items: stretch;
 }
 
-/* ================================
-ℹ️ INFORMACIÓN DEL PERSONAJE
-================================ */
-.panel-principal {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
+/* ℹ️ PANEL DE INFORMACIÓN DEL PERSONAJE */
 .info-personaje {
   background-color: rgba(255, 255, 255, 0.03);
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(147, 249, 185, 0.06);
-}
-
-.icono-wrapper {
-  position: relative;
-  height: 90px;
-  margin-bottom: 1rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 
 .icono-activo {
-  width: 90px;
-  height: 90px;
-  border-radius: 8px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
   object-fit: cover;
   animation: salto 0.5s ease-out forwards;
   box-shadow: 0 0 10px rgba(147, 249, 185, 0.4);
@@ -1016,6 +861,8 @@ main section::before {
   color: #93bff9;
   font-size: 1rem;
   line-height: 1.6;
+  width: 100%;
+  text-align: left;
 }
 
 .datos-personaje p {
@@ -1026,19 +873,18 @@ main section::before {
   margin-bottom: 1.2rem;
 }
 
-/* ================================
-🎥 VISOR DEL PERSONAJE
-================================ */
-.visor-personaje {
+/* 🎥 PANEL DEL VISOR DE RENDER Y BOTONES */
+.visor-y-controles {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  height: 100%;
 }
 
 #modeloPersonaje {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   object-fit: contain;
   background-color: rgba(255, 255, 255, 0.03);
   border-radius: 10px;
@@ -1070,50 +916,67 @@ main section::before {
   color: #aebaf6;
 }
 
-/* ================================
-🎮 SELECTOR DE PERSONAJES — ESTILO KOF
-================================ */
-.personajes-grid {
+/* 🎮 SELECTOR DE PERSONAJES EN GRID + SCROLL */
+.personajes-lista {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columnas tipo fichas */
-  grid-auto-rows: 90px; /* Altura fija */
-  gap: 1rem;
-  padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.02);
-  border-radius: 12px;
-  box-shadow: inset 0 0 10px rgba(147, 249, 185, 0.05);
-
-  /* Scroll vertical habilitado */
-  max-height: 400px; /* ajustable según tu layout */
+  grid-template-columns: repeat(2, 90px);
+  grid-auto-rows: 120px;
+  gap: 0.8rem;
+  max-height: 380px;
   overflow-y: auto;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(147, 249, 185, 0.05);
   scrollbar-width: thin;
   scrollbar-color: #93bff9 transparent;
 }
 
-.personajes-grid img {
-  width: 90px;
-  height: 90px;
+.personajes-lista img {
+  width: 100px;
+  height: 100px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 50%; /* 🎯 convierte en círculo */
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
   border: 2px solid transparent;
+  box-sizing: border-box;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.personajes-grid img:hover {
+/* 🔵 Overlay con nombre al hacer hover */
+.personajes-lista img::after {
+  content: attr(alt); /* Usa el atributo alt como texto */
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #93f9b9;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.personajes-lista img:hover::after {
+  opacity: 1;
+}
+
+.personajes-lista img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px #93bff9;
   border-color: #93bff9;
 }
 
-.personajes-grid img.activo {
+.personajes-lista img.activo {
   border: 2px solid #93bff9;
   box-shadow: 0 0 15px rgba(147, 249, 185, 0.7);
 }
 
-/* ================================
-🌟 ANIMACIONES PERSONALIZADAS
-================================ */
+/* 🌟 ANIMACIONES EXTRA */
 @keyframes salto {
   0% {
     transform: translateY(10px) scale(0.9);
@@ -1133,21 +996,6 @@ main section::before {
   100% {
     opacity: 1;
     transform: scale(1);
-  }
-}
-
-@keyframes salto {
-  0% {
-    transform: translateX(-50%) translateY(0) scale(0.7);
-    opacity: 0;
-  }
-  40% {
-    transform: translateX(-50%) translateY(-20px) scale(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-50%) translateY(0) scale(1);
-    opacity: 1;
   }
 }
 
