@@ -225,10 +225,11 @@ function actualizarVisorIlustracion() {
       } else if (i > 0) {
         cardDiv.classList.add(`next-${i}`);
       }
-      // Add click event listener to background cards
-      cardDiv.addEventListener("click", () =>
-        seleccionarIlustracionPorIndice(cardIndex)
-      ); // Added click listener
+      // Add click event listener to background cards for smooth transition
+      cardDiv.addEventListener("click", () => {
+        const clickedIndex = parseInt(cardDiv.getAttribute("data-index"));
+        seleccionarIlustracionPorIndiceConAnimacion(clickedIndex);
+      });
       ilustracionCardStack.appendChild(cardDiv);
     }
   }
@@ -253,10 +254,23 @@ function navegarIlustracion(direccion) {
   actualizarVisorIlustracion();
 }
 
-// New function to select illustration by index (for clicking background cards)
-function seleccionarIlustracionPorIndice(index) {
+// New function to select illustration by index with animation (for clicking background cards)
+function seleccionarIlustracionPorIndiceConAnimacion(index) {
+  const oldIndex = ilustracionActualIndex;
   ilustracionActualIndex = index;
-  actualizarVisorIlustracion();
+
+  const direction = index > oldIndex ? 1 : -1; // 1 for right, -1 for left
+  if (direction === 1) {
+    ilustracionCardStack.classList.add("scroll-right");
+  } else {
+    ilustracionCardStack.classList.add("scroll-left");
+  }
+
+  // Remove animation class after it completes and then update content
+  setTimeout(() => {
+    ilustracionCardStack.classList.remove("scroll-left", "scroll-right");
+    actualizarVisorIlustracion();
+  }, 300); // Match this duration with the CSS animation duration
 }
 
 // =================================================================
@@ -316,6 +330,13 @@ lightboxNextBtn.addEventListener("click", () => navegarLightbox(1));
 // Cerrar lightbox al hacer clic fuera del contenido
 lightboxOverlay.addEventListener("click", (e) => {
   if (e.target === lightboxOverlay) {
+    cerrarLightbox();
+  }
+});
+
+// Close lightbox on ESC key press
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && lightboxOverlay.classList.contains("active")) {
     cerrarLightbox();
   }
 });
