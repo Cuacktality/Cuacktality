@@ -1,3 +1,9 @@
+/**
+ * @fileoverview illustration.js: Gestiona la interactividad de la sección de Ilustración,
+ * incluyendo la carga de proyectos, la navegación entre ilustraciones y la funcionalidad del lightbox.
+ * También integra la extracción de color para un efecto de resplandor dinámico.
+ */
+
 // Datos de los proyectos de Ilustración
 const datosIlustracionesProyectos = {
   bocetosConceptuales: {
@@ -81,16 +87,16 @@ let proyectoIlustracionActualKey = "bocetosConceptuales"; // Proyecto de ilustra
 let ilustracionActualIndex = 0; // Índice de la ilustración actual dentro del proyecto
 
 // Elementos del DOM
-const listaProyectosIlustracionUl = document.getElementById(
+const listaProyectosIlustracion = document.getElementById(
   "listaProyectosIlustracion"
 );
 const ilustracionCardStack = document.getElementById("ilustracionCardStack");
-const ilustracionPrincipalImg = document.getElementById("ilustracionPrincipal");
-const nombreIlustracionEl = document.getElementById("nombreIlustracion");
-const subtituloIlustracionEl = document.getElementById("subtituloIlustracion");
-const descripcionIlustracionEl = document.getElementById(
+const ilustracionPrincipal = document.getElementById("ilustracionPrincipal"); // Renombrado para consistencia
+const nombreIlustracion = document.getElementById("nombreIlustracion"); // Renombrado para consistencia
+const subtituloIlustracion = document.getElementById("subtituloIlustracion"); // Renombrado para consistencia
+const descripcionIlustracion = document.getElementById(
   "descripcionIlustracion"
-);
+); // Renombrado para consistencia
 
 // Lightbox Elements
 const lightboxOverlay = document.getElementById("lightboxOverlay");
@@ -104,16 +110,25 @@ const lightboxSubtituloIlustracion = document.getElementById(
 const lightboxDescripcionIlustracion = document.getElementById(
   "lightboxDescripcionIlustracion"
 );
-const lightboxCloseBtn = document.getElementById("lightboxClose");
-const lightboxPrevBtn = document.getElementById("lightboxPrev");
-const lightboxNextBtn = document.getElementById("lightboxNext");
+const lightboxClose = document.getElementById("lightboxClose"); // Renombrado para consistencia
+const lightboxPrev = document.getElementById("lightboxPrev"); // Renombrado para consistencia
+const lightboxNext = document.getElementById("lightboxNext"); // Renombrado para consistencia
 
-// Función para obtener el proyecto de ilustración actual
+// Variable para almacenar el índice de la imagen actual en el lightbox
+let currentLightboxImageIndex = 0; // Se mantiene, ya que el lightbox usa un índice global
+
+/**
+ * Obtiene el objeto del proyecto de ilustración actualmente seleccionado.
+ * @returns {object} El objeto del proyecto de ilustración actual.
+ */
 function obtenerProyectoIlustracionActual() {
   return datosIlustracionesProyectos[proyectoIlustracionActualKey];
 }
 
-// Función para obtener la ilustración actual
+/**
+ * Obtiene el objeto de la ilustración actual dentro del proyecto seleccionado.
+ * @returns {object|null} El objeto de la ilustración actual, o null si no hay.
+ */
 function obtenerIlustracionActual() {
   const proyecto = obtenerProyectoIlustracionActual();
   if (
@@ -126,9 +141,12 @@ function obtenerIlustracionActual() {
   return proyecto.ilustraciones[ilustracionActualIndex];
 }
 
-// Función para cargar la lista de proyectos de ilustración
+/**
+ * Carga y muestra la lista de proyectos de ilustración en el menú lateral.
+ * @function cargarListaProyectosIlustracion
+ */
 function cargarListaProyectosIlustracion() {
-  listaProyectosIlustracionUl.innerHTML = ""; // Limpiar lista existente
+  listaProyectosIlustracion.innerHTML = ""; // Limpiar lista existente
 
   for (const key in datosIlustracionesProyectos) {
     const proyecto = datosIlustracionesProyectos[key];
@@ -144,11 +162,15 @@ function cargarListaProyectosIlustracion() {
       <span class="proyecto-subtitulo-lista">${proyecto.subtitulo}</span>
     `;
     li.onclick = () => seleccionarProyectoIlustracion(key);
-    listaProyectosIlustracionUl.appendChild(li);
+    listaProyectosIlustracion.appendChild(li);
   }
 }
 
-// Función para seleccionar un proyecto de ilustración y cargar sus ilustraciones
+/**
+ * Selecciona un proyecto de ilustración por su clave y actualiza el visor.
+ * @param {string} key - La clave del proyecto a seleccionar (ej. "bocetosConceptuales").
+ * @function seleccionarProyectoIlustracion
+ */
 function seleccionarProyectoIlustracion(key) {
   proyectoIlustracionActualKey = key;
   ilustracionActualIndex = 0; // Reiniciar al primer elemento del nuevo proyecto
@@ -166,7 +188,10 @@ function seleccionarProyectoIlustracion(key) {
   actualizarVisorIlustracion();
 }
 
-// Función para actualizar el visor de ilustraciones (efecto de cartas)
+/**
+ * Actualiza el visor de ilustraciones, incluyendo la imagen principal y el stack de cartas 3D.
+ * @function actualizarVisorIlustracion
+ */
 function actualizarVisorIlustracion() {
   const proyecto = obtenerProyectoIlustracionActual();
   ilustracionCardStack.innerHTML = ""; // Limpiar cartas existentes
@@ -176,12 +201,12 @@ function actualizarVisorIlustracion() {
     !proyecto.ilustraciones ||
     proyecto.ilustraciones.length === 0
   ) {
-    ilustracionPrincipalImg.src =
+    ilustracionPrincipal.src =
       "https://placehold.co/400x300/000000/FFFFFF?text=Sin+Ilustraciones";
-    ilustracionPrincipalImg.alt = "Sin ilustraciones disponibles";
-    nombreIlustracionEl.textContent = "Sin Ilustración";
-    subtituloIlustracionEl.textContent = "N/A";
-    descripcionIlustracionEl.textContent =
+    ilustracionPrincipal.alt = "Sin ilustraciones disponibles";
+    nombreIlustracion.textContent = "Sin Ilustración";
+    subtituloIlustracion.textContent = "N/A";
+    descripcionIlustracion.textContent =
       "Este proyecto no tiene ilustraciones asociadas.";
     return;
   }
@@ -189,16 +214,40 @@ function actualizarVisorIlustracion() {
   const currentIlustracion = proyecto.ilustraciones[ilustracionActualIndex];
 
   // Actualizar la imagen principal y la información
-  ilustracionPrincipalImg.src = currentIlustracion.src;
-  ilustracionPrincipalImg.alt = currentIlustracion.alt;
-  nombreIlustracionEl.textContent = currentIlustracion.nombre;
-  subtituloIlustracionEl.textContent = currentIlustracion.subtitulo;
-  descripcionIlustracionEl.textContent = currentIlustracion.description;
+  ilustracionPrincipal.src = currentIlustracion.src;
+  ilustracionPrincipal.alt = currentIlustracion.alt;
+  nombreIlustracion.textContent = currentIlustracion.nombre;
+  subtituloIlustracion.textContent = currentIlustracion.subtitulo;
+  descripcionIlustracion.textContent = currentIlustracion.description;
 
   // Trigger a pulse animation on the main image
-  ilustracionPrincipalImg.classList.remove("pulse-active"); // Remove to allow re-triggering
-  void ilustracionPrincipalImg.offsetWidth; // Trigger reflow
-  ilustracionPrincipalImg.classList.add("pulse-active");
+  ilustracionPrincipal.classList.remove("pulse-active"); // Remove to allow re-triggering
+  void ilustracionPrincipal.offsetWidth; // Trigger reflow
+  ilustracionPrincipal.classList.add("pulse-active");
+
+  // Llama a la función de extracción de color para actualizar el box-shadow
+  ilustracionPrincipal.onload = () => {
+    // Asegúrate de que getDominantColor esté definido (de color-extractor.js)
+    if (typeof getDominantColor === "function") {
+      const dominantColor = getDominantColor(ilustracionPrincipal);
+      // Ajusta la opacidad del color extraído para el box-shadow si es necesario
+      const shadowColor = dominantColor.replace(/,(\s*\d+\.?\d*)\)/, ", 0.6)"); // Asegura opacidad de 0.6
+      ilustracionPrincipal.style.boxShadow = `0 10px 30px ${shadowColor}`;
+    } else {
+      console.warn(
+        "getDominantColor no está definido. Asegúrate de que color-extractor.js esté cargado."
+      );
+      ilustracionPrincipal.style.boxShadow = `0 10px 30px rgba(147, 249, 185, 0.6)`; // Fallback color
+    }
+  };
+  // Si la imagen ya está en caché, onload no se dispara, así que la llamamos directamente
+  if (ilustracionPrincipal.complete) {
+    if (typeof getDominantColor === "function") {
+      const dominantColor = getDominantColor(ilustracionPrincipal);
+      const shadowColor = dominantColor.replace(/,(\s*\d+\.?\d*)\)/, ", 0.6)");
+      ilustracionPrincipal.style.boxShadow = `0 10px 30px ${shadowColor}`;
+    }
+  }
 
   // Crear las cartas de fondo
   const numIlustraciones = proyecto.ilustraciones.length;
@@ -215,7 +264,7 @@ function actualizarVisorIlustracion() {
       cardDiv.setAttribute("data-index", cardIndex); // Guardar el índice real
 
       const img = document.createElement("img");
-      img.src = cardData.src;
+      img.src = cardData.src; // Usa 'src' de tu estructura original
       img.alt = cardData.alt;
       cardDiv.appendChild(img);
 
@@ -235,10 +284,14 @@ function actualizarVisorIlustracion() {
   }
 
   // Añadir evento de clic a la imagen principal para abrir el lightbox
-  ilustracionPrincipalImg.onclick = () => abrirLightbox(ilustracionActualIndex);
+  ilustracionPrincipal.onclick = () => abrirLightbox(ilustracionActualIndex);
 }
 
-// Función para navegar entre ilustraciones (cambiar la carta central)
+/**
+ * Navega entre ilustraciones (cambia la carta central).
+ * @param {number} direccion - -1 para anterior, 1 para siguiente.
+ * @function navegarIlustracion
+ */
 function navegarIlustracion(direccion) {
   const proyecto = obtenerProyectoIlustracionActual();
   if (
@@ -254,39 +307,46 @@ function navegarIlustracion(direccion) {
   actualizarVisorIlustracion();
 }
 
-// New function to select illustration by index with animation (for clicking background cards)
+/**
+ * Selecciona una ilustración por su índice con una animación de desplazamiento.
+ * @param {number} index - El índice de la ilustración a seleccionar.
+ * @function seleccionarIlustracionPorIndiceConAnimacion
+ */
 function seleccionarIlustracionPorIndiceConAnimacion(index) {
   const oldIndex = ilustracionActualIndex;
   ilustracionActualIndex = index;
 
-  const direction = index > oldIndex ? 1 : -1; // 1 for right, -1 for left
+  const direction = index > oldIndex ? 1 : -1; // 1 para derecha, -1 para izquierda
   if (direction === 1) {
     ilustracionCardStack.classList.add("scroll-right");
   } else {
     ilustracionCardStack.classList.add("scroll-left");
   }
 
-  // Remove animation class after it completes and then update content
+  // Eliminar la clase de animación después de que se complete y luego actualizar el contenido
   setTimeout(() => {
     ilustracionCardStack.classList.remove("scroll-left", "scroll-right");
     actualizarVisorIlustracion();
-  }, 300); // Match this duration with the CSS animation duration
+  }, 300); // Esta duración debe coincidir con la duración de la animación CSS
 }
 
 // =================================================================
 // Lógica del Lightbox
 // =================================================================
 
-let currentLightboxIndex = 0; // Índice de la imagen actual en el lightbox
-
+/**
+ * Abre el lightbox con la ilustración especificada.
+ * @param {number} index - El índice de la ilustración a mostrar en el lightbox.
+ * @function abrirLightbox
+ */
 function abrirLightbox(index) {
-  currentLightboxIndex = index;
+  currentLightboxImageIndex = index; // Sincroniza el índice del lightbox
   const proyecto = obtenerProyectoIlustracionActual();
-  const ilustracion = proyecto.ilustraciones[currentLightboxIndex];
+  const ilustracion = proyecto.ilustraciones[currentLightboxImageIndex];
 
   if (!ilustracion) return;
 
-  lightboxImage.src = ilustracion.src;
+  lightboxImage.src = ilustracion.src; // Usa 'src' de tu estructura original
   lightboxImage.alt = ilustracion.alt;
   lightboxNombreIlustracion.textContent = ilustracion.nombre;
   lightboxSubtituloIlustracion.textContent = ilustracion.subtitulo;
@@ -296,11 +356,20 @@ function abrirLightbox(index) {
   document.body.style.overflow = "hidden"; // Evitar scroll en el body
 }
 
+/**
+ * Cierra el lightbox.
+ * @function cerrarLightbox
+ */
 function cerrarLightbox() {
   lightboxOverlay.classList.remove("active");
   document.body.style.overflow = ""; // Restaurar scroll en el body
 }
 
+/**
+ * Navega a la ilustración anterior/siguiente en el lightbox.
+ * @param {number} direccion - -1 para anterior, 1 para siguiente.
+ * @function navegarLightbox
+ */
 function navegarLightbox(direccion) {
   const proyecto = obtenerProyectoIlustracionActual();
   if (
@@ -310,12 +379,12 @@ function navegarLightbox(direccion) {
   )
     return;
 
-  currentLightboxIndex =
-    (currentLightboxIndex + direccion + proyecto.ilustraciones.length) %
+  currentLightboxImageIndex =
+    (currentLightboxImageIndex + direccion + proyecto.ilustraciones.length) %
     proyecto.ilustraciones.length;
 
-  const ilustracion = proyecto.ilustraciones[currentLightboxIndex];
-  lightboxImage.src = ilustracion.src;
+  const ilustracion = proyecto.ilustraciones[currentLightboxImageIndex];
+  lightboxImage.src = ilustracion.src; // Usa 'src' de tu estructura original
   lightboxImage.alt = ilustracion.alt;
   lightboxNombreIlustracion.textContent = ilustracion.nombre;
   lightboxSubtituloIlustracion.textContent = ilustracion.subtitulo;
@@ -323,9 +392,9 @@ function navegarLightbox(direccion) {
 }
 
 // Event Listeners para el Lightbox
-lightboxCloseBtn.addEventListener("click", cerrarLightbox);
-lightboxPrevBtn.addEventListener("click", () => navegarLightbox(-1));
-lightboxNextBtn.addEventListener("click", () => navegarLightbox(1));
+lightboxClose.addEventListener("click", cerrarLightbox);
+lightboxPrev.addEventListener("click", () => navegarLightbox(-1));
+lightboxNext.addEventListener("click", () => navegarLightbox(1));
 
 // Cerrar lightbox al hacer clic fuera del contenido
 lightboxOverlay.addEventListener("click", (e) => {
@@ -334,7 +403,7 @@ lightboxOverlay.addEventListener("click", (e) => {
   }
 });
 
-// Close lightbox on ESC key press
+// Cerrar lightbox con la tecla ESC
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && lightboxOverlay.classList.contains("active")) {
     cerrarLightbox();

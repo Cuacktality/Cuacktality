@@ -132,7 +132,7 @@ a {
 
   font-size: 1rem;
   font-family: "Stanberry", sans-serif;
-  color: #aebaf6;
+  color: #dcaef6;
   text-align: center;
 
   opacity: 0;
@@ -269,7 +269,7 @@ header {
 .nombre {
   font-family: "Symtext", sans-serif;
   font-size: 1.6rem;
-  color: #93bff9;
+  color: #69cddf;
 }
 
 .apellido {
@@ -291,7 +291,7 @@ nav ul {
 }
 
 nav ul li a {
-  color: #93bff9;
+  color: #69cddf;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease, transform 0.3s ease; /* Transición de transformación añadida */
@@ -311,8 +311,8 @@ nav ul li a::after {
   bottom: -5px;
   width: 0;
   height: 2px;
-  background-color: #aebaf6;
-  /* background-color: #aebaf6; */
+  background-color: #dcaef6;
+  /* background-color: #dcaef6; */
   transition: width 0.3s ease;
 }
 
@@ -342,7 +342,7 @@ nav ul li a:hover::after {
   opacity: 0;
   z-index: 999;
   padding: 2rem 1.5rem; /* Padding ajustado */
-  box-shadow: -4px 0 15px rgba(0, 255, 255, 0.3); /* Sombra ajustada */
+  box-shadow: -4px 0 15px rgba(0, 145, 255, 0.3); /* Sombra ajustada */
   display: flex; /* Añadido para flexbox */
   flex-direction: column; /* Añadido para flexbox */
   align-items: flex-start; /* Añadido para flexbox */
@@ -360,7 +360,7 @@ nav ul li a:hover::after {
   left: -4px;
   width: 2px;
   height: 100%;
-  background: linear-gradient(to bottom, #93bff9, #aebaf6);
+  background: linear-gradient(to bottom, #69cddf, #dcaef6);
   animation: pulsoBarra 4s infinite ease-in-out;
 }
 
@@ -390,7 +390,7 @@ nav ul li a:hover::after {
 }
 
 .sidebar ul li a {
-  color: #aebaf6;
+  color: #dcaef6;
   text-decoration: none;
   font-size: 1.3rem; /* Tamaño de fuente ajustado */
   display: block; /* Para que ocupe todo el ancho del li */
@@ -399,7 +399,7 @@ nav ul li a:hover::after {
 }
 
 .sidebar ul li a:hover {
-  color: #93bff9; /* Color ajustado al pasar el ratón */
+  color: #69cddf; /* Color ajustado al pasar el ratón */
   transform: translateX(5px); /* Efecto de deslizamiento */
 }
 
@@ -529,7 +529,7 @@ main section::before {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 16px;
   backdrop-filter: blur(6px);
-  box-shadow: 0 0 30px rgba(147, 249, 185, 0.2);
+  box-shadow: 0 0 30px rgba(147, 208, 249, 0.2);
   max-width: 1200px;
   width: 100%;
   margin-left: auto;
@@ -541,13 +541,13 @@ main section::before {
 /* Estilo para el listado de proyectos (similar a WinForms ListBox) */
 .listado-proyectos {
   background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid #93bff9;
+  border: 1px solid #69cddf;
   border-radius: 8px;
   padding: 1rem;
   height: 100%;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #aebaf6 transparent;
+  scrollbar-color: #dcaef6 transparent;
 }
 
 .listado-proyectos h3 {
@@ -581,11 +581,11 @@ main section::before {
 }
 
 .listado-proyectos .proyecto-item.activo {
-  background-color: #aebaf6;
+  background-color: #dcaef6;
   color: #111;
   font-weight: bold;
   box-shadow: 0 0 15px rgba(174, 187, 246, 0.7);
-  border: 1px solid #93bff9;
+  border: 1px solid #69cddf;
 }
 
 .listado-proyectos .proyecto-item.activo::before {
@@ -657,12 +657,12 @@ main section::before {
   height: 100%;
   object-fit: contain;
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(147, 249, 185, 0.4);
+  box-shadow: 0 0 10px rgba(147, 217, 249, 0.4);
   animation: salto 0.5s ease-out forwards;
 }
 
 .datos-personaje {
-  color: #93bff9;
+  color: #69cddf;
   font-size: 1rem;
   line-height: 1.6;
   width: 100%;
@@ -699,7 +699,7 @@ main section::before {
 
 .habilidades-list li::before {
   content: "•";
-  color: #93bff9;
+  color: #69cddf;
   position: absolute;
   left: 0;
 }
@@ -722,7 +722,7 @@ main section::before {
   height: 100%;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 0 15px #aebaf6; /* Default shadow */
+  box-shadow: 0 0 15px #dcaef6; /* Default shadow */
   transition: box-shadow 0.6s ease-in-out; /* Smooth transition for glow */
 }
 
@@ -744,7 +744,7 @@ main section::before {
 
 .nombre-elemento-visor {
   font-size: 1.1rem;
-  color: #93bff9;
+  color: #69cddf;
   margin-top: 0.5rem;
   text-align: center;
 }
@@ -760,14 +760,14 @@ main section::before {
   font-size: 2.5rem;
   background: none;
   border: none;
-  color: #93bff9;
+  color: #69cddf;
   cursor: pointer;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .boton-rotador:hover {
   transform: scale(1.2);
-  color: #aebaf6;
+  color: #dcaef6;
 }
 
 .listado-elementos-proyecto {
@@ -783,7 +783,7 @@ main section::before {
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
-  scrollbar-color: #93bff9 transparent;
+  scrollbar-color: #69cddf transparent;
 }
 
 #thumbnailsPersonajes {
@@ -811,12 +811,12 @@ main section::before {
 
 .thumbnail-personaje:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 10px #93bff9;
-  border-color: #93bff9;
+  box-shadow: 0 0 10px #69cddf;
+  border-color: #69cddf;
 }
 
 .thumbnail-personaje.activo {
-  border: 2px solid #93bff9;
+  border: 2px solid #69cddf;
   box-shadow: 0 0 15px rgba(147, 249, 185, 0.7);
 }
 
@@ -927,7 +927,7 @@ main section::before {
   object-fit: contain; /* Asegura que la imagen se ajuste completamente dentro del contenedor */
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(147, 249, 185, 0.6); /* Prominent shadow */
-  border: 2px solid #93bff9; /* Border for the main image */
+  border: 2px solid #69cddf; /* Border for the main image */
   z-index: 10; /* Ensure it's on top */
   cursor: pointer; /* Indicate it's clickable */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -978,7 +978,7 @@ main section::before {
 .info-ilustracion h4 {
   font-size: 1.6rem;
   margin-bottom: 0.5rem;
-  color: #93bff9;
+  color: #69cddf;
 }
 
 .info-ilustracion p {
@@ -1048,7 +1048,7 @@ main section::before {
 
   /* Custom scrollbar for lightbox content */
   scrollbar-width: thin;
-  scrollbar-color: #93bff9 transparent;
+  scrollbar-color: #69cddf transparent;
 }
 
 .lightbox-content::-webkit-scrollbar {
@@ -1059,12 +1059,12 @@ main section::before {
   background: transparent;
 }
 .lightbox-content::-webkit-scrollbar-thumb {
-  background: linear-gradient(to right, #93bff9, #aebaf6);
+  background: linear-gradient(to right, #69cddf, #dcaef6);
   border-radius: 4px;
-  box-shadow: 0 0 6px rgba(147, 249, 185, 0.4);
+  box-shadow: 0 0 6px rgba(147, 217, 249, 0.4);
 }
 .lightbox-content::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to right, #aebaf6, #93bff9);
+  background: linear-gradient(to right, #dcaef6, #69cddf);
 }
 
 .lightbox-close {
@@ -1075,7 +1075,7 @@ main section::before {
   background: none;
   border: none;
   font-size: 2.5rem; /* Slightly larger for emoji */
-  color: #93bff9;
+  color: #69cddf;
   cursor: pointer;
   transition: transform 0.2s ease, color 0.2s ease;
   z-index: 2002; /* Higher z-index to be on top */
@@ -1113,7 +1113,7 @@ main section::before {
   background: none;
   border: none;
   font-size: 2.5rem;
-  color: #93bff9;
+  color: #69cddf;
   cursor: pointer;
   transition: transform 0.2s ease, color 0.2s ease;
 }
@@ -1133,7 +1133,7 @@ main section::before {
 
 .lightbox-info h4 {
   font-size: 1.3rem; /* Reduced from 1.4rem */
-  color: #aebaf6;
+  color: #dcaef6;
   margin-bottom: 0.5rem;
 }
 
@@ -1207,7 +1207,7 @@ main section::before {
   aspect-ratio: 16 / 10;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 0 15px #aebaf6;
+  box-shadow: 0 0 15px #dcaef6;
   background-color: #000;
 }
 
@@ -1238,7 +1238,7 @@ main section::before {
  📨 FORMULARIO
 ================================ */
 .contacto-formulario button:hover {
-  background-color: #93bff9;
+  background-color: #69cddf;
 }
 .contacto-container {
   display: flex;
@@ -1266,7 +1266,7 @@ main section::before {
 }
 
 .contacto-formulario button {
-  background-color: #aebaf6;
+  background-color: #dcaef6;
   border: none;
   padding: 0.8rem;
   border-radius: 5px;
@@ -1360,7 +1360,7 @@ main section::before {
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  border: 2px solid #93bff9;
+  border: 2px solid #69cddf;
   animation: giro 2s ease-out forwards;
   display: flex; /* Añadido para centrar el cierre */
   align-items: center; /* Añadido para centrar el cierre */
@@ -1372,7 +1372,7 @@ main section::before {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: #aebaf6;
+  background-color: #dcaef6;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -1452,7 +1452,7 @@ main section::before {
     filter: brightness(1);
   }
   50% {
-    box-shadow: 0 0 20px #93bff9;
+    box-shadow: 0 0 20px #69cddf;
     filter: brightness(1.4);
   }
   100% {
@@ -1489,13 +1489,13 @@ main section::before {
 
 @keyframes glowFade {
   0% {
-    box-shadow: 0 0 25px #aebaf6;
+    box-shadow: 0 0 25px #dcaef6;
   }
   50% {
     box-shadow: 0 0 40px #93d0f9;
   }
   100% {
-    box-shadow: 0 0 15px #aebaf6;
+    box-shadow: 0 0 15px #dcaef6;
   }
 }
 /* ================================
@@ -1793,19 +1793,19 @@ footer {
 .listado-elementos-proyecto::-webkit-scrollbar-thumb {
   background: linear-gradient(
     to right,
-    #93bff9,
-    #aebaf6
+    #69cddf,
+    #dcaef6
   ); /* Color tipo sistema */
   border-radius: 4px;
-  box-shadow: 0 0 6px rgba(147, 249, 185, 0.4); /* Sombra elegante */
+  box-shadow: 0 0 6px rgba(147, 217, 249, 0.4); /* Sombra elegante */
 }
 
 .listado-proyectos::-webkit-scrollbar-thumb:hover,
 .listado-elementos-proyecto::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     to right,
-    #aebaf6,
-    #93bff9
+    #dcaef6,
+    #69cddf
   ); /* Reverso al pasar el ratón */
 }
 
@@ -1813,5 +1813,5 @@ footer {
 .listado-proyectos,
 .listado-elementos-proyecto {
   scrollbar-width: thin;
-  scrollbar-color: #93bff9 transparent;
+  scrollbar-color: #69cddf transparent;
 }
