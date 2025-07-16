@@ -132,7 +132,7 @@ a {
 
   font-size: 1rem;
   font-family: "Stanberry", sans-serif;
-  color: #dcaef6;
+  color: #239ad1;
   text-align: center;
 
   opacity: 0;
@@ -311,8 +311,8 @@ nav ul li a::after {
   bottom: -5px;
   width: 0;
   height: 2px;
-  background-color: #dcaef6;
-  /* background-color: #dcaef6; */
+  background-color: #239ad1;
+  /* background-color: #239ad1; */
   transition: width 0.3s ease;
 }
 
@@ -360,7 +360,7 @@ nav ul li a:hover::after {
   left: -4px;
   width: 2px;
   height: 100%;
-  background: linear-gradient(to bottom, #69cddf, #dcaef6);
+  background: linear-gradient(to bottom, #69cddf, #239ad1);
   animation: pulsoBarra 4s infinite ease-in-out;
 }
 
@@ -390,7 +390,7 @@ nav ul li a:hover::after {
 }
 
 .sidebar ul li a {
-  color: #dcaef6;
+  color: #239ad1;
   text-decoration: none;
   font-size: 1.3rem; /* Tamaño de fuente ajustado */
   display: block; /* Para que ocupe todo el ancho del li */
@@ -547,7 +547,7 @@ main section::before {
   height: 100%;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #dcaef6 transparent;
+  scrollbar-color: #239ad1 transparent;
 }
 
 .listado-proyectos h3 {
@@ -576,12 +576,12 @@ main section::before {
 }
 
 .listado-proyectos .proyecto-item:hover {
-  background-color: rgba(147, 249, 185, 0.1);
-  box-shadow: 0 0 8px rgba(147, 249, 185, 0.3);
+  background-color: rgba(147, 183, 249, 0.1);
+  box-shadow: 0 0 8px rgba(147, 183, 249, 0.3);
 }
 
 .listado-proyectos .proyecto-item.activo {
-  background-color: #dcaef6;
+  background-color: #239ad1;
   color: #111;
   font-weight: bold;
   box-shadow: 0 0 15px rgba(174, 187, 246, 0.7);
@@ -630,7 +630,7 @@ main section::before {
   background-color: rgba(255, 255, 255, 0.03);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(147, 249, 185, 0.08);
+  box-shadow: 0 0 15px rgba(147, 183, 249, 0.08);
 }
 
 .info-proyecto {
@@ -642,7 +642,7 @@ main section::before {
   padding: 1rem;
   background-color: rgba(255, 255, 255, 0.03);
   border-radius: 12px;
-  box-shadow: 0 0 12px rgba(147, 249, 185, 0.06);
+  box-shadow: 0 0 12px rgba(147, 183, 249, 0.06);
 }
 
 .info-proyecto .icono-wrapper {
@@ -711,7 +711,7 @@ main section::before {
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.03);
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(147, 249, 185, 0.08);
+  box-shadow: 0 0 20px rgba(147, 183, 249, 0.08);
   padding: 1rem;
 }
 
@@ -721,7 +721,7 @@ main section::before {
   height: 100%;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 0 15px #dcaef6; /* Default shadow */
+  box-shadow: 0 0 15px #239ad1; /* Default shadow */
   transition: box-shadow 0.6s ease-in-out; /* Smooth transition for glow */
 }
 
@@ -766,7 +766,7 @@ main section::before {
 
 .boton-rotador:hover {
   transform: scale(1.2);
-  color: #dcaef6;
+  color: #239ad1;
 }
 
 .listado-elementos-proyecto {
@@ -774,7 +774,7 @@ main section::before {
   background-color: rgba(255, 255, 255, 0.02);
   padding: 0.5rem;
   border-radius: 10px;
-  box-shadow: inset 0 0 10px rgba(147, 249, 185, 0.05);
+  box-shadow: inset 0 0 10px rgba(147, 183, 249, 0.05);
   display: flex;
   flex-direction: row;
   overflow-x: auto;
@@ -816,7 +816,7 @@ main section::before {
 
 .thumbnail-personaje.activo {
   border: 2px solid #69cddf;
-  box-shadow: 0 0 15px rgba(147, 249, 185, 0.7);
+  box-shadow: 0 0 15px rgba(147, 183, 249, 0.7);
 }
 
 /* ================================
@@ -837,7 +837,7 @@ main section::before {
   background-color: rgba(255, 255, 255, 0.03);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(147, 249, 185, 0.08);
+  box-shadow: 0 0 15px rgba(147, 183, 249, 0.08);
   height: 100%; /* Asegura que ocupe la altura disponible en la grilla */
 }
 
@@ -849,7 +849,7 @@ main section::before {
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.2); /* Fondo sutil para el visor */
   border-radius: 10px;
-  box-shadow: inset 0 0 15px rgba(147, 249, 185, 0.1);
+  box-shadow: inset 0 0 15px rgba(147, 183, 249, 0.1);
   aspect-ratio: 4 / 3; /* Fixed aspect ratio for consistent size on desktop */
   overflow: hidden; /* Para contener las cartas */
   min-height: 350px; /* Altura mínima para el visor en móvil, aumentada */
@@ -925,7 +925,7 @@ main section::before {
   height: auto;
   object-fit: contain; /* Asegura que la imagen se ajuste completamente dentro del contenedor */
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(147, 249, 185, 0.6); /* Prominent shadow */
+  box-shadow: 0 10px 30px rgba(147, 183, 249, 0.6); /* Prominent shadow */
   border: 2px solid #69cddf; /* Border for the main image */
   z-index: 10; /* Ensure it's on top */
   cursor: pointer; /* Indicate it's clickable */
@@ -934,7 +934,7 @@ main section::before {
 
 .ilustracion-principal:hover {
   transform: scale(1.02);
-  box-shadow: 0 15px 40px rgba(147, 249, 185, 0.8);
+  box-shadow: 0 15px 40px rgba(147, 183, 249, 0.8);
 }
 
 .ilustracion-principal.pulse-active {
@@ -970,7 +970,7 @@ main section::before {
   padding: 1rem;
   background-color: rgba(255, 255, 255, 0.03);
   border-radius: 12px;
-  box-shadow: 0 0 12px rgba(147, 249, 185, 0.06);
+  box-shadow: 0 0 12px rgba(147, 183, 249, 0.06);
   flex-shrink: 0; /* Evita que se encoja */
 }
 
@@ -1058,12 +1058,12 @@ main section::before {
   background: transparent;
 }
 .lightbox-content::-webkit-scrollbar-thumb {
-  background: linear-gradient(to right, #69cddf, #dcaef6);
+  background: linear-gradient(to right, #69cddf, #239ad1);
   border-radius: 4px;
   box-shadow: 0 0 6px rgba(147, 217, 249, 0.4);
 }
 .lightbox-content::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to right, #dcaef6, #69cddf);
+  background: linear-gradient(to right, #239ad1, #69cddf);
 }
 
 .lightbox-close {
@@ -1132,7 +1132,7 @@ main section::before {
 
 .lightbox-info h4 {
   font-size: 1.3rem; /* Reduced from 1.4rem */
-  color: #dcaef6;
+  color: #239ad1;
   margin-bottom: 0.5rem;
 }
 
@@ -1206,7 +1206,7 @@ main section::before {
   aspect-ratio: 16 / 10;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 0 15px #dcaef6;
+  box-shadow: 0 0 15px #239ad1;
   background-color: #000;
 }
 
@@ -1265,7 +1265,7 @@ main section::before {
 }
 
 .contacto-formulario button {
-  background-color: #dcaef6;
+  background-color: #239ad1;
   border: none;
   padding: 0.8rem;
   border-radius: 5px;
@@ -1371,7 +1371,7 @@ main section::before {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: #dcaef6;
+  background-color: #239ad1;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -1488,13 +1488,13 @@ main section::before {
 
 @keyframes glowFade {
   0% {
-    box-shadow: 0 0 25px #dcaef6;
+    box-shadow: 0 0 25px #239ad1;
   }
   50% {
     box-shadow: 0 0 40px #93d0f9;
   }
   100% {
-    box-shadow: 0 0 15px #dcaef6;
+    box-shadow: 0 0 15px #239ad1;
   }
 }
 /* ================================
@@ -1713,7 +1713,7 @@ footer {
   .ilustracion-card {
     /* Mantiene el posicionamiento absoluto y el efecto 3D */
     max-width: 50%; /* Tamaño ajustado para móvil, porcentaje del visor */
-    max-height: 90%; /* Tamaño ajustado para móvil, porcentaje del visor */
+    max-height: 95%; /* Tamaño ajustado para móvil, porcentaje del visor */
   }
 
   /* Ajustes de transformaciones 3D para móviles */
@@ -1742,7 +1742,7 @@ footer {
   .ilustracion-principal {
     /* Mantiene el posicionamiento absoluto y el efecto 3D */
     max-width: 70%; /* Tamaño ajustado para móvil, porcentaje del visor */
-    max-height: 90%; /* Tamaño ajustado para móvil, porcentaje del visor */
+    max-height: 95%; /* Tamaño ajustado para móvil, porcentaje del visor */
   }
 
   .info-ilustracion {
@@ -1799,7 +1799,7 @@ footer {
   background: linear-gradient(
     to right,
     #69cddf,
-    #dcaef6
+    #239ad1
   ); /* Color tipo sistema */
   border-radius: 4px;
   box-shadow: 0 0 6px rgba(147, 217, 249, 0.4); /* Sombra elegante */
@@ -1809,7 +1809,7 @@ footer {
 .listado-elementos-proyecto::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     to right,
-    #dcaef6,
+    #239ad1,
     #69cddf
   ); /* Reverso al pasar el ratón */
 }
