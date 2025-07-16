@@ -37,7 +37,7 @@
         src="assets/characters/VCT.png"
         alt="Personaje flotante"
       />
-      <a href="#desarrollo3d" class="arrow">⬇️</a>
+      <a href="#diseno-animacion" class="arrow">⬇️</a>
     </section>
 
     <header>
@@ -58,7 +58,7 @@
 
       <nav class="nav-desktop">
         <ul>
-          <li><a href="#desarrollo3d">Diseño Gráfico / Animación</a></li>
+          <li><a href="#diseno-animacion">Diseño Gráfico / Animación</a></li>
           <li><a href="#dibujo">Ilustración</a></li>
           <li><a href="#videojuegos">Videojuegos</a></li>
           <li><a href="#software">Software</a></li>
@@ -71,7 +71,7 @@
     <div class="sidebar" id="mobileMenu">
       <ul>
         <li>
-          <a href="#desarrollo3d" onclick="closeMenu()"
+          <a href="#diseno-animacion" onclick="closeMenu()"
             >Diseño Gráfico / Animación</a
           >
         </li>
@@ -84,93 +84,58 @@
 
     <!-- 🔽 Secciones verticales -->
     <main>
-      <section class="section animada" id="desarrollo3d">
+      <section class="section animada" id="diseno-animacion">
         <h2 class="titulo-seccion">Diseño Gráfico / Animación</h2>
 
-        <div class="selector-personajes">
-          <h3>Selecciona un personaje</h3>
+        <div class="contenedor-proyectos">
+          <!-- Listado de proyectos seleccionables -->
+          <div class="listado-proyectos">
+            <h3>PROYECTOS</h3>
+            <ul id="listaProyectos">
+              <!-- Los proyectos se cargarán aquí dinámicamente -->
+            </ul>
+          </div>
 
-          <div class="selector-contenido-principal">
-            <!-- ℹ️ Información del personaje -->
-            <div class="info-personaje">
+          <!-- Contenido del proyecto seleccionado -->
+          <div class="contenido-proyecto">
+            <div class="info-proyecto">
               <div class="icono-wrapper">
                 <img
                   id="iconoPersonaje"
-                  src="assets/icons/personaje1.png"
-                  alt="Icono personaje"
+                  src="assets/icons/default.png"
+                  alt="Icono del personaje"
                   class="icono-activo"
+                  onerror="this.onerror=null;this.src='https://placehold.co/110x110/CCCCCC/000000?text=Error';"
                 />
               </div>
               <div class="datos-personaje">
-                <h4 id="nombrePersonaje">Nombre</h4>
-                <p id="juegoPersonaje">Universo:</p>
-                <p id="descripcionPersonaje">Descripción:</p>
+                <h4 id="nombrePersonaje">Nombre del Personaje</h4>
+                <p id="subtituloPersonaje">Subtítulo del Personaje</p>
+                <p id="descripcionPersonaje">Descripción del personaje.</p>
               </div>
             </div>
 
-            <!-- 🎥 Visor y controles -->
-            <div class="visor-y-controles">
+            <div class="visor-elementos">
               <img
                 id="modeloPersonaje"
-                src="assets/renders/personaje1_00.png"
-                alt="Render personaje"
+                src="assets/renders/default.png"
+                alt="Elemento del proyecto"
               />
-              <div class="rotador-botones-container">
-                <button class="boton-rotador" onclick="rotar(-1)">⬅️</button>
-                <button class="boton-rotador" onclick="rotar(1)">➡️</button>
+              <p id="nombreElementoVisor" class="nombre-elemento-visor"></p>
+              <div class="navegacion-elementos">
+                <button class="boton-rotador" onclick="rotarPersonaje(-1)">
+                  ⬅️
+                </button>
+                <button class="boton-rotador" onclick="rotarPersonaje(1)">
+                  ➡️
+                </button>
               </div>
             </div>
 
-            <!-- 🎮 Selector tipo grid vertical estilo arcade -->
-            <div class="personajes-lista">
-              <img
-                src="assets/thumbnails/personaje1.png"
-                onclick="mostrarPersonaje('personaje1')"
-              />
-              <img
-                src="assets/thumbnails/personaje2.png"
-                onclick="mostrarPersonaje('personaje2')"
-              />
-              <img
-                src="assets/thumbnails/personaje3.png"
-                onclick="mostrarPersonaje('personaje3')"
-              />
-              <img
-                src="assets/thumbnails/personaje4.png"
-                onclick="mostrarPersonaje('personaje4')"
-              />
-              <img
-                src="assets/thumbnails/personaje5.png"
-                onclick="mostrarPersonaje('personaje5')"
-              />
-              <img
-                src="assets/thumbnails/personaje6.png"
-                onclick="mostrarPersonaje('personaje6')"
-              />
-              <img
-                src="assets/thumbnails/personaje7.png"
-                onclick="mostrarPersonaje('personaje7')"
-              />
-              <img
-                src="assets/thumbnails/personaje8.png"
-                onclick="mostrarPersonaje('personaje8')"
-              />
-              <img
-                src="assets/thumbnails/personaje9.png"
-                onclick="mostrarPersonaje('personaje9')"
-              />
-              <img
-                src="assets/thumbnails/personaje10.png"
-                onclick="mostrarPersonaje('personaje10')"
-              />
-              <img
-                src="assets/thumbnails/personaje11.png"
-                onclick="mostrarPersonaje('personaje11')"
-              />
-              <img
-                src="assets/thumbnails/personaje12.png"
-                onclick="mostrarPersonaje('personaje12')"
-              />
+            <div class="listado-elementos-proyecto">
+              <div id="thumbnailsPersonajes">
+                <!-- Las miniaturas de los personajes se cargarán aquí dinámicamente -->
+              </div>
             </div>
           </div>
         </div>
@@ -262,357 +227,23 @@
       <p>© 2025 Daniel. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- 🎯 Script para el efecto de blur y zoom -->
-    <script>
-      window.addEventListener("scroll", () => {
-        const heroImg = document.querySelector(".hero img");
-        if (window.scrollY > 50) {
-          heroImg.style.filter = "blur(8px) brightness(0.8) saturate(1.2)";
-          heroImg.style.transform = "scale(1.05)";
-        } else {
-          heroImg.style.filter = "none";
-          heroImg.style.transform = "scale(1)";
-        }
-      });
-    </script>
-    <script>
-      function toggleMenu() {
-        // Solo activar en pantallas pequeñas
-        if (window.innerWidth > 768) return;
-
-        const menu = document.getElementById("mobileMenu");
-        const logo = document.getElementById("logoMetyd");
-
-        menu.classList.toggle("open");
-
-        if (menu.classList.contains("open")) {
-          logo.classList.add("logo-transformada");
-        } else {
-          logo.classList.remove("logo-transformada");
-        }
-      }
-
-      function closeMenu() {
-        const menu = document.getElementById("mobileMenu");
-        const logo = document.getElementById("logoMetyd");
-
-        menu.classList.remove("open");
-        logo.classList.remove("logo-transformada");
-      }
-    </script>
-    <script>
-      document.querySelectorAll('a[href^="#"]').forEach((link) => {
-        link.addEventListener("click", () => {
-          const menu = document.getElementById("mobileMenu");
-          const logo = document.getElementById("logoMetyd");
-          if (menu.classList.contains("open")) {
-            menu.classList.remove("open");
-            logo.classList.remove("logo-transformada");
-          }
-        });
-      });
-    </script>
-
-    <script>
-      window.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => {
-          const overlay = document.getElementById("introOverlay");
-          overlay.style.display = "none";
-        }, 2100); // espera a que termine animación
-
-        // Forzar un reflow para asegurar que todos los elementos de la lista de personajes se rendericen
-        const personajesLista = document.querySelector(".personajes-lista");
-        if (personajesLista) {
-          // Acceder a offsetWidth fuerza al navegador a recalcular el layout
-          personajesLista.offsetWidth;
-        }
-
-        // Mostrar el primer personaje al cargar la página
-        mostrarPersonaje("personaje1");
-      });
-    </script>
-    <script>
-      // 🧠 Datos informativos por personaje
-      const datosPersonajes = {
-        personaje1: {
-          nombre: "Nexus-01",
-          universo: "Metyd Prime",
-          thumbnail: "assets/thumbnails/personaje1.png",
-          descripcion:
-            "Unidad sintética diseñada para mapear emociones humanas. Comanda protocolos de defensa y análisis existencial.",
-        },
-        personaje2: {
-          nombre: "Zaira",
-          universo: "Orbital 9",
-          thumbnail: "assets/thumbnails/personaje2.png",
-          descripcion:
-            "Agente psiónica con habilidades de reconexión neural. Habita el borde entre la realidad y el impulso cuántico.",
-        },
-        personaje3: {
-          nombre: "Aegon",
-          universo: "Fragmenta",
-          thumbnail: "assets/thumbnails/personaje3.png",
-          descripcion:
-            "Guardián del colapso dimensional. Porta un núcleo fragmentado que alberga memorias prohibidas de antiguos universos.",
-        },
-        personaje4: {
-          nombre: "Kael",
-          universo: "Cenit",
-          thumbnail: "assets/thumbnails/personaje4.png",
-          descripcion:
-            "Explorador de dimensiones paralelas. Su armadura se adapta a cualquier entorno, fusionándose con la energía del lugar.",
-        },
-        personaje5: {
-          nombre: "Lyra",
-          universo: "Ecos de Silencio",
-          thumbnail: "assets/thumbnails/personaje5.png",
-          descripcion:
-            "Cantante de las estrellas, sus melodías pueden alterar la realidad. Busca los fragmentos de una canción olvidada.",
-        },
-        personaje6: {
-          nombre: "Roric",
-          universo: "Las Criptas de Hierro",
-          thumbnail: "assets/thumbnails/personaje6.png",
-          descripcion:
-            "Guerrero forjado en el corazón de un volcán. Su fuerza es legendaria y su temperamento, explosivo.",
-        },
-        personaje7: {
-          nombre: "Seraphina",
-          universo: "El Jardín Etéreo",
-          thumbnail: "assets/thumbnails/personaje7.png",
-          descripcion:
-            "Custodia de la flora cósmica. Cada flor que cultiva tiene propiedades únicas y un secreto ancestral.",
-        },
-        personaje8: {
-          nombre: "Jax",
-          universo: "Distrito Cero",
-          thumbnail: "assets/thumbnails/personaje8.png",
-          descripcion:
-            "Hacker y vigilante de la red. Sus implantes cibernéticos le permiten navegar por el ciberespacio a velocidades inimaginables.",
-        },
-        personaje9: {
-          nombre: "Elara",
-          universo: "Crónicas de la Luna Roja",
-          thumbnail: "assets/thumbnails/personaje9.png",
-          descripcion:
-            "Arquera mística, sus flechas nunca fallan su objetivo. Protege un antiguo bosque de las sombras.",
-        },
-        personaje10: {
-          nombre: "Volkov",
-          universo: "Tierras Congeladas",
-          thumbnail: "assets/thumbnails/personaje10.png",
-          descripcion:
-            "Cazador solitario de las tundras heladas. Su lealtad es inquebrantable y su puntería, letal.",
-        },
-        personaje11: {
-          nombre: "Anya",
-          universo: "El Reino de los Susurros",
-          thumbnail: "assets/thumbnails/personaje11.png",
-          descripcion:
-            "Hechicera de los sueños, puede entrar en las mentes de otros. Busca un artefacto que le otorgue control total.",
-        },
-        personaje12: {
-          nombre: "Drakon",
-          universo: "Las Profundidades Abisales",
-          thumbnail: "assets/thumbnails/personaje12.png",
-          descripcion:
-            "Criatura marina legendaria, guardián de los tesoros hundidos. Su aliento puede invocar tormentas.",
-        },
-      };
-
-      let personajeActual = "personaje1";
-      let anguloActual = 0;
-      const totalAngulos = 10;
-
-      function mostrarPersonaje(nombre) {
-        personajeActual = nombre;
-        anguloActual = 0;
-        actualizarRender();
-
-        // Actualizar panel informativo
-        const datos = datosPersonajes[nombre];
-        document.getElementById("nombrePersonaje").textContent = datos.nombre;
-        document.getElementById(
-          "juegoPersonaje"
-        ).textContent = `${datos.universo}`;
-        document.getElementById(
-          "descripcionPersonaje"
-        ).textContent = `${datos.descripcion}`;
-
-        // Resetear clases en íconos del listado
-        document.querySelectorAll(".personajes-lista img").forEach((img) => {
-          img.classList.remove("activo", "oculto");
-        });
-
-        // Ocultar ícono original y mostrar flotante
-        const thumbnails = document.querySelectorAll(".personajes-lista img");
-        thumbnails.forEach((img) => {
-          // Obtener el valor exacto del nombre del personaje desde el atributo onclick
-          const onclickAttr = img.getAttribute("onclick");
-          const regex = /mostrarPersonaje\('([^']+)'\)/;
-          const match = onclickAttr.match(regex);
-
-          // Verificar si hay una coincidencia y si el nombre extraído coincide exactamente
-          if (match && match[1] === nombre) {
-            // La miniatura activa debe permanecer visible en la lista,
-            // solo se le añade la clase 'activo' para resaltarla.
-            img.classList.add("activo", "oculto");
-            mostrarIconoEnPanel(datos.thumbnail);
-          }
-        });
-      }
-
-      // 🎯 Rotar personaje dentro del visor
-      function rotar(direccion) {
-        anguloActual += direccion;
-        if (anguloActual < 0) anguloActual = 0;
-        if (anguloActual >= totalAngulos) anguloActual = totalAngulos - 1;
-        actualizarRender();
-      }
-
-      // 🎨 Actualizar imagen del render rotativo
-      function actualizarRender() {
-        const angulo = String(anguloActual).padStart(2, "0");
-        const ruta = `assets/renders/${personajeActual}_${angulo}.png`;
-        const render = document.getElementById("modeloPersonaje");
-
-        render.src = ruta;
-        render.classList.add("pulsando");
-        render.classList.add("iluminando");
-
-        setTimeout(() => {
-          render.classList.remove("pulsando");
-          render.classList.remove("iluminando");
-        }, 600);
-
-        console.log(`Mostrando: ${personajeActual}_${angulo}`);
-      }
-
-      // 🧬 Mostrar ícono flotante sobre el panel informativo
-      function mostrarIconoEnPanel(src) {
-        const wrapper = document.querySelector(".icono-wrapper");
-        const anterior = document.querySelector(".icono-activo");
-        if (anterior) anterior.remove();
-
-        const icono = document.createElement("img");
-        icono.src = src;
-        icono.classList.add("icono-activo");
-        wrapper.appendChild(icono);
-      }
-
-      window.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => {
-          const overlay = document.getElementById("introOverlay");
-          overlay.style.display = "none";
-        }, 2100); // espera a que termine animación
-
-        // Forzar un reflow para asegurar que todos los elementos de la lista de personajes se rendericen
-        const personajesLista = document.querySelector(".personajes-lista");
-        if (personajesLista) {
-          // Acceder a offsetWidth fuerza al navegador a recalcular el layout
-          personajesLista.offsetWidth; // Esta es la línea que fuerza el reflow
-          mostrarPersonaje("personaje1");
-        }
-
-        // Mostrar el primer personaje al cargar la página
-        mostrarPersonaje("personaje1");
-      });
-    </script>
-    <script>
-      const secciones = document.querySelectorAll(".section");
-
-      const observer = new IntersectionObserver(
-        (entradas) => {
-          entradas.forEach((entrada) => {
-            if (entrada.isIntersecting) {
-              entrada.target.classList.add("mostrar");
-            } else {
-              entrada.target.classList.remove("mostrar"); // ⚡ Aquí está el "ocultar"
-            }
-          });
-        },
-        {
-          threshold: 0.15, // porcentaje de visibilidad que activa el efecto
-        }
-      );
-
-      secciones.forEach((seccion) => {
-        observer.observe(seccion);
-      });
-    </script>
-
-    <script>
-      const juegos = [
-        {
-          titulo: "Shoot",
-          descripcion: "Lo suficientemente adictivo.",
-          icono: "assets/games/shoot.png",
-          url: "games/shoot/index.html",
-        },
-        {
-          titulo: "ProtoMetyd",
-          descripcion: "Versión prototipo del universo Metyd",
-          icono: "assets/games/protometyd.png",
-          url: "games/metyd/index.html",
-        },
-        // más juegos...
-      ];
-
-      let juegoActual = 0;
-
-      // Función para mostrar un juego por índice
-      function mostrarJuego(indice) {
-        const juego = juegos[indice];
-        const iframe = document.getElementById("iframeJuego");
-        const icono = document.getElementById("iconoJuego");
-        const titulo = document.getElementById("tituloJuego");
-        const descripcion = document.getElementById("descripcionJuego");
-
-        // Actualizar información
-        icono.src = juego.icono;
-        titulo.textContent = juego.titulo;
-        descripcion.textContent = juego.descripcion;
-
-        // Reiniciar iframe
-        iframe.src = "";
-        setTimeout(() => {
-          iframe.src = juego.url;
-
-          // 💡 Efecto de iluminación
-          const iframeWrapper = document.querySelector(".iframe-wrapper");
-          iframeWrapper.classList.add("iluminando");
-          setTimeout(() => {
-            iframeWrapper.classList.remove("iluminando");
-          }, 600);
-        }, 100);
-      }
-
-      // Función para cambiar de juego con flechas
-      function cambiarJuego(direccion) {
-        const contenedor = document.querySelector(".contenedor-juego");
-
-        // 🔄 Animación de fade-out
-        contenedor.style.opacity = "0";
-
-        setTimeout(() => {
-          juegoActual =
-            (juegoActual + direccion + juegos.length) % juegos.length;
-
-          mostrarJuego(juegoActual);
-
-          // 🔄 Recuperar visibilidad
-          contenedor.style.opacity = "1";
-        }, 400);
-      }
-
-      // Mostrar juego inicial al cargar
-      window.addEventListener("DOMContentLoaded", () => {
-        const contenedorJuegos = document.querySelector(".contenedor-juego");
-        if (contenedorJuegos) {
-          contenedorJuegos.offsetWidth;
-        }
-        mostrarJuego(0);
-      });
-    </script>
+    <script
+      crossorigin="anonymous"
+      type="application/javascript"
+      src="js/script.js"
+      defer
+    ></script>
+    <script
+      crossorigin="anonymous"
+      type="application/javascript"
+      src="js/game.js"
+      defer
+    ></script>
+    <script
+      crossorigin="anonymous"
+      type="application/javascript"
+      src="js/main.js"
+      defer
+    ></script>
   </body>
 </html>

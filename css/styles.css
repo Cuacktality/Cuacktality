@@ -186,7 +186,6 @@ a {
     transform: translateX(-50%) translateY(20px);
   }
   100% {
-    opacity: 1;
     transform: translateX(-50%) translateY(0);
   }
 }
@@ -455,7 +454,7 @@ main section::before {
  🌫️ FONDOS BLUR INDIVIDUALES
 ================================ */
 
-#desarrollo3d,
+#diseno-animacion,
 #dibujo,
 #videojuegos,
 #software {
@@ -525,15 +524,15 @@ main section::before {
   display: block;
 }
 
-/* Fondo desenfocado de Desarrollo 3D */
-#desarrollo3d::before {
+/* Fondo desenfocado de Diseño Gráfico / Animación */
+#diseno-animacion::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("../assets/3d.png");
+  background-image: url("../assets/3d.png"); /* Puedes cambiar esta imagen */
   background-size: cover;
   background-position: center;
   filter: blur(10px);
@@ -590,7 +589,7 @@ main section::before {
 }
 
 /* Capa de opacidad atmosférica sobre cada fondo */
-#desarrollo3d::after,
+#diseno-animacion::after,
 #dibujo::after,
 #videojuegos::after,
 #software::after {
@@ -802,9 +801,12 @@ main section::before {
 }
 
 /* ================================
-👤 SECCIÓN PRINCIPAL DE PERSONAJES
+👤 SECCIÓN DISEÑO GRÁFICO / ANIMACIÓN
 ================================ */
-.selector-personajes {
+.contenedor-proyectos {
+  display: grid;
+  grid-template-columns: 0.8fr 2fr; /* Columna para lista y columna para contenido */
+  gap: 2rem;
   margin-top: 2rem;
   padding: 2rem;
   background-color: rgba(0, 0, 0, 0.5);
@@ -813,97 +815,207 @@ main section::before {
   box-shadow: 0 0 30px rgba(147, 249, 185, 0.2);
   max-width: 1200px;
   width: 100%;
-  overflow-x: visible;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: visible; /* Mantener de .selector-personajes */
+  align-items: stretch; /* Asegura que las celdas de la cuadrícula se estiren verticalmente */
 }
 
-.selector-personajes h3 {
-  font-family: "Stanberry", sans-serif;
-  font-size: 1.3rem;
-  color: #f0f0f0;
-  margin-bottom: 1rem;
-  opacity: 0.85;
-}
-
-/* ================================
-📐 GRID PRINCIPAL: INFO + VISOR + SELECTOR
-================================ */
-.selector-contenido-principal {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 0.8fr;
-  gap: 2rem;
-  align-items: start;
-  margin-bottom: 2rem;
-  height: 100%;
-  align-items: stretch;
-}
-
-/* ℹ️ PANEL DE INFORMACIÓN DEL PERSONAJE */
-.info-personaje {
-  background-color: rgba(255, 255, 255, 0.03);
+/* Estilo para el listado de proyectos (similar a WinForms ListBox) */
+.listado-proyectos {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #93bff9;
+  border-radius: 8px;
   padding: 1rem;
+  height: 100%; /* Asegura que ocupe toda la altura disponible en la celda de la cuadrícula */
+  overflow-y: auto; /* Permitir scroll vertical si el contenido excede la altura */
+  scrollbar-width: thin;
+  scrollbar-color: #aebaf6 transparent;
+}
+
+.listado-proyectos h3 {
+  font-family: "Symtext", sans-serif;
+  font-size: 1.3rem; /* Original de .selector-personajes h3 */
+  color: #f0f0f0; /* Original de .selector-personajes h3 */
+  margin-bottom: 1rem;
+  opacity: 0.85; /* Original de .selector-personajes h3 */
+  text-align: center;
+}
+
+.listado-proyectos ul {
+  list-style: none;
+  padding: 0;
+}
+
+.listado-proyectos .proyecto-item {
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.3rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  color: #f0f0f0;
+  position: relative;
+  overflow: hidden; /* Para el efecto de la flecha */
+}
+
+.listado-proyectos .proyecto-item:hover {
+  background-color: rgba(147, 249, 185, 0.1);
+  box-shadow: 0 0 8px rgba(147, 249, 185, 0.3);
+}
+
+.listado-proyectos .proyecto-item.activo {
+  background-color: #aebaf6;
+  color: #111;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(174, 187, 246, 0.7);
+  border: 1px solid #93bff9;
+}
+
+.listado-proyectos .proyecto-item.activo::before {
+  content: "➡️ "; /* Flecha indicadora */
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #111;
+  font-size: 1.2em;
+}
+
+.listado-proyectos .proyecto-item .proyecto-nombre {
+  display: block;
+  font-size: 1.1em;
+  margin-left: 20px; /* Espacio para la flecha */
+}
+
+.listado-proyectos .proyecto-item .proyecto-subtitulo-lista {
+  /* Nuevo estilo para el subtexto del proyecto */
+  display: block;
+  font-size: 0.85em;
+  color: rgba(240, 240, 240, 0.7);
+  margin-left: 20px; /* Espacio para la flecha */
+  margin-top: 0.2em; /* Pequeño margen superior */
+}
+
+.listado-proyectos .proyecto-item.activo .proyecto-subtitulo-lista {
+  color: rgba(17, 17, 17, 0.7);
+}
+
+/* Contenido del proyecto seleccionado */
+.contenido-proyecto {
+  display: grid;
+  grid-template-areas:
+    "info visor"
+    "elementos elementos";
+  grid-template-columns: 1.2fr 1fr; /* Ajustado para parecerse al original .selector-contenido-principal */
+  gap: 2rem; /* Original de .selector-contenido-principal */
+  align-items: start; /* Original de .selector-contenido-principal */
+  margin-bottom: 2rem; /* Original de .selector-contenido-principal */
+  height: 100%; /* Original de .selector-contenido-principal */
+  align-items: stretch; /* Original de .selector-contenido-principal */
+
+  /* Estilos heredados del original .info-personaje y #modeloPersonaje */
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem; /* Mantener el padding del nuevo diseño */
   border-radius: 12px;
-  box-shadow: 0 0 12px rgba(147, 249, 185, 0.06);
+  box-shadow: 0 0 15px rgba(147, 249, 185, 0.08); /* Mantener la sombra del nuevo diseño */
+}
+
+.info-proyecto {
+  grid-area: info;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.03); /* Original de .info-personaje */
+  border-radius: 12px; /* Original de .info-personaje */
+  box-shadow: 0 0 12px rgba(147, 249, 185, 0.06); /* Original de .info-personaje */
 }
 
-.icono-activo {
-  width: 110px;
-  height: 110px;
+.info-proyecto .icono-wrapper {
+  width: 110px; /* Original de .icono-activo */
+  height: 110px; /* Original de .icono-activo */
+  margin-bottom: 1rem;
+}
+
+#iconoPersonaje {
+  width: 100%; /* Para que llene el wrapper */
+  height: 100%; /* Para que llene el wrapper */
+  object-fit: contain; /* Cambiado de 'cover' a 'contain' para evitar recortes */
   border-radius: 50%;
-  object-fit: cover;
-  animation: salto 0.5s ease-out forwards;
   box-shadow: 0 0 10px rgba(147, 249, 185, 0.4);
+  animation: salto 0.5s ease-out forwards; /* Original de .icono-activo */
 }
 
 .datos-personaje {
-  color: #93bff9;
-  font-size: 1rem;
-  line-height: 1.6;
+  color: #93bff9; /* Original de .datos-personaje */
+  font-size: 1rem; /* Original de .datos-personaje p */
+  line-height: 1.6; /* Original de .datos-personaje */
   width: 100%;
   text-align: left;
 }
 
+.datos-personaje h4 {
+  font-size: 1.6rem; /* Ajustado para ser más prominente como título */
+  margin-bottom: 0.5rem;
+}
+
 .datos-personaje p {
-  margin-bottom: 0.6rem;
+  font-size: 1rem; /* Original de .datos-personaje p */
+  margin-bottom: 0.6rem; /* Original de .datos-personaje p */
 }
 
-#juegoPersonaje {
-  margin-bottom: 1.2rem;
+#subtituloPersonaje {
+  /* Específico para el subtítulo */
+  margin-bottom: 1.2rem; /* Similar a #juegoPersonaje original */
 }
 
-/* 🎥 PANEL DEL VISOR DE RENDER Y BOTONES */
-.visor-y-controles {
+.visor-elementos {
+  grid-area: visor;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  height: 100%;
+  justify-content: center;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.03
+  ); /* Original de .visor-y-controles */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(147, 249, 185, 0.08); /* Original de #modeloPersonaje */
+  padding: 1rem;
 }
 
 #modeloPersonaje {
-  width: 250px;
-  height: 250px;
-  object-fit: contain;
-  background-color: rgba(255, 255, 255, 0.03);
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(147, 249, 185, 0.08);
-  transition: opacity 0.4s ease, transform 0.3s ease;
+  width: 250px; /* Original de #modeloPersonaje */
+  height: 250px; /* Original de #modeloPersonaje */
+  object-fit: contain; /* Asegura que el render se vea completo */
+  border-radius: 10px; /* Original de #modeloPersonaje */
+  transition: opacity 0.4s ease, transform 0.3s ease; /* Original de #modeloPersonaje */
 }
 
 #modeloPersonaje:hover {
   transform: scale(1.02);
 }
 
-.rotador-botones-container {
+.nombre-elemento-visor {
+  /* Estilo para el nombre del elemento en el visor */
+  font-size: 1.1rem;
+  color: #93bff9;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.navegacion-elementos {
   display: flex;
   gap: 1rem;
-  justify-content: center;
+  justify-content: center; /* Original de .rotador-botones-container */
+  margin-top: 1rem;
 }
 
 .boton-rotador {
-  font-size: 2.5rem;
+  font-size: 2.5rem; /* Original de .boton-rotador */
   background: none;
   border: none;
   color: #93bff9;
@@ -916,64 +1028,60 @@ main section::before {
   color: #aebaf6;
 }
 
-/* 🎮 SELECTOR DE PERSONAJES EN GRID + SCROLL */
-.personajes-lista {
-  display: grid;
-  grid-template-columns: repeat(2, 90px);
-  grid-auto-rows: 120px;
-  gap: 0.8rem;
-  max-height: 380px;
-  overflow-y: auto;
-  padding: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.02);
-  border-radius: 10px;
-  box-shadow: inset 0 0 10px rgba(147, 249, 185, 0.05);
+.listado-elementos-proyecto {
+  grid-area: elementos;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.02
+  ); /* Original de .personajes-lista */
+  padding: 0.5rem; /* Original de .personajes-lista */
+  border-radius: 10px; /* Original de .personajes-lista */
+  box-shadow: inset 0 0 10px rgba(147, 249, 185, 0.05); /* Original de .personajes-lista */
+  display: flex; /* Cambiado a flex para scroll horizontal */
+  flex-direction: row; /* Asegura la disposición horizontal */
+  overflow-x: auto; /* Permite el scroll horizontal */
+  overflow-y: hidden; /* Oculta el scroll vertical */
+  white-space: nowrap; /* Evita que las miniaturas se envuelvan */
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: #93bff9 transparent;
 }
 
-.personajes-lista img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%; /* 🎯 convierte en círculo */
+#thumbnailsPersonajes {
+  display: flex; /* Cambiado a flex para scroll horizontal */
+  flex-direction: row; /* Asegura la disposición horizontal */
+  gap: 1.5rem; /* Aumentado el espacio entre miniaturas */
+  padding-bottom: 0.5rem; /* Espacio para el scrollbar */
+  /* max-height: 380px; REMOVED: No es necesario para scroll horizontal */
+  overflow-y: visible; /* Permite que las miniaturas se muestren */
+  scroll-snap-type: x mandatory; /* Agregado para un scroll más suave */
+  align-items: center; /* Centra verticalmente las miniaturas si tienen diferentes alturas */
+}
+
+.thumbnail-personaje {
+  width: 100px; /* Original de .personajes-lista img */
+  height: 100px; /* Original de .personajes-lista img */
+  object-fit: contain; /* Cambiado de 'cover' a 'contain' para evitar recortes */
+  border-radius: 50%; /* Original de .personajes-lista img (círculo) */
   cursor: pointer;
   border: 2px solid transparent;
   box-sizing: border-box;
   transition: transform 0.3s, box-shadow 0.3s;
+  flex-shrink: 0; /* Evita que las miniaturas se encojan */
+  scroll-snap-align: center; /* Agregado para un scroll más suave */
 }
 
-/* 🔵 Overlay con nombre al hacer hover */
-.personajes-lista img::after {
-  content: attr(alt); /* Usa el atributo alt como texto */
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: #93f9b9;
-  font-size: 0.8rem;
-  padding: 0.3rem 0.6rem;
-  border-radius: 6px;
-  opacity: 0;
-  white-space: nowrap;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-}
-
-.personajes-lista img:hover::after {
-  opacity: 1;
-}
-
-.personajes-lista img:hover {
+.thumbnail-personaje:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px #93bff9;
   border-color: #93bff9;
 }
 
-.personajes-lista img.activo {
-  border: 2px solid #93bff9;
-  box-shadow: 0 0 15px rgba(147, 249, 185, 0.7);
+.thumbnail-personaje.activo {
+  border: 2px solid #93bff9; /* Original de .personajes-lista img.activo */
+  box-shadow: 0 0 15px rgba(147, 249, 185, 0.7); /* Original de .personajes-lista img.activo */
 }
 
 /* 🌟 ANIMACIONES EXTRA */
@@ -1118,11 +1226,6 @@ footer {
     max-width: 90%;
   }
 
-  /* iframe {
-    height: 40vh;
-    width: 95%;
-  } */
-
   .arrow {
     font-size: 2rem;
     bottom: 40px;
@@ -1145,111 +1248,64 @@ footer {
     --i: 5;
   }
 
-  .selector-contenido-principal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .contenedor-proyectos {
+    grid-template-columns: 1fr; /* Una sola columna en móvil */
     gap: 1.5rem;
+    padding: 1.5rem;
   }
 
-  .info-personaje,
-  .visor-y-controles,
-  .personajes-lista {
-    width: 100%;
-    max-width: 300px;
+  .listado-proyectos {
+    max-height: 250px; /* Altura más pequeña para la lista en móvil */
   }
 
-  .info-personaje {
-    text-align: center;
-    align-items: center;
+  .contenido-proyecto {
+    grid-template-areas:
+      "info"
+      "visor"
+      "elementos";
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .info-proyecto {
     padding: 0.8rem;
   }
 
-  .icono-wrapper {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 0.5rem;
-  }
-
-  .icono-activo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    top: 0;
-  }
-
-  .datos-personaje {
-    text-align: center;
-    font-size: 0.95rem;
-    padding: 0.5rem;
-  }
-
-  .visor-y-controles {
-    flex-direction: column;
-    align-items: center;
+  .visor-elementos {
+    padding: 0.8rem;
   }
 
   #modeloPersonaje {
-    width: 250px;
-    height: 250px;
+    width: 250px; /* Mantener tamaño fijo para el modelo en móvil */
+    height: 250px; /* Mantener tamaño fijo para el modelo en móvil */
+    max-width: 100%; /* Asegurar que no se desborde */
   }
 
-  .rotador-botones-container {
-    flex-direction: row;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .personajes-lista {
-    display: flex;
+  .listado-elementos-proyecto {
+    padding: 0.8rem;
+    display: flex; /* Cambiar a flex para scroll horizontal */
     flex-direction: row;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    gap: 1rem;
-    padding: 1rem 0.5rem;
-    width: 100%;
-    max-width: 100%;
     flex-wrap: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
   }
 
-  .personajes-lista img {
-    flex-shrink: 0;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
+  #thumbnailsPersonajes {
+    display: flex; /* Cambiar a flex para scroll horizontal */
+    flex-direction: row;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    max-height: none; /* Eliminar altura máxima para flex horizontal */
+    overflow-y: visible; /* Permitir que las miniaturas se muestren */
+  }
+
+  .thumbnail-personaje {
+    width: 80px; /* Original de .personajes-lista img en móvil */
+    height: 80px; /* Original de .personajes-lista img en móvil */
+    flex-shrink: 0; /* Evitar que se encojan */
     scroll-snap-align: center;
-    position: relative;
-  }
-
-  .personajes-lista img::after {
-    content: attr(alt);
-    position: absolute;
-    bottom: -24px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.6);
-    color: #93f9b9;
-    font-size: 0.75rem;
-    padding: 2px 6px;
-    border-radius: 6px;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    pointer-events: none;
-    white-space: nowrap;
-  }
-
-  .personajes-lista img:hover::after {
-    opacity: 1;
-  }
-
-  .personajes-lista img.activo {
-    border: 2px solid #93bff9;
-    box-shadow: 0 0 10px rgba(147, 249, 185, 0.5);
   }
 
   .boton-rotador {
@@ -1294,17 +1350,21 @@ footer {
 }
 
 /* ================================
-🎨 Scroll personalizado para .personajes-lista
+🎨 Scroll personalizado para .listado-proyectos y .listado-elementos-proyecto
 ================================ */
-.personajes-lista::-webkit-scrollbar {
+.listado-proyectos::-webkit-scrollbar,
+.listado-elementos-proyecto::-webkit-scrollbar {
   height: 8px; /* Altura del scroll horizontal */
+  width: 8px; /* Ancho del scroll vertical */
 }
 
-.personajes-lista::-webkit-scrollbar-track {
+.listado-proyectos::-webkit-scrollbar-track,
+.listado-elementos-proyecto::-webkit-scrollbar-track {
   background: transparent; /* Fondo invisible */
 }
 
-.personajes-lista::-webkit-scrollbar-thumb {
+.listado-proyectos::-webkit-scrollbar-thumb,
+.listado-elementos-proyecto::-webkit-scrollbar-thumb {
   background: linear-gradient(
     to right,
     #93bff9,
@@ -1314,7 +1374,8 @@ footer {
   box-shadow: 0 0 6px rgba(147, 249, 185, 0.4); /* Sombra elegante */
 }
 
-.personajes-lista::-webkit-scrollbar-thumb:hover {
+.listado-proyectos::-webkit-scrollbar-thumb:hover,
+.listado-elementos-proyecto::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     to right,
     #aebaf6,
@@ -1323,7 +1384,8 @@ footer {
 }
 
 /* Firefox */
-.personajes-lista {
+.listado-proyectos,
+.listado-elementos-proyecto {
   scrollbar-width: thin;
   scrollbar-color: #93bff9 transparent;
 }
