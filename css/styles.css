@@ -826,10 +826,8 @@ main section::before {
 
 .contenido-proyecto-ilustracion {
   display: grid;
-  grid-template-areas:
-    "visor"
-    "info";
-  grid-template-rows: 2fr 1fr; /* Visor ocupa más espacio que la info */
+  grid-template-areas: "visor info"; /* Cambiado para layout de dos columnas */
+  grid-template-columns: 2fr 1fr; /* Visor ocupa más espacio que la info */
   gap: 2rem;
   align-items: start;
   margin-bottom: 2rem;
@@ -867,8 +865,11 @@ main section::before {
 
 .ilustracion-card {
   position: absolute;
-  width: 250px; /* Tamaño de las cartas */
-  height: 350px;
+  /* Responsive sizes */
+  max-width: 35%; /* Max width relative to .visor-ilustracion */
+  max-height: 90%; /* Max height relative to .visor-ilustracion */
+  width: auto; /* Allow natural width based on max-height */
+  height: auto; /* Allow natural height based on max-width */
   background-color: #222;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -891,23 +892,23 @@ main section::before {
 }
 
 .ilustracion-card.prev-1 {
-  transform: translateX(-150px) rotateY(15deg) scale(0.8); /* Adjust translateX and scale */
-  opacity: 0.4; /* More opaque for closer cards */
+  transform: translateX(-40%) rotateY(15deg) scale(0.8); /* Adjusted translateX */
+  opacity: 0.4;
   z-index: 4;
 }
 .ilustracion-card.prev-2 {
-  transform: translateX(-250px) rotateY(25deg) scale(0.7); /* Adjust translateX and scale */
+  transform: translateX(-80%) rotateY(25deg) scale(0.7); /* Adjusted translateX */
   opacity: 0.2;
   z-index: 3;
 }
 
 .ilustracion-card.next-1 {
-  transform: translateX(150px) rotateY(-15deg) scale(0.8); /* Adjust translateX and scale */
+  transform: translateX(40%) rotateY(-15deg) scale(0.8); /* Adjusted translateX */
   opacity: 0.4;
   z-index: 4;
 }
 .ilustracion-card.next-2 {
-  transform: translateX(250px) rotateY(-25deg) scale(0.7); /* Adjust translateX and scale */
+  transform: translateX(80%) rotateY(-25deg) scale(0.7); /* Adjusted translateX */
   opacity: 0.2;
   z-index: 3;
 }
@@ -915,8 +916,11 @@ main section::before {
 /* Main illustration styling */
 .ilustracion-principal {
   position: absolute;
-  width: 300px; /* Standard size for the main image */
-  height: 400px;
+  /* Responsive sizes */
+  max-width: 45%; /* Max width relative to .visor-ilustracion */
+  max-height: 100%; /* Max height relative to .visor-ilustracion */
+  width: auto;
+  height: auto;
   object-fit: contain; /* Ensure image fits */
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(147, 249, 185, 0.6); /* Prominent shadow */
@@ -960,8 +964,8 @@ main section::before {
   grid-area: info;
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Alinear a la derecha */
-  text-align: right; /* Justificar texto a la derecha */
+  align-items: flex-start; /* Alinear a la izquierda */
+  text-align: left; /* Justificar texto a la izquierda */
   padding: 1rem;
   background-color: rgba(255, 255, 255, 0.03);
   border-radius: 12px;
@@ -1118,8 +1122,8 @@ main section::before {
 
 .lightbox-info {
   grid-area: info;
-  text-align: right; /* Keep justified right */
-  align-items: flex-end; /* Keep aligned to flex-end */
+  text-align: left; /* Alineado a la izquierda */
+  align-items: flex-start; /* Alineado a la izquierda */
   margin-top: 0; /* Remove margin-top */
   padding-right: 1rem; /* Add some padding to the right */
 }
@@ -1686,8 +1690,9 @@ footer {
   .contenido-proyecto-ilustracion {
     grid-template-areas:
       "visor"
-      "info";
+      "info"; /* Vuelve a apilar en móvil */
     grid-template-rows: auto auto; /* Ajuste automático */
+    grid-template-columns: 1fr; /* Una sola columna en móvil */
     gap: 1rem;
     padding: 1rem;
   }
@@ -1697,27 +1702,31 @@ footer {
   }
 
   .ilustracion-card {
-    width: 150px; /* Reducir tamaño de cartas en móvil */
-    height: 200px;
+    max-width: 60%; /* Larger on mobile, relative to smaller container */
+    max-height: 90%;
+    width: auto;
+    height: auto;
   }
 
   .ilustracion-card.prev-1 {
-    transform: translateX(-70px) rotateY(10deg) scale(0.8);
+    transform: translateX(-40%) rotateY(10deg) scale(0.8);
   }
   .ilustracion-card.prev-2 {
-    transform: translateX(-110px) rotateY(15deg) scale(0.7);
+    transform: translateX(-70%) rotateY(15deg) scale(0.7);
   }
 
   .ilustracion-card.next-1 {
-    transform: translateX(70px) rotateY(-10deg) scale(0.8);
+    transform: translateX(40%) rotateY(-10deg) scale(0.8);
   }
   .ilustracion-card.next-2 {
-    transform: translateX(110px) rotateY(-15deg) scale(0.7);
+    transform: translateX(70%) rotateY(-15deg) scale(0.7);
   }
 
   .ilustracion-principal {
-    width: 200px; /* Adjust main illustration size for mobile */
-    height: 270px;
+    max-width: 80%; /* Adjust main illustration size for mobile */
+    max-height: 100%;
+    width: auto;
+    height: auto;
   }
 
   .info-ilustracion {
