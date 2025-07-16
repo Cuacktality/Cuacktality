@@ -1,89 +1,312 @@
-const datosIlustraciones = [
-  {
-    src: "https://placehold.co/300x200/FFD700/000000?text=Boceto+1",
-    alt: "Boceto de personaje fantástico",
-    description:
-      "Este boceto representa mi exploración inicial de un personaje para un RPG de fantasía, centrándome en la silueta y la pose dinámica.",
+// Datos de los proyectos de Ilustración
+const datosIlustracionesProyectos = {
+  bocetosConceptuales: {
+    nombre: "En Tiempos de Estrés...",
+    subtitulo: "Haz lo que importa",
+    ilustraciones: [
+      {
+        id: "boceto-1",
+        src: "assets/illustrations/fondoDibujo.jpg",
+        alt: "Boceto de personaje fantástico",
+        nombre: "Guerrera Estelar",
+        subtitulo: "Concepto Inicial",
+        description:
+          "Este boceto representa mi exploración inicial de un personaje para un RPG de fantasía, centrándome en la silueta y la pose dinámica. Buscaba una figura que combinara agilidad con una presencia imponente, pensando en sus movimientos en combate.",
+      },
+      {
+        id: "boceto-2",
+        src: "assets/illustrations/astro.png",
+        alt: "Concepto de entorno futurista",
+        nombre: "Ciudad Flotante",
+        subtitulo: "Estudio de Ambiente",
+        description:
+          "Un estudio de ambiente para un nivel de ciencia ficción, experimentando con iluminación y arquitectura modular. La idea era capturar la sensación de una metrópolis suspendida, con detalles que sugirieran su funcionalidad y vida cotidiana.",
+      },
+      {
+        id: "boceto-3",
+        src: "https://placehold.co/300x400/8A2BE2/FFFFFF?text=Boceto+3",
+        alt: "Ilustración de criatura mítica",
+        nombre: "Dragón Antiguo",
+        subtitulo: "Criatura Mítica",
+        description:
+          "Una ilustración detallada de una criatura alada, combinando elementos orgánicos y fantásticos en su diseño. Me enfoqué en la textura de las escamas y la expresión para transmitir su sabiduría ancestral y poder latente.",
+      },
+      {
+        id: "boceto-4",
+        src: "https://placehold.co/300x400/FF6347/FFFFFF?text=Boceto+4",
+        alt: "Boceto de arma de ciencia ficción",
+        nombre: "Rifle de Plasma",
+        subtitulo: "Diseño de Arma",
+        description:
+          "Diseño conceptual de un arma energética, explorando formas ergonómicas y detalles tecnológicos. Quería que se sintiera potente y futurista, pero también práctica para un personaje humano.",
+      },
+      {
+        id: "boceto-5",
+        src: "https://placehold.co/300x400/4682B4/FFFFFF?text=Boceto+5",
+        alt: "Escena de batalla épica",
+        nombre: "Confrontación Cósmica",
+        subtitulo: "Composición Narrativa",
+        description:
+          "Una composición de una escena de acción, enfocada en la narrativa visual y el movimiento de los personajes. El desafío fue guiar la mirada del espectador a través de la tensión del momento, usando líneas de fuerza y contraste.",
+      },
+    ],
   },
-  {
-    src: "https://placehold.co/300x200/ADFF2F/000000?text=Concepto+2",
-    alt: "Concepto de entorno futurista",
-    description:
-      "Un estudio de ambiente para un nivel de ciencia ficción, experimentando con iluminación y arquitectura modular.",
+  ilustracionesFinales: {
+    nombre: "Ilustraciones Finales",
+    subtitulo: "Arte pulido y detallado",
+    ilustraciones: [
+      {
+        id: "final-1",
+        src: "https://placehold.co/300x400/FF4500/FFFFFF?text=Final+1",
+        alt: "Ilustración de paisaje fantástico",
+        nombre: "Valle de los Ecos",
+        subtitulo: "Paisaje Místico",
+        description:
+          "Ilustración final de un valle místico, donde la luz y la sombra juegan un papel crucial para crear una atmósfera de misterio y asombro. Cada elemento fue pensado para contribuir a la sensación de un lugar inexplorado.",
+      },
+      {
+        id: "final-2",
+        src: "https://placehold.co/300x400/DA70D6/000000?text=Final+2",
+        alt: "Retrato de personaje principal",
+        nombre: "Comandante Anya",
+        subtitulo: "Retrato Heroico",
+        description:
+          "Retrato detallado de un personaje principal, capturando su determinación y liderazgo. Me centré en los detalles de la armadura y la expresión facial para transmitir su personalidad.",
+      },
+    ],
   },
-  {
-    src: "https://placehold.co/300x200/8A2BE2/FFFFFF?text=Ilustracion+3",
-    alt: "Ilustración de criatura mítica",
-    description:
-      "Una ilustración detallada de una criatura alada, combinando elementos orgánicos y fantásticos en su diseño.",
-  },
-  {
-    src: "https://placehold.co/300x200/FF6347/FFFFFF?text=Boceto+4",
-    alt: "Boceto de arma de ciencia ficción",
-    description:
-      "Diseño conceptual de un arma energética, explorando formas ergonómicas y detalles tecnológicos.",
-  },
-  {
-    src: "https://placehold.co/300x200/4682B4/FFFFFF?text=Escena+5",
-    alt: "Escena de batalla épica",
-    description:
-      "Una composición de una escena de acción, enfocada en la narrativa visual y el movimiento de los personajes.",
-  },
-  {
-    src: "https://placehold.co/300x200/FFD700/000000?text=Boceto+6",
-    alt: "Boceto de personaje fantástico",
-    description:
-      "Este boceto representa mi exploración inicial de un personaje para un RPG de fantasía, centrándome en la silueta y la pose dinámica.",
-  },
-  {
-    src: "https://placehold.co/300x200/ADFF2F/000000?text=Concepto+7",
-    alt: "Concepto de entorno futurista",
-    description:
-      "Un estudio de ambiente para un nivel de ciencia ficción, experimentando con iluminación y arquitectura modular.",
-  },
-  {
-    src: "https://placehold.co/300x200/8A2BE2/FFFFFF?text=Ilustracion+8",
-    alt: "Ilustración de criatura mítica",
-    description:
-      "Una ilustración detallada de una criatura alada, combinando elementos orgánicos y fantásticos en su diseño.",
-  },
-  {
-    src: "https://placehold.co/300x200/FF6347/FFFFFF?text=Boceto+9",
-    alt: "Boceto de arma de ciencia ficción",
-    description:
-      "Diseño conceptual de un arma energética, explorando formas ergonómicas y detalles tecnológicos.",
-  },
-  {
-    src: "https://placehold.co/300x200/4682B4/FFFFFF?text=Escena+10",
-    alt: "Escena de batalla épica",
-    description:
-      "Una composición de una escena de acción, enfocada en la narrativa visual y el movimiento de los personajes.",
-  },
-];
+};
 
-function cargarGaleriaIlustraciones() {
-  const galeriaContainer = document.querySelector("#dibujo .galeria");
-  if (!galeriaContainer) return; // Ensure the container exists
+let proyectoIlustracionActualKey = "bocetosConceptuales"; // Proyecto de ilustración inicialmente seleccionado
+let ilustracionActualIndex = 0; // Índice de la ilustración actual dentro del proyecto
 
-  galeriaContainer.innerHTML = ""; // Clear existing content
+// Elementos del DOM
+const listaProyectosIlustracionUl = document.getElementById(
+  "listaProyectosIlustracion"
+);
+const ilustracionCardStack = document.getElementById("ilustracionCardStack");
+const ilustracionPrincipalImg = document.getElementById("ilustracionPrincipal");
+const nombreIlustracionEl = document.getElementById("nombreIlustracion");
+const subtituloIlustracionEl = document.getElementById("subtituloIlustracion");
+const descripcionIlustracionEl = document.getElementById(
+  "descripcionIlustracion"
+);
 
-  datosIlustraciones.forEach((ilustracion) => {
-    const itemDiv = document.createElement("div");
-    itemDiv.classList.add("galeria-item");
+// Lightbox Elements
+const lightboxOverlay = document.getElementById("lightboxOverlay");
+const lightboxImage = document.getElementById("lightboxImage");
+const lightboxNombreIlustracion = document.getElementById(
+  "lightboxNombreIlustracion"
+);
+const lightboxSubtituloIlustracion = document.getElementById(
+  "lightboxSubtituloIlustracion"
+);
+const lightboxDescripcionIlustracion = document.getElementById(
+  "lightboxDescripcionIlustracion"
+);
+const lightboxCloseBtn = document.getElementById("lightboxClose");
+const lightboxPrevBtn = document.getElementById("lightboxPrev");
+const lightboxNextBtn = document.getElementById("lightboxNext");
 
-    const img = document.createElement("img");
-    img.src = ilustracion.src;
-    img.alt = ilustracion.alt;
-
-    const desc = document.createElement("p");
-    desc.classList.add("descripcion-ilustracion");
-    desc.textContent = ilustracion.description;
-
-    itemDiv.appendChild(img);
-    itemDiv.appendChild(desc);
-    galeriaContainer.appendChild(itemDiv);
-  });
+// Función para obtener el proyecto de ilustración actual
+function obtenerProyectoIlustracionActual() {
+  return datosIlustracionesProyectos[proyectoIlustracionActualKey];
 }
 
-// Call the function when the DOM is fully loaded
-window.addEventListener("DOMContentLoaded", cargarGaleriaIlustraciones);
+// Función para obtener la ilustración actual
+function obtenerIlustracionActual() {
+  const proyecto = obtenerProyectoIlustracionActual();
+  if (
+    !proyecto ||
+    !proyecto.ilustraciones ||
+    proyecto.ilustraciones.length === 0
+  ) {
+    return null;
+  }
+  return proyecto.ilustraciones[ilustracionActualIndex];
+}
+
+// Función para cargar la lista de proyectos de ilustración
+function cargarListaProyectosIlustracion() {
+  listaProyectosIlustracionUl.innerHTML = ""; // Limpiar lista existente
+
+  for (const key in datosIlustracionesProyectos) {
+    const proyecto = datosIlustracionesProyectos[key];
+    const li = document.createElement("li");
+    li.setAttribute("data-proyecto-key", key);
+    li.classList.add("proyecto-item");
+    if (key === proyectoIlustracionActualKey) {
+      li.classList.add("activo");
+    }
+
+    li.innerHTML = `
+      <span class="proyecto-nombre">${proyecto.nombre}</span>
+      <span class="proyecto-subtitulo-lista">${proyecto.subtitulo}</span>
+    `;
+    li.onclick = () => seleccionarProyectoIlustracion(key);
+    listaProyectosIlustracionUl.appendChild(li);
+  }
+}
+
+// Función para seleccionar un proyecto de ilustración y cargar sus ilustraciones
+function seleccionarProyectoIlustracion(key) {
+  proyectoIlustracionActualKey = key;
+  ilustracionActualIndex = 0; // Reiniciar al primer elemento del nuevo proyecto
+
+  // Actualizar clase 'activo' en la lista de proyectos
+  document
+    .querySelectorAll("#listaProyectosIlustracion .proyecto-item")
+    .forEach((item) => {
+      item.classList.remove("activo");
+    });
+  document
+    .querySelector(`#listaProyectosIlustracion [data-proyecto-key="${key}"]`)
+    .classList.add("activo");
+
+  actualizarVisorIlustracion();
+}
+
+// Función para actualizar el visor de ilustraciones (efecto de cartas)
+function actualizarVisorIlustracion() {
+  const proyecto = obtenerProyectoIlustracionActual();
+  ilustracionCardStack.innerHTML = ""; // Limpiar cartas existentes
+
+  if (
+    !proyecto ||
+    !proyecto.ilustraciones ||
+    proyecto.ilustraciones.length === 0
+  ) {
+    ilustracionPrincipalImg.src =
+      "https://placehold.co/400x300/000000/FFFFFF?text=Sin+Ilustraciones";
+    ilustracionPrincipalImg.alt = "Sin ilustraciones disponibles";
+    nombreIlustracionEl.textContent = "Sin Ilustración";
+    subtituloIlustracionEl.textContent = "N/A";
+    descripcionIlustracionEl.textContent =
+      "Este proyecto no tiene ilustraciones asociadas.";
+    return;
+  }
+
+  const currentIlustracion = proyecto.ilustraciones[ilustracionActualIndex];
+
+  // Actualizar la imagen principal y la información
+  ilustracionPrincipalImg.src = currentIlustracion.src;
+  ilustracionPrincipalImg.alt = currentIlustracion.alt;
+  nombreIlustracionEl.textContent = currentIlustracion.nombre;
+  subtituloIlustracionEl.textContent = currentIlustracion.subtitulo;
+  descripcionIlustracionEl.textContent = currentIlustracion.description;
+
+  // Crear las cartas de fondo
+  const numIlustraciones = proyecto.ilustraciones.length;
+  const maxCards = 2; // Mostrar 2 cartas a cada lado (prev y next)
+
+  for (let i = -maxCards; i <= maxCards; i++) {
+    const cardIndex = ilustracionActualIndex + i;
+
+    // Asegurarse de que el índice esté dentro de los límites del array
+    if (cardIndex >= 0 && cardIndex < numIlustraciones && i !== 0) {
+      const cardData = proyecto.ilustraciones[cardIndex];
+      const cardDiv = document.createElement("div");
+      cardDiv.classList.add("ilustracion-card");
+      cardDiv.setAttribute("data-index", cardIndex); // Guardar el índice real
+
+      const img = document.createElement("img");
+      img.src = cardData.src;
+      img.alt = cardData.alt;
+      cardDiv.appendChild(img);
+
+      // Asignar clases para posicionamiento y opacidad
+      if (i < 0) {
+        cardDiv.classList.add(`prev-${Math.abs(i)}`);
+      } else if (i > 0) {
+        cardDiv.classList.add(`next-${i}`);
+      }
+      ilustracionCardStack.appendChild(cardDiv);
+    }
+  }
+
+  // Añadir evento de clic a la imagen principal para abrir el lightbox
+  ilustracionPrincipalImg.onclick = () => abrirLightbox(ilustracionActualIndex);
+}
+
+// Función para navegar entre ilustraciones (cambiar la carta central)
+function navegarIlustracion(direccion) {
+  const proyecto = obtenerProyectoIlustracionActual();
+  if (
+    !proyecto ||
+    !proyecto.ilustraciones ||
+    proyecto.ilustraciones.length === 0
+  )
+    return;
+
+  ilustracionActualIndex =
+    (ilustracionActualIndex + direccion + proyecto.ilustraciones.length) %
+    proyecto.ilustraciones.length;
+  actualizarVisorIlustracion();
+}
+
+// =================================================================
+// Lógica del Lightbox
+// =================================================================
+
+let currentLightboxIndex = 0; // Índice de la imagen actual en el lightbox
+
+function abrirLightbox(index) {
+  currentLightboxIndex = index;
+  const proyecto = obtenerProyectoIlustracionActual();
+  const ilustracion = proyecto.ilustraciones[currentLightboxIndex];
+
+  if (!ilustracion) return;
+
+  lightboxImage.src = ilustracion.src;
+  lightboxImage.alt = ilustracion.alt;
+  lightboxNombreIlustracion.textContent = ilustracion.nombre;
+  lightboxSubtituloIlustracion.textContent = ilustracion.subtitulo;
+  lightboxDescripcionIlustracion.textContent = ilustracion.description;
+
+  lightboxOverlay.classList.add("active");
+  document.body.style.overflow = "hidden"; // Evitar scroll en el body
+}
+
+function cerrarLightbox() {
+  lightboxOverlay.classList.remove("active");
+  document.body.style.overflow = ""; // Restaurar scroll en el body
+}
+
+function navegarLightbox(direccion) {
+  const proyecto = obtenerProyectoIlustracionActual();
+  if (
+    !proyecto ||
+    !proyecto.ilustraciones ||
+    proyecto.ilustraciones.length === 0
+  )
+    return;
+
+  currentLightboxIndex =
+    (currentLightboxIndex + direccion + proyecto.ilustraciones.length) %
+    proyecto.ilustraciones.length;
+
+  const ilustracion = proyecto.ilustraciones[currentLightboxIndex];
+  lightboxImage.src = ilustracion.src;
+  lightboxImage.alt = ilustracion.alt;
+  lightboxNombreIlustracion.textContent = ilustracion.nombre;
+  lightboxSubtituloIlustracion.textContent = ilustracion.subtitulo;
+  lightboxDescripcionIlustracion.textContent = ilustracion.description;
+}
+
+// Event Listeners para el Lightbox
+lightboxCloseBtn.addEventListener("click", cerrarLightbox);
+lightboxPrevBtn.addEventListener("click", () => navegarLightbox(-1));
+lightboxNextBtn.addEventListener("click", () => navegarLightbox(1));
+
+// Cerrar lightbox al hacer clic fuera del contenido
+lightboxOverlay.addEventListener("click", (e) => {
+  if (e.target === lightboxOverlay) {
+    cerrarLightbox();
+  }
+});
+
+// Inicialización
+window.addEventListener("DOMContentLoaded", () => {
+  cargarListaProyectosIlustracion();
+  seleccionarProyectoIlustracion(proyectoIlustracionActualKey); // Cargar el proyecto inicial
+});

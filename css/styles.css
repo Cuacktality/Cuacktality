@@ -186,6 +186,7 @@ a {
     transform: translateX(-50%) translateY(20px);
   }
   100% {
+    opacity: 1;
     transform: translateX(-50%) translateY(0);
   }
 }
@@ -463,6 +464,557 @@ main section::before {
   overflow: hidden;
 }
 
+/* Contenedor de proyectos general (para Diseño y Ilustración) */
+.contenedor-proyectos {
+  display: grid;
+  grid-template-columns: 0.8fr 2fr; /* Columna para lista y columna para contenido */
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 30px rgba(147, 249, 185, 0.2);
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: visible;
+  align-items: stretch;
+}
+
+/* Estilo para el listado de proyectos (similar a WinForms ListBox) */
+.listado-proyectos {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #93bff9;
+  border-radius: 8px;
+  padding: 1rem;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #aebaf6 transparent;
+}
+
+.listado-proyectos h3 {
+  font-family: "Symtext", sans-serif;
+  font-size: 1.3rem;
+  color: #f0f0f0;
+  margin-bottom: 1rem;
+  opacity: 0.85;
+  text-align: center;
+}
+
+.listado-proyectos ul {
+  list-style: none;
+  padding: 0;
+}
+
+.listado-proyectos .proyecto-item {
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.3rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.listado-proyectos .proyecto-item:hover {
+  background-color: rgba(147, 249, 185, 0.1);
+  box-shadow: 0 0 8px rgba(147, 249, 185, 0.3);
+}
+
+.listado-proyectos .proyecto-item.activo {
+  background-color: #aebaf6;
+  color: #111;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(174, 187, 246, 0.7);
+  border: 1px solid #93bff9;
+}
+
+.listado-proyectos .proyecto-item.activo::before {
+  content: "➡️ ";
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #111;
+  font-size: 1.2em;
+}
+
+.listado-proyectos .proyecto-item .proyecto-nombre {
+  display: block;
+  font-size: 1.1em;
+  margin-left: 20px;
+}
+
+.listado-proyectos .proyecto-item .proyecto-subtitulo-lista {
+  display: block;
+  font-size: 0.85em;
+  color: rgba(240, 240, 240, 0.7);
+  margin-left: 20px;
+  margin-top: 0.2em;
+}
+
+.listado-proyectos .proyecto-item.activo .proyecto-subtitulo-lista {
+  color: rgba(17, 17, 17, 0.7);
+}
+
+/* Contenido del proyecto seleccionado (para Diseño) */
+.contenido-proyecto {
+  display: grid;
+  grid-template-areas:
+    "info visor"
+    "elementos elementos";
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 2rem;
+  height: 100%;
+  align-items: stretch;
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(147, 249, 185, 0.08);
+}
+
+.info-proyecto {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(147, 249, 185, 0.06);
+}
+
+.info-proyecto .icono-wrapper {
+  width: 110px;
+  height: 110px;
+  margin-bottom: 1rem;
+}
+
+#iconoPersonaje {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(147, 249, 185, 0.4);
+  animation: salto 0.5s ease-out forwards;
+}
+
+.datos-personaje {
+  color: #93bff9;
+  font-size: 1rem;
+  line-height: 1.6;
+  width: 100%;
+  text-align: left;
+}
+
+.datos-personaje h4 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.datos-personaje p {
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+#subtituloPersonaje {
+  margin-bottom: 1.2rem;
+}
+
+.habilidades-list ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  font-size: 0.9em;
+  color: #b0c4de;
+}
+
+.habilidades-list li {
+  margin-bottom: 0.3rem;
+  padding-left: 1.2em;
+  position: relative;
+}
+
+.habilidades-list li::before {
+  content: "•";
+  color: #93bff9;
+  position: absolute;
+  left: 0;
+}
+
+.visor-elementos {
+  grid-area: visor;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(147, 249, 185, 0.08);
+  padding: 1rem;
+}
+
+#modeloPersonaje {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: opacity 0.4s ease, transform 0.3s ease;
+}
+
+#modeloPersonaje:hover {
+  transform: scale(1.02);
+}
+
+.nombre-elemento-visor {
+  font-size: 1.1rem;
+  color: #93bff9;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.navegacion-elementos {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.boton-rotador {
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  color: #93bff9;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.boton-rotador:hover {
+  transform: scale(1.2);
+  color: #aebaf6;
+}
+
+.listado-elementos-proyecto {
+  grid-area: elementos;
+  background-color: rgba(255, 255, 255, 0.02);
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(147, 249, 185, 0.05);
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #93bff9 transparent;
+}
+
+#thumbnailsPersonajes {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  padding-bottom: 0.5rem;
+  overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  align-items: center;
+}
+
+.thumbnail-personaje {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  transition: transform 0.3s, box-shadow 0.3s;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+}
+
+.thumbnail-personaje:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #93bff9;
+  border-color: #93bff9;
+}
+
+.thumbnail-personaje.activo {
+  border: 2px solid #93bff9;
+  box-shadow: 0 0 15px rgba(147, 249, 185, 0.7);
+}
+
+/* ================================
+ 🖼️ SECCIÓN ILUSTRACIÓN (NUEVOS ESTILOS)
+================================ */
+#dibujo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../assets/fondoDibujo.jpg"); /* Fondo de ilustración */
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  opacity: 0.6;
+  z-index: -2;
+}
+
+.contenido-proyecto-ilustracion {
+  display: grid;
+  grid-template-areas:
+    "visor"
+    "info";
+  grid-template-rows: 2fr 1fr; /* Visor ocupa más espacio que la info */
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 2rem;
+  height: 100%;
+  align-items: stretch;
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(147, 249, 185, 0.08);
+}
+
+.visor-ilustracion {
+  grid-area: visor;
+  position: relative; /* Para posicionar las cartas */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2); /* Fondo sutil para el visor */
+  border-radius: 10px;
+  box-shadow: inset 0 0 15px rgba(147, 249, 185, 0.1);
+  min-height: 300px; /* Altura mínima para el visor */
+  overflow: hidden; /* Para contener las cartas */
+}
+
+.ilustracion-card-stack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px; /* Para el efecto 3D */
+}
+
+.ilustracion-card {
+  position: absolute;
+  width: 250px; /* Tamaño de las cartas */
+  height: 350px;
+  background-color: #222;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.ilustracion-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.ilustracion-card.active {
+  z-index: 10;
+  transform: translateZ(0) scale(1);
+  opacity: 1;
+  border-color: #93bff9;
+  box-shadow: 0 10px 30px rgba(147, 249, 185, 0.6);
+}
+
+.ilustracion-card.prev-1 {
+  transform: translateX(-120px) rotateY(15deg) scale(0.9) translateZ(-50px);
+  opacity: 0.5;
+  z-index: 9;
+}
+.ilustracion-card.prev-2 {
+  transform: translateX(-200px) rotateY(25deg) scale(0.8) translateZ(-100px);
+  opacity: 0.3;
+  z-index: 8;
+}
+
+.ilustracion-card.next-1 {
+  transform: translateX(120px) rotateY(-15deg) scale(0.9) translateZ(-50px);
+  opacity: 0.5;
+  z-index: 9;
+}
+.ilustracion-card.next-2 {
+  transform: translateX(200px) rotateY(-25deg) scale(0.8) translateZ(-100px);
+  opacity: 0.3;
+  z-index: 8;
+}
+
+/* Ocultar cartas más allá de las visibles */
+.ilustracion-card.hidden {
+  opacity: 0;
+  transform: scale(0.7);
+  pointer-events: none; /* No interactuable */
+}
+
+.info-ilustracion {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Alinear a la derecha */
+  text-align: right; /* Justificar texto a la derecha */
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(147, 249, 185, 0.06);
+}
+
+.info-ilustracion h4 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: #93bff9;
+}
+
+.info-ilustracion p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0.6rem;
+  color: #f0f0f0;
+}
+
+.descripcion-justificada {
+  text-align: justify; /* Justificar el texto */
+}
+
+/* ================================
+ 💡 LIGHTBOX GLOBAL
+================================ */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+  backdrop-filter: blur(8px); /* Efecto blur */
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.lightbox-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-content {
+  position: relative;
+  background-color: rgba(17, 17, 17, 0.9);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(147, 249, 185, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto; /* Para permitir scroll si el contenido es muy grande */
+  transform: scale(0.8);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.lightbox-overlay.active .lightbox-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #93bff9;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+  z-index: 2001;
+}
+
+.lightbox-close:hover {
+  transform: rotate(90deg) scale(1.1);
+  color: #fff;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 60vh; /* Limita la altura de la imagen en el lightbox */
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 15px rgba(174, 187, 246, 0.5);
+}
+
+.lightbox-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.lightbox-arrow {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: #93bff9;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.lightbox-arrow:hover {
+  transform: scale(1.1);
+  color: #fff;
+}
+
+.lightbox-info {
+  text-align: center;
+  margin-top: 1.5rem;
+  width: 100%; /* Ocupa todo el ancho del contenido */
+}
+
+.lightbox-info h4 {
+  font-size: 1.8rem;
+  color: #aebaf6;
+  margin-bottom: 0.5rem;
+}
+
+.lightbox-info p {
+  font-size: 1rem;
+  color: #f0f0f0;
+  line-height: 1.5;
+}
+
+/* ================================
+ 🚀 VIDEOJUEGOS (EXISTENTE)
+================================ */
 .layout-juegos {
   display: flex;
   align-items: center;
@@ -502,9 +1054,20 @@ main section::before {
 }
 
 #iconoJuego {
-  width: 150px;
-  height: 150px;
+  width: 100px; /* Reducido */
+  height: 100px; /* Reducido */
   object-fit: contain;
+  opacity: 0.8; /* Ligeramente más discreto */
+}
+
+.panel-info h4 {
+  font-size: 1.3rem; /* Reducido */
+  opacity: 0.9; /* Ligeramente más discreto */
+}
+
+.panel-info p {
+  font-size: 0.9rem; /* Reducido */
+  opacity: 0.7; /* Más discreto */
 }
 
 .panel-juego {
@@ -524,38 +1087,6 @@ main section::before {
   display: block;
 }
 
-/* Fondo desenfocado de Diseño Gráfico / Animación */
-#diseno-animacion::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("../assets/3d.png"); /* Puedes cambiar esta imagen */
-  background-size: cover;
-  background-position: center;
-  filter: blur(10px);
-  opacity: 0.6;
-  z-index: -2;
-}
-
-/* Fondo desenfocado de Dibujo */
-#dibujo::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("../assets/fondoDibujo.jpg");
-  background-size: cover;
-  background-position: center;
-  filter: blur(10px);
-  opacity: 0.6;
-  z-index: -2;
-}
-
 /* Fondo desenfocado de Videojuegos */
 #videojuegos::before {
   content: "";
@@ -570,63 +1101,6 @@ main section::before {
   filter: blur(10px);
   opacity: 0.6;
   z-index: -2;
-}
-
-/* Fondo desenfocado de Software */
-#software::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("../assets/fondoSoftware.png");
-  background-size: cover;
-  background-position: center;
-  filter: blur(10px);
-  opacity: 0.6;
-  z-index: -2;
-}
-
-/* Capa de opacidad atmosférica sobre cada fondo */
-#diseno-animacion::after,
-#dibujo::after,
-#videojuegos::after,
-#software::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(17, 17, 17, 0.4);
-  z-index: -1;
-}
-
-/* ================================
- 🎨 GALERÍA
-================================ */
-.galeria {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem; /* Ajustado */
-  justify-content: center;
-  margin-top: 2rem; /* Añadido */
-}
-
-.galeria img {
-  max-width: 300px;
-  width: 100%; /* Para que se adapte mejor en móvil */
-  height: auto; /* Para que se adapte mejor en móvil */
-  border-radius: 8px;
-  box-shadow: 0 0 10px #93bff9;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición de sombra añadida */
-  object-fit: cover; /* Asegura que la imagen cubra el área */
-}
-
-.galeria img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px #93bff9; /* Sombra más pronunciada al pasar el ratón */
 }
 
 /* ================================
@@ -697,7 +1171,9 @@ main section::before {
   /* border-radius: 50%; */
   object-fit: cover;
   opacity: 0.7;
-} /* Fila con nombre y correo */
+}
+
+/* Fila con nombre y correo */
 .fila-doble {
   display: flex;
   gap: 1rem;
@@ -713,6 +1189,19 @@ main section::before {
 .fila-unica {
   display: flex;
   flex-direction: column;
+}
+
+.about-me-text {
+  text-align: justify;
+  margin-top: 1rem;
+  padding: 0 1rem;
+  color: #e0e0e0;
+  line-height: 1.7;
+  font-size: 0.95em;
+}
+
+.about-me-text p {
+  margin-bottom: 1em;
 }
 
 /* ================================
@@ -800,291 +1289,7 @@ main section::before {
   }
 }
 
-/* ================================
-👤 SECCIÓN DISEÑO GRÁFICO / ANIMACIÓN
-================================ */
-.contenedor-proyectos {
-  display: grid;
-  grid-template-columns: 0.8fr 2fr; /* Columna para lista y columna para contenido */
-  gap: 2rem;
-  margin-top: 2rem;
-  padding: 2rem;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 16px;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 0 30px rgba(147, 249, 185, 0.2);
-  max-width: 1200px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  overflow-x: visible; /* Mantener de .selector-personajes */
-  align-items: stretch; /* Asegura que las celdas de la cuadrícula se estiren verticalmente */
-}
-
-/* Estilo para el listado de proyectos (similar a WinForms ListBox) */
-.listado-proyectos {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid #93bff9;
-  border-radius: 8px;
-  padding: 1rem;
-  height: 100%; /* Asegura que ocupe toda la altura disponible en la celda de la cuadrícula */
-  overflow-y: auto; /* Permitir scroll vertical si el contenido excede la altura */
-  scrollbar-width: thin;
-  scrollbar-color: #aebaf6 transparent;
-}
-
-.listado-proyectos h3 {
-  font-family: "Symtext", sans-serif;
-  font-size: 1.3rem; /* Original de .selector-personajes h3 */
-  color: #f0f0f0; /* Original de .selector-personajes h3 */
-  margin-bottom: 1rem;
-  opacity: 0.85; /* Original de .selector-personajes h3 */
-  text-align: center;
-}
-
-.listado-proyectos ul {
-  list-style: none;
-  padding: 0;
-}
-
-.listado-proyectos .proyecto-item {
-  padding: 0.6rem 0.8rem;
-  margin-bottom: 0.3rem;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
-  color: #f0f0f0;
-  position: relative;
-  overflow: hidden; /* Para el efecto de la flecha */
-}
-
-.listado-proyectos .proyecto-item:hover {
-  background-color: rgba(147, 249, 185, 0.1);
-  box-shadow: 0 0 8px rgba(147, 249, 185, 0.3);
-}
-
-.listado-proyectos .proyecto-item.activo {
-  background-color: #aebaf6;
-  color: #111;
-  font-weight: bold;
-  box-shadow: 0 0 15px rgba(174, 187, 246, 0.7);
-  border: 1px solid #93bff9;
-}
-
-.listado-proyectos .proyecto-item.activo::before {
-  content: "➡️ "; /* Flecha indicadora */
-  position: absolute;
-  left: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #111;
-  font-size: 1.2em;
-}
-
-.listado-proyectos .proyecto-item .proyecto-nombre {
-  display: block;
-  font-size: 1.1em;
-  margin-left: 20px; /* Espacio para la flecha */
-}
-
-.listado-proyectos .proyecto-item .proyecto-subtitulo-lista {
-  /* Nuevo estilo para el subtexto del proyecto */
-  display: block;
-  font-size: 0.85em;
-  color: rgba(240, 240, 240, 0.7);
-  margin-left: 20px; /* Espacio para la flecha */
-  margin-top: 0.2em; /* Pequeño margen superior */
-}
-
-.listado-proyectos .proyecto-item.activo .proyecto-subtitulo-lista {
-  color: rgba(17, 17, 17, 0.7);
-}
-
-/* Contenido del proyecto seleccionado */
-.contenido-proyecto {
-  display: grid;
-  grid-template-areas:
-    "info visor"
-    "elementos elementos";
-  grid-template-columns: 1.2fr 1fr; /* Ajustado para parecerse al original .selector-contenido-principal */
-  gap: 2rem; /* Original de .selector-contenido-principal */
-  align-items: start; /* Original de .selector-contenido-principal */
-  margin-bottom: 2rem; /* Original de .selector-contenido-principal */
-  height: 100%; /* Original de .selector-contenido-principal */
-  align-items: stretch; /* Original de .selector-contenido-principal */
-
-  /* Estilos heredados del original .info-personaje y #modeloPersonaje */
-  background-color: rgba(255, 255, 255, 0.03);
-  padding: 1.5rem; /* Mantener el padding del nuevo diseño */
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(147, 249, 185, 0.08); /* Mantener la sombra del nuevo diseño */
-}
-
-.info-proyecto {
-  grid-area: info;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.03); /* Original de .info-personaje */
-  border-radius: 12px; /* Original de .info-personaje */
-  box-shadow: 0 0 12px rgba(147, 249, 185, 0.06); /* Original de .info-personaje */
-}
-
-.info-proyecto .icono-wrapper {
-  width: 110px; /* Original de .icono-activo */
-  height: 110px; /* Original de .icono-activo */
-  margin-bottom: 1rem;
-}
-
-#iconoPersonaje {
-  width: 100%; /* Para que llene el wrapper */
-  height: 100%; /* Para que llene el wrapper */
-  object-fit: contain; /* Cambiado de 'cover' a 'contain' para evitar recortes */
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(147, 249, 185, 0.4);
-  animation: salto 0.5s ease-out forwards; /* Original de .icono-activo */
-}
-
-.datos-personaje {
-  color: #93bff9; /* Original de .datos-personaje */
-  font-size: 1rem; /* Original de .datos-personaje p */
-  line-height: 1.6; /* Original de .datos-personaje */
-  width: 100%;
-  text-align: left;
-}
-
-.datos-personaje h4 {
-  font-size: 1.6rem; /* Ajustado para ser más prominente como título */
-  margin-bottom: 0.5rem;
-}
-
-.datos-personaje p {
-  font-size: 1rem; /* Original de .datos-personaje p */
-  margin-bottom: 0.6rem; /* Original de .datos-personaje p */
-}
-
-#subtituloPersonaje {
-  /* Específico para el subtítulo */
-  margin-bottom: 1.2rem; /* Similar a #juegoPersonaje original */
-}
-
-.visor-elementos {
-  grid-area: visor;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.03
-  ); /* Original de .visor-y-controles */
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(147, 249, 185, 0.08); /* Original de #modeloPersonaje */
-  padding: 1rem;
-}
-
-#modeloPersonaje {
-  width: 250px; /* Original de #modeloPersonaje */
-  height: 250px; /* Original de #modeloPersonaje */
-  object-fit: contain; /* Asegura que el render se vea completo */
-  border-radius: 10px; /* Original de #modeloPersonaje */
-  transition: opacity 0.4s ease, transform 0.3s ease; /* Original de #modeloPersonaje */
-}
-
-#modeloPersonaje:hover {
-  transform: scale(1.02);
-}
-
-.nombre-elemento-visor {
-  /* Estilo para el nombre del elemento en el visor */
-  font-size: 1.1rem;
-  color: #93bff9;
-  margin-top: 0.5rem;
-  text-align: center;
-}
-
-.navegacion-elementos {
-  display: flex;
-  gap: 1rem;
-  justify-content: center; /* Original de .rotador-botones-container */
-  margin-top: 1rem;
-}
-
-.boton-rotador {
-  font-size: 2.5rem; /* Original de .boton-rotador */
-  background: none;
-  border: none;
-  color: #93bff9;
-  cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.boton-rotador:hover {
-  transform: scale(1.2);
-  color: #aebaf6;
-}
-
-.listado-elementos-proyecto {
-  grid-area: elementos;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.02
-  ); /* Original de .personajes-lista */
-  padding: 0.5rem; /* Original de .personajes-lista */
-  border-radius: 10px; /* Original de .personajes-lista */
-  box-shadow: inset 0 0 10px rgba(147, 249, 185, 0.05); /* Original de .personajes-lista */
-  display: flex; /* Cambiado a flex para scroll horizontal */
-  flex-direction: row; /* Asegura la disposición horizontal */
-  overflow-x: auto; /* Permite el scroll horizontal */
-  overflow-y: hidden; /* Oculta el scroll vertical */
-  white-space: nowrap; /* Evita que las miniaturas se envuelvan */
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: #93bff9 transparent;
-}
-
-#thumbnailsPersonajes {
-  display: flex; /* Cambiado a flex para scroll horizontal */
-  flex-direction: row; /* Asegura la disposición horizontal */
-  gap: 1.5rem; /* Aumentado el espacio entre miniaturas */
-  padding-bottom: 0.5rem; /* Espacio para el scrollbar */
-  /* max-height: 380px; REMOVED: No es necesario para scroll horizontal */
-  overflow-y: visible; /* Permite que las miniaturas se muestren */
-  scroll-snap-type: x mandatory; /* Agregado para un scroll más suave */
-  align-items: center; /* Centra verticalmente las miniaturas si tienen diferentes alturas */
-}
-
-.thumbnail-personaje {
-  width: 100px; /* Original de .personajes-lista img */
-  height: 100px; /* Original de .personajes-lista img */
-  object-fit: contain; /* Cambiado de 'cover' a 'contain' para evitar recortes */
-  border-radius: 50%; /* Original de .personajes-lista img (círculo) */
-  cursor: pointer;
-  border: 2px solid transparent;
-  box-sizing: border-box;
-  transition: transform 0.3s, box-shadow 0.3s;
-  flex-shrink: 0; /* Evita que las miniaturas se encojan */
-  scroll-snap-align: center; /* Agregado para un scroll más suave */
-}
-
-.thumbnail-personaje:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px #93bff9;
-  border-color: #93bff9;
-}
-
-.thumbnail-personaje.activo {
-  border: 2px solid #93bff9; /* Original de .personajes-lista img.activo */
-  box-shadow: 0 0 15px rgba(147, 249, 185, 0.7); /* Original de .personajes-lista img.activo */
-}
-
-/* 🌟 ANIMACIONES EXTRA */
+/* 🌟 ANIMACIONES EXTRA (GLOBALES) */
 @keyframes salto {
   0% {
     transform: translateY(10px) scale(0.9);
@@ -1346,6 +1551,62 @@ footer {
   .contacto-formulario,
   .contacto-info {
     max-width: 100%;
+  }
+
+  /* Responsive para Ilustración */
+  .contenido-proyecto-ilustracion {
+    grid-template-areas:
+      "visor"
+      "info";
+    grid-template-rows: auto auto; /* Ajuste automático */
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .visor-ilustracion {
+    min-height: 250px; /* Reducir altura mínima en móvil */
+  }
+
+  .ilustracion-card {
+    width: 180px; /* Reducir tamaño de cartas en móvil */
+    height: 250px;
+  }
+
+  .ilustracion-card.prev-1 {
+    transform: translateX(-80px) rotateY(10deg) scale(0.8);
+  }
+  .ilustracion-card.prev-2 {
+    transform: translateX(-130px) rotateY(15deg) scale(0.7);
+  }
+
+  .ilustracion-card.next-1 {
+    transform: translateX(80px) rotateY(-10deg) scale(0.8);
+  }
+  .ilustracion-card.next-2 {
+    transform: translateX(130px) rotateY(-15deg) scale(0.7);
+  }
+
+  .info-ilustracion {
+    text-align: center; /* Centrar texto en móvil */
+    align-items: center;
+  }
+
+  .lightbox-content {
+    padding: 1rem;
+  }
+
+  .lightbox-image {
+    max-height: 50vh;
+  }
+
+  .lightbox-close {
+    font-size: 1.5rem;
+    top: 5px;
+    right: 5px;
+  }
+
+  .lightbox-arrow {
+    font-size: 2rem;
   }
 }
 

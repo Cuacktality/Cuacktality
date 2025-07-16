@@ -112,6 +112,7 @@
                 <h4 id="nombrePersonaje">Nombre del Personaje</h4>
                 <p id="subtituloPersonaje">Subtítulo del Personaje</p>
                 <p id="descripcionPersonaje">Descripción del personaje.</p>
+                <div id="habilidadesPersonaje" class="habilidades-list"></div>
               </div>
             </div>
 
@@ -143,8 +144,37 @@
 
       <section class="section animada" id="dibujo">
         <h2>Ilustración</h2>
-        <div class="galeria">
-          <!-- Las ilustraciones se cargarán aquí dinámicamente -->
+        <div class="contenedor-proyectos">
+          <!-- Listado de proyectos de ilustración seleccionables -->
+          <div class="listado-proyectos">
+            <h3>PROYECTOS</h3>
+            <ul id="listaProyectosIlustracion">
+              <!-- Los proyectos de ilustración se cargarán aquí dinámicamente -->
+            </ul>
+          </div>
+
+          <!-- Contenido del proyecto de ilustración seleccionado -->
+          <div class="contenido-proyecto-ilustracion">
+            <div class="visor-ilustracion">
+              <div class="ilustracion-card-stack" id="ilustracionCardStack">
+                <!-- Las "cartas" de ilustración se cargarán aquí dinámicamente -->
+              </div>
+              <img
+                id="ilustracionPrincipal"
+                src="https://placehold.co/400x300/000000/FFFFFF?text=Selecciona+Ilustracion"
+                alt="Ilustración principal"
+                class="ilustracion-principal"
+              />
+            </div>
+
+            <div class="info-ilustracion">
+              <h4 id="nombreIlustracion">Nombre de la Ilustración</h4>
+              <p id="subtituloIlustracion">Subtítulo de la Ilustración</p>
+              <p id="descripcionIlustracion" class="descripcion-justificada">
+                Descripción detallada de la ilustración.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -249,6 +279,31 @@
         </div>
       </section>
     </main>
+
+    <!-- Lightbox de Ilustraciones -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+      <div class="lightbox-content" id="lightboxContent">
+        <button class="lightbox-close" id="lightboxClose">✖</button>
+        <img
+          src=""
+          alt="Ilustración en detalle"
+          class="lightbox-image"
+          id="lightboxImage"
+        />
+        <div class="lightbox-nav">
+          <button class="lightbox-arrow" id="lightboxPrev">⬅️</button>
+          <button class="lightbox-arrow" id="lightboxNext">➡️</button>
+        </div>
+        <div class="lightbox-info">
+          <h4 id="lightboxNombreIlustracion"></h4>
+          <p id="lightboxSubtituloIlustracion"></p>
+          <p
+            id="lightboxDescripcionIlustracion"
+            class="descripcion-justificada"
+          ></p>
+        </div>
+      </div>
+    </div>
 
     <footer>
       <p>© 2025 Daniel. Todos los derechos reservados.</p>
