@@ -1685,80 +1685,73 @@ footer {
   }
 
   .visor-ilustracion {
-    min-height: 250px; /* Reducir altura mínima en móvil */
-    display: flex; /* Usar flexbox para apilar elementos */
+    min-height: 300px; /* Altura mínima para el visor en móvil */
+    display: flex;
     flex-direction: column;
-    align-items: center; /* Centrar elementos horizontalmente */
-    justify-content: flex-start; /* Alinear al inicio */
-    height: auto; /* Permitir que la altura se ajuste al contenido */
-    aspect-ratio: auto; /* Eliminar relación de aspecto fija para móvil */
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    aspect-ratio: auto;
   }
 
   .ilustracion-card-stack {
-    position: relative; /* Anular posicionamiento absoluto para permitir el scroll */
-    flex-direction: row; /* Organizar cartas en fila */
-    overflow-x: auto; /* Habilitar desplazamiento horizontal */
-    white-space: nowrap; /* Evitar que las cartas se envuelvan */
-    scroll-snap-type: x mandatory; /* Para un desplazamiento suave */
-    -webkit-overflow-scrolling: touch; /* Desplazamiento suave en iOS */
-    gap: 1rem; /* Espacio entre cartas */
-    padding: 0.5rem; /* Relleno para el área desplazable */
-    width: 100%; /* Asegurar que ocupe todo el ancho de su padre */
-    height: auto; /* Altura automática según el contenido */
-    align-items: flex-start; /* Alinear cartas al inicio del eje transversal */
-    justify-content: flex-start; /* Iniciar cartas desde la izquierda */
-    perspective: none; /* Eliminar perspectiva para el scroll */
-    /* Custom scrollbar for illustration card stack on mobile */
-    scrollbar-width: thin;
-    scrollbar-color: #93bff9 transparent;
-  }
-
-  .ilustracion-card-stack::-webkit-scrollbar {
-    height: 8px;
-  }
-  .ilustracion-card-stack::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .ilustracion-card-stack::-webkit-scrollbar-thumb {
-    background: linear-gradient(to right, #93bff9, #aebaf6);
-    border-radius: 4px;
-    box-shadow: 0 0 6px rgba(147, 249, 185, 0.4);
-  }
-  .ilustracion-card-stack::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to right, #aebaf6, #93bff9);
+    position: absolute; /* Mantiene el posicionamiento absoluto para el efecto 3D */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px; /* Mantiene la perspectiva 3D */
+    z-index: 1;
+    /* Eliminamos las propiedades de scroll para móviles */
+    overflow-x: hidden;
+    white-space: normal;
+    scroll-snap-type: none;
+    -webkit-overflow-scrolling: auto;
+    gap: 0; /* No hay gap en el stack 3D */
+    padding: 0;
   }
 
   .ilustracion-card {
-    position: static; /* Anular posicionamiento absoluto para cartas individuales */
-    flex-shrink: 0; /* Evitar que las cartas se encojan */
-    scroll-snap-align: center; /* Para el ajuste al desplazar */
-    width: 150px; /* Tamaño fijo para cartas en móvil dentro del scroll */
-    height: 200px;
-    /* Aplicar un sutil efecto 3D compatible con el flujo */
-    transform: scale(0.95) rotateY(5deg);
-    opacity: 0.8;
+    position: absolute; /* Mantiene el posicionamiento absoluto para el efecto 3D */
+    flex-shrink: 0;
+    scroll-snap-align: none; /* No hay snap con el efecto 3D */
+    width: 120px; /* Tamaño ajustado para móvil */
+    height: 180px; /* Tamaño ajustado para móvil */
+    /* Las transformaciones 3D se mantienen y se ajustan */
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out,
+      box-shadow 0.3s ease;
   }
 
-  /* La carta activa se muestra sin transformaciones adicionales */
-  .ilustracion-card.activo {
-    transform: none;
-    opacity: 1;
+  /* Ajustes de transformaciones 3D para móviles */
+  .ilustracion-card.prev-1 {
+    transform: translateX(-60px) rotateY(15deg) scale(0.8);
+    opacity: 0.4;
+  }
+  .ilustracion-card.prev-2 {
+    transform: translateX(-100px) rotateY(25deg) scale(0.7);
+    opacity: 0.2;
   }
 
-  /* Eliminar transformaciones específicas para móvil, ya que se manejan con la clase .ilustracion-card base */
-  .ilustracion-card.prev-1,
-  .ilustracion-card.prev-2,
-  .ilustracion-card.next-1,
+  .ilustracion-card.next-1 {
+    transform: translateX(60px) rotateY(-15deg) scale(0.8);
+    opacity: 0.4;
+  }
   .ilustracion-card.next-2 {
-    transform: none;
+    transform: translateX(100px) rotateY(-25deg) scale(0.7);
+    opacity: 0.2;
+  }
+
+  .ilustracion-card.activo {
+    transform: none; /* La carta activa no tiene transformaciones adicionales */
     opacity: 1;
   }
 
   .ilustracion-principal {
-    position: relative; /* Asegurar que fluya normalmente */
-    margin-top: 1rem; /* Añadir espacio si es necesario */
-    max-width: 80%; /* Ajustar tamaño de la ilustración principal para móvil */
-    max-height: 100%;
+    position: absolute; /* Mantiene el posicionamiento absoluto para el efecto 3D */
+    margin-top: 0; /* No hay margen superior */
+    max-width: 180px; /* Tamaño ajustado para móvil */
+    max-height: 240px; /* Tamaño ajustado para móvil */
   }
 
   #dibujo .info-ilustracion {
