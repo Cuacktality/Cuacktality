@@ -831,15 +831,14 @@ main section::before {
 
 /* Nuevo contenedor para el visor y la información */
 .ilustracion-content-wrapper {
-  display: grid; /* Cambiado a grid */
-  grid-template-columns: 2fr 1fr; /* Visor toma más espacio, info toma menos */
+  display: flex;
+  flex-direction: column; /* Apila el visor y la info */
   gap: 2rem; /* Espacio entre el visor y la info */
   background-color: rgba(255, 255, 255, 0.03);
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(147, 249, 185, 0.08);
   height: 100%; /* Asegura que ocupe la altura disponible en la grilla */
-  align-items: start; /* Alinea los elementos al inicio de sus celdas de grilla */
 }
 
 .visor-ilustracion {
@@ -894,26 +893,26 @@ main section::before {
   object-fit: cover;
   border-radius: 8px;
 }
-
+/* Ajustes de transformaciones 3D para móviles */
 .ilustracion-card.prev-1 {
-  transform: translateX(-45%) rotateY(15deg) scale(0.85); /* Ajustado para mayor separación y visibilidad */
+  transform: translateX(-65%) rotateY(25deg) scale(0.8); /* Ajustado para mayor separación y visibilidad */
   opacity: 0.6; /* Aumentado para mayor visibilidad */
   z-index: 4;
 }
 .ilustracion-card.prev-2 {
-  transform: translateX(-85%) rotateY(20deg) scale(0.75); /* Ajustado para mayor separación y clicabilidad */
-  opacity: 0.5; /* Aumentado para mayor visibilidad */
+  transform: translateX(-85%) rotateY(30deg) scale(0.5); /* Ajustado para mayor separación y clicabilidad */
+  opacity: 0.3; /* Aumentado para mayor visibilidad */
   z-index: 3;
 }
 
 .ilustracion-card.next-1 {
-  transform: translateX(45%) rotateY(-15deg) scale(0.85); /* Ajustado para mayor separación y visibilidad */
+  transform: translateX(65%) rotateY(-25deg) scale(0.8); /* Ajustado para mayor separación y visibilidad */
   opacity: 0.6;
   z-index: 4;
 }
 .ilustracion-card.next-2 {
-  transform: translateX(85%) rotateY(-20deg) scale(0.75); /* Ajustado para mayor separación y clicabilidad */
-  opacity: 0.5; /* Aumentado para mayor visibilidad */
+  transform: translateX(85%) rotateY(-30deg) scale(0.5); /* Ajustado para mayor separación y clicabilidad */
+  opacity: 0.3; /* Aumentado para mayor visibilidad */
   z-index: 3;
 }
 
@@ -1691,7 +1690,6 @@ footer {
   }
 
   .ilustracion-content-wrapper {
-    display: flex; /* Override to flex for mobile */
     flex-direction: column; /* Apila el visor y la info */
     gap: 1rem; /* Espacio entre el visor y la info en móvil */
     padding: 1rem; /* Reducir padding en móvil */
@@ -1715,29 +1713,29 @@ footer {
   .ilustracion-card {
     /* Mantiene el posicionamiento absoluto y el efecto 3D */
     max-width: 50%; /* Tamaño ajustado para móvil, porcentaje del visor */
-    max-height: 80%; /* Tamaño ajustado para móvil, porcentaje del visor */
+    max-height: 90%; /* Tamaño ajustado para móvil, porcentaje del visor */
   }
 
   /* Ajustes de transformaciones 3D para móviles */
   .ilustracion-card.prev-1 {
-    transform: translateX(-65%) rotateY(25deg) scale(0.85); /* Ajustado para mayor separación y visibilidad */
+    transform: translateX(-65%) rotateY(25deg) scale(0.8); /* Ajustado para mayor separación y visibilidad */
     opacity: 0.6; /* Aumentado para mayor visibilidad */
     z-index: 4;
   }
   .ilustracion-card.prev-2 {
-    transform: translateX(-85%) rotateY(30deg) scale(0.75); /* Ajustado para mayor separación y clicabilidad */
-    opacity: 0.5; /* Aumentado para mayor visibilidad */
+    transform: translateX(-85%) rotateY(30deg) scale(0.5); /* Ajustado para mayor separación y clicabilidad */
+    opacity: 0.3; /* Aumentado para mayor visibilidad */
     z-index: 3;
   }
 
   .ilustracion-card.next-1 {
-    transform: translateX(65%) rotateY(-25deg) scale(0.85); /* Ajustado para mayor separación y visibilidad */
+    transform: translateX(65%) rotateY(-25deg) scale(0.8); /* Ajustado para mayor separación y visibilidad */
     opacity: 0.6;
     z-index: 4;
   }
   .ilustracion-card.next-2 {
-    transform: translateX(85%) rotateY(-30deg) scale(0.75); /* Ajustado para mayor separación y clicabilidad */
-    opacity: 0.5; /* Aumentado para mayor visibilidad */
+    transform: translateX(85%) rotateY(-30deg) scale(0.5); /* Ajustado para mayor separación y clicabilidad */
+    opacity: 0.3; /* Aumentado para mayor visibilidad */
     z-index: 3;
   }
 
