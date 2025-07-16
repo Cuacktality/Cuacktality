@@ -116,7 +116,7 @@
               </div>
             </div>
 
-            <div class="visor-elementos">
+            <div class="visor-elements">
               <img
                 id="modeloPersonaje"
                 src="assets/renders/default.png"
@@ -153,26 +153,29 @@
             </ul>
           </div>
 
-          <!-- Visor de ilustración principal -->
-          <div class="visor-ilustracion">
-            <div class="ilustracion-card-stack" id="ilustracionCardStack">
-              <!-- Las "cartas" de ilustración se cargarán aquí dinámicamente -->
+          <!-- Nuevo contenedor para el visor y la información -->
+          <div class="ilustracion-content-wrapper">
+            <!-- Visor de ilustración principal -->
+            <div class="visor-ilustracion">
+              <div class="ilustracion-card-stack" id="ilustracionCardStack">
+                <!-- Las "cartas" de ilustración se cargarán aquí dinámicamente -->
+              </div>
+              <img
+                id="ilustracionPrincipal"
+                src="https://placehold.co/400x300/000000/FFFFFF?text=Selecciona+Ilustracion"
+                alt="Ilustración principal"
+                class="ilustracion-principal"
+              />
             </div>
-            <img
-              id="ilustracionPrincipal"
-              src="https://placehold.co/400x300/000000/FFFFFF?text=Selecciona+Ilustracion"
-              alt="Ilustración principal"
-              class="ilustracion-principal"
-            />
-          </div>
 
-          <!-- Información de la ilustración -->
-          <div class="info-ilustracion">
-            <h4 id="nombreIlustracion">Nombre de la Ilustración</h4>
-            <h5 id="subtituloIlustracion">Subtítulo de la Ilustración</h5>
-            <p id="descripcionIlustracion" class="descripcion-justificada">
-              Descripción detallada de la ilustración.
-            </p>
+            <!-- Información de la ilustración -->
+            <div class="info-ilustracion">
+              <h4 id="nombreIlustracion">Nombre de la Ilustración</h4>
+              <h5 id="subtituloIlustracion">Subtítulo de la Ilustración</h5>
+              <p id="descripcionIlustracion" class="descripcion-justificada">
+                Descripción detallada de la ilustración.
+              </p>
+            </div>
           </div>
         </div>
       </section>
