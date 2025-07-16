@@ -831,14 +831,15 @@ main section::before {
 
 /* Nuevo contenedor para el visor y la información */
 .ilustracion-content-wrapper {
-  display: flex;
-  flex-direction: column; /* Apila el visor y la info */
+  display: grid; /* Cambiado a grid */
+  grid-template-columns: 2fr 1fr; /* Visor toma más espacio, info toma menos */
   gap: 2rem; /* Espacio entre el visor y la info */
   background-color: rgba(255, 255, 255, 0.03);
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(147, 249, 185, 0.08);
   height: 100%; /* Asegura que ocupe la altura disponible en la grilla */
+  align-items: start; /* Alinea los elementos al inicio de sus celdas de grilla */
 }
 
 .visor-ilustracion {
@@ -1690,6 +1691,7 @@ footer {
   }
 
   .ilustracion-content-wrapper {
+    display: flex; /* Override to flex for mobile */
     flex-direction: column; /* Apila el visor y la info */
     gap: 1rem; /* Espacio entre el visor y la info en móvil */
     padding: 1rem; /* Reducir padding en móvil */
