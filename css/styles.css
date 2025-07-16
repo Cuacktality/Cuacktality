@@ -704,7 +704,7 @@ main section::before {
   left: 0;
 }
 
-.visor-elementos {
+.visor-elements {
   grid-area: visor;
   display: flex;
   flex-direction: column;
@@ -824,36 +824,34 @@ main section::before {
  🖼️ SECCIÓN ILUSTRACIÓN (NUEVOS ESTILOS)
 ================================ */
 
-.contenido-proyecto-ilustracion {
-  display: grid;
-  grid-template-areas: "visor info"; /* Cambiado para layout de dos columnas */
-  grid-template-columns: 2fr 1fr; /* Visor ocupa más espacio que la info */
-  gap: 2rem;
-  align-items: start;
-  margin-bottom: 2rem;
-  height: 100%;
-  align-items: stretch;
-  background-color: rgba(255, 255, 255, 0.03);
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(147, 249, 185, 0.08);
+/* Contenedor de proyectos para Ilustración, ahora con 3 columnas en escritorio */
+#dibujo .contenedor-proyectos {
+  grid-template-columns: 0.8fr 1.2fr 1fr; /* Listado, Visor, Info */
+  grid-template-areas: "listado visor info";
+}
+
+/* Asignar áreas de la grilla a los elementos directos */
+#dibujo .listado-proyectos {
+  grid-area: listado;
 }
 
 .visor-ilustracion {
-  grid-area: visor;
+  grid-area: visor; /* Asignado por el contenedor-proyectos de #dibujo */
   position: relative; /* Para posicionar las cartas */
   display: flex;
+  flex-direction: column; /* Apila la imagen principal y el stack de cartas */
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.2); /* Fondo sutil para el visor */
   border-radius: 10px;
   box-shadow: inset 0 0 15px rgba(147, 249, 185, 0.1);
-  aspect-ratio: 4 / 3; /* Fixed aspect ratio for consistent size */
+  aspect-ratio: 4 / 3; /* Fixed aspect ratio for consistent size on desktop */
   overflow: hidden; /* Para contener las cartas */
+  min-height: 450px; /* Altura mínima para el visor en desktop */
 }
 
 .ilustracion-card-stack {
-  position: absolute;
+  position: absolute; /* Posicionamiento absoluto para el efecto 3D en desktop */
   width: 100%;
   height: 100%;
   display: flex;
@@ -864,12 +862,11 @@ main section::before {
 }
 
 .ilustracion-card {
-  position: absolute;
-  /* Responsive sizes */
-  max-width: 35%; /* Max width relative to .visor-ilustracion */
-  max-height: 90%; /* Max height relative to .visor-ilustracion */
-  width: auto; /* Allow natural width based on max-height */
-  height: auto; /* Allow natural height based on max-width */
+  position: absolute; /* Posicionamiento absoluto para el efecto 3D en desktop */
+  max-width: 250px; /* Tamaño fijo para desktop */
+  max-height: 350px;
+  width: auto;
+  height: auto;
   background-color: #222;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -892,33 +889,32 @@ main section::before {
 }
 
 .ilustracion-card.prev-1 {
-  transform: translateX(-40%) rotateY(15deg) scale(0.8); /* Adjusted translateX */
+  transform: translateX(-150px) rotateY(15deg) scale(0.8);
   opacity: 0.4;
   z-index: 4;
 }
 .ilustracion-card.prev-2 {
-  transform: translateX(-80%) rotateY(25deg) scale(0.7); /* Adjusted translateX */
+  transform: translateX(-250px) rotateY(25deg) scale(0.7);
   opacity: 0.2;
   z-index: 3;
 }
 
 .ilustracion-card.next-1 {
-  transform: translateX(40%) rotateY(-15deg) scale(0.8); /* Adjusted translateX */
+  transform: translateX(150px) rotateY(-15deg) scale(0.8);
   opacity: 0.4;
   z-index: 4;
 }
 .ilustracion-card.next-2 {
-  transform: translateX(80%) rotateY(-25deg) scale(0.7); /* Adjusted translateX */
+  transform: translateX(250px) rotateY(-25deg) scale(0.7);
   opacity: 0.2;
   z-index: 3;
 }
 
 /* Main illustration styling */
 .ilustracion-principal {
-  position: absolute;
-  /* Responsive sizes */
-  max-width: 45%; /* Max width relative to .visor-ilustracion */
-  max-height: 100%; /* Max height relative to .visor-ilustracion */
+  position: absolute; /* Posicionamiento absoluto para el efecto 3D en desktop */
+  max-width: 300px; /* Tamaño fijo para desktop */
+  max-height: 400px;
   width: auto;
   height: auto;
   object-fit: contain; /* Ensure image fits */
@@ -961,10 +957,10 @@ main section::before {
 }
 
 .info-ilustracion {
-  grid-area: info;
+  grid-area: info; /* Asignado por el contenedor-proyectos de #dibujo */
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Alinear a la izquierda */
+  align-items: flex-start; /* Alineado a la izquierda */
   text-align: left; /* Justificar texto a la izquierda */
   padding: 1rem;
   background-color: rgba(255, 255, 255, 0.03);
@@ -1132,13 +1128,6 @@ main section::before {
   font-size: 1.3rem; /* Reduced from 1.4rem */
   color: #aebaf6;
   margin-bottom: 0.5rem;
-}
-
-.lightbox-info h5 {
-  /* New style for h5 */
-  font-size: 1rem; /* Increased from default */
-  color: #f0f0f0;
-  margin-bottom: 0.6rem;
 }
 
 .lightbox-info p {
@@ -1610,7 +1599,7 @@ footer {
     padding: 0.8rem;
   }
 
-  .visor-elementos {
+  .visor-elements {
     padding: 0.8rem;
   }
 
@@ -1687,49 +1676,92 @@ footer {
   }
 
   /* Responsive para Ilustración */
-  .contenido-proyecto-ilustracion {
-    grid-template-areas:
-      "visor"
-      "info"; /* Vuelve a apilar en móvil */
-    grid-template-rows: auto auto; /* Ajuste automático */
+  #dibujo .contenedor-proyectos {
     grid-template-columns: 1fr; /* Una sola columna en móvil */
-    gap: 1rem;
-    padding: 1rem;
+    grid-template-areas:
+      "listado"
+      "visor"
+      "info";
   }
 
   .visor-ilustracion {
     min-height: 250px; /* Reducir altura mínima en móvil */
+    display: flex; /* Usar flexbox para apilar elementos */
+    flex-direction: column;
+    align-items: center; /* Centrar elementos horizontalmente */
+    justify-content: flex-start; /* Alinear al inicio */
+    height: auto; /* Permitir que la altura se ajuste al contenido */
+    aspect-ratio: auto; /* Eliminar relación de aspecto fija para móvil */
+  }
+
+  .ilustracion-card-stack {
+    position: relative; /* Anular posicionamiento absoluto para permitir el scroll */
+    flex-direction: row; /* Organizar cartas en fila */
+    overflow-x: auto; /* Habilitar desplazamiento horizontal */
+    white-space: nowrap; /* Evitar que las cartas se envuelvan */
+    scroll-snap-type: x mandatory; /* Para un desplazamiento suave */
+    -webkit-overflow-scrolling: touch; /* Desplazamiento suave en iOS */
+    gap: 1rem; /* Espacio entre cartas */
+    padding: 0.5rem; /* Relleno para el área desplazable */
+    width: 100%; /* Asegurar que ocupe todo el ancho de su padre */
+    height: auto; /* Altura automática según el contenido */
+    align-items: flex-start; /* Alinear cartas al inicio del eje transversal */
+    justify-content: flex-start; /* Iniciar cartas desde la izquierda */
+    perspective: none; /* Eliminar perspectiva para el scroll */
+    /* Custom scrollbar for illustration card stack on mobile */
+    scrollbar-width: thin;
+    scrollbar-color: #93bff9 transparent;
+  }
+
+  .ilustracion-card-stack::-webkit-scrollbar {
+    height: 8px;
+  }
+  .ilustracion-card-stack::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .ilustracion-card-stack::-webkit-scrollbar-thumb {
+    background: linear-gradient(to right, #93bff9, #aebaf6);
+    border-radius: 4px;
+    box-shadow: 0 0 6px rgba(147, 249, 185, 0.4);
+  }
+  .ilustracion-card-stack::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to right, #aebaf6, #93bff9);
   }
 
   .ilustracion-card {
-    max-width: 60%; /* Larger on mobile, relative to smaller container */
-    max-height: 90%;
-    width: auto;
-    height: auto;
+    position: static; /* Anular posicionamiento absoluto para cartas individuales */
+    flex-shrink: 0; /* Evitar que las cartas se encojan */
+    scroll-snap-align: center; /* Para el ajuste al desplazar */
+    width: 150px; /* Tamaño fijo para cartas en móvil dentro del scroll */
+    height: 200px;
+    /* Aplicar un sutil efecto 3D compatible con el flujo */
+    transform: scale(0.95) rotateY(5deg);
+    opacity: 0.8;
   }
 
-  .ilustracion-card.prev-1 {
-    transform: translateX(-40%) rotateY(10deg) scale(0.8);
-  }
-  .ilustracion-card.prev-2 {
-    transform: translateX(-70%) rotateY(15deg) scale(0.7);
+  /* La carta activa se muestra sin transformaciones adicionales */
+  .ilustracion-card.activo {
+    transform: none;
+    opacity: 1;
   }
 
-  .ilustracion-card.next-1 {
-    transform: translateX(40%) rotateY(-10deg) scale(0.8);
-  }
+  /* Eliminar transformaciones específicas para móvil, ya que se manejan con la clase .ilustracion-card base */
+  .ilustracion-card.prev-1,
+  .ilustracion-card.prev-2,
+  .ilustracion-card.next-1,
   .ilustracion-card.next-2 {
-    transform: translateX(70%) rotateY(-15deg) scale(0.7);
+    transform: none;
+    opacity: 1;
   }
 
   .ilustracion-principal {
-    max-width: 80%; /* Adjust main illustration size for mobile */
+    position: relative; /* Asegurar que fluya normalmente */
+    margin-top: 1rem; /* Añadir espacio si es necesario */
+    max-width: 80%; /* Ajustar tamaño de la ilustración principal para móvil */
     max-height: 100%;
-    width: auto;
-    height: auto;
   }
 
-  .info-ilustracion {
+  #dibujo .info-ilustracion {
     text-align: center; /* Centrar texto en móvil */
     align-items: center;
   }
