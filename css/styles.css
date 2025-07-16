@@ -186,7 +186,6 @@ a {
     transform: translateX(-50%) translateY(20px);
   }
   100% {
-    opacity: 1;
     transform: translateX(-50%) translateY(0);
   }
 }
@@ -282,7 +281,7 @@ header {
 }
 
 /* ================================
- 🌐 NAVEGACIÓN
+ � NAVEGACIÓN
 ================================ */
 nav ul {
   list-style: none;
@@ -615,7 +614,7 @@ main section::before {
 }
 
 .datos-personaje h4 {
-  font-size: 1.6rem;
+  font-size: 1.5rem; /* Reduced from 1.6rem */
   margin-bottom: 0.5rem;
 }
 
@@ -1070,7 +1069,7 @@ main section::before {
 }
 
 .lightbox-info h4 {
-  font-size: 1.5rem; /* Slightly smaller */
+  font-size: 1.4rem; /* Reduced from 1.5rem */
   color: #aebaf6;
   margin-bottom: 0.5rem;
 }
@@ -1081,18 +1080,606 @@ main section::before {
   line-height: 1.5;
 }
 
-/* Responsive for Lightbox */
+/* ================================
+ 🚀 VIDEOJUEGOS (EXISTENTE)
+================================ */
+.layout-juegos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: nowrap;
+}
+
+.flecha {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #93d0f9;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.contenedor-juego {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-info {
+  width: 100%;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+#iconoJuego {
+  width: 100px; /* Reducido */
+  height: 100px; /* Reducido */
+  object-fit: contain;
+  opacity: 0.8; /* Ligeramente más discreto */
+}
+
+.panel-info h4 {
+  font-size: 1.3rem; /* Reducido */
+  opacity: 0.9; /* Ligeramente más discreto */
+}
+
+.panel-info p {
+  font-size: 0.9rem; /* Reducido */
+  opacity: 0.7; /* Más discreto */
+}
+
+.panel-juego {
+  flex-grow: 1;
+  max-width: 950px;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px #aebaf6;
+  background-color: #000;
+}
+
+.panel-juego iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Fondo desenfocado de Videojuegos */
+#videojuegos::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../assets/fondoVideojuegos.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  opacity: 0.6;
+  z-index: -2;
+}
+
+/* ================================
+ 📨 FORMULARIO
+================================ */
+.contacto-formulario button:hover {
+  background-color: #93bff9;
+}
+.contacto-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Formulario */
+.contacto-formulario {
+  flex: 1 1 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contacto-formulario input,
+.contacto-formulario textarea {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.contacto-formulario button {
+  background-color: #aebaf6;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 5px;
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Info del perfil */
+.contacto-info {
+  flex: 1 1 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+/* Foto circular principal */
+.foto-principal img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 8px #93d0f9;
+}
+
+/* Foto secundaria más pequeña */
+.foto-secundaria img {
+  /* width: 80px; */
+  height: 60px;
+  /* border-radius: 50%; */
+  object-fit: cover;
+  opacity: 0.7;
+}
+
+/* Fila con nombre y correo */
+.fila-doble {
+  display: flex;
+  gap: 1rem;
+}
+
+.fila-doble .campo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mensaje ocupa todo el ancho */
+.fila-unica {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-me-text {
+  text-align: justify; /* Justificado */
+  margin-top: 1rem;
+  padding: 0 1rem;
+  color: #e0e0e0;
+  line-height: 1.7;
+  font-size: 0.95em;
+}
+
+.about-me-text p {
+  margin-bottom: 1em;
+}
+
+/* ================================
+ ✨ INTRO OVERLAY (ANIMACIÓN DE CARGA)
+================================ */
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #111;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.puerta {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 2px solid #93bff9;
+  animation: giro 2s ease-out forwards;
+  display: flex; /* Añadido para centrar el cierre */
+  align-items: center; /* Añadido para centrar el cierre */
+  justify-content: center; /* Añadido para centrar el cierre */
+}
+
+.cierre {
+  position: absolute; /* Cambiado de relative a absolute */
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #aebaf6;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px rgba(174, 187, 246, 0.7); /* Sombra añadida */
+}
+
+/* Animación de giro */
+@keyframes giro {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Puertas laterales simuladas */
+.intro-overlay::before,
+.intro-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #111;
+  z-index: 1999;
+  animation: abrirPuertas 2s ease-in-out forwards;
+}
+
+.intro-overlay::before {
+  left: 0;
+}
+.intro-overlay::after {
+  right: 0;
+}
+
+@keyframes abrirPuertas {
+  0% {
+    width: 50%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+/* 🌟 ANIMACIONES EXTRA (GLOBALES) */
+@keyframes salto {
+  0% {
+    transform: translateY(10px) scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulsoRender {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes glowVisor {
+  0% {
+    box-shadow: 0 0 0px transparent;
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 0 20px #93bff9;
+    filter: brightness(1.4);
+  }
+  100% {
+    box-shadow: 0 0 0px transparent;
+    filter: brightness(1);
+  }
+}
+
+@keyframes pulseFrame {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#modeloPersonaje.pulsando {
+  animation: pulseFrame 0.6s ease-out;
+}
+
+#modeloPersonaje.iluminando {
+  animation: glowVisor 0.6s ease-out;
+}
+.iluminando {
+  animation: glowFade 0.6s ease-in-out;
+}
+
+@keyframes glowFade {
+  0% {
+    box-shadow: 0 0 25px #aebaf6;
+  }
+  50% {
+    box-shadow: 0 0 40px #93d0f9;
+  }
+  100% {
+    box-shadow: 0 0 15px #aebaf6;
+  }
+}
+/* ================================
+ 🦶 FOOTER
+================================ */
+footer {
+  text-align: center;
+  padding: 1.2em 0;
+  background: #000;
+  font-size: 0.85em;
+  color: #999;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 30px;
+}
+
+/* ================================
+ 📱 RESPONSIVE
+================================ */
 @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .nombre-estilo .nombre {
+    font-size: 1.3rem;
+  }
+
+  .nombre-estilo .apellido {
+    font-size: 0.9rem;
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  .nav-desktop {
+    display: none;
+  }
+
+  .hamburguesa {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+  }
+
+  main section {
+    padding: 100px 1.5em 60px;
+  }
+
+  h2 {
+    font-size: 2em;
+    margin-bottom: 1.5rem;
+  }
+
+  .galeria {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .galeria img {
+    max-width: 90%;
+  }
+
+  .arrow {
+    font-size: 2rem;
+    bottom: 40px;
+  }
+
+  /* Animación por item en el menú lateral */
+  .sidebar ul li:nth-child(1) {
+    --i: 1;
+  }
+  .sidebar ul li:nth-child(2) {
+    --i: 2;
+  }
+  .sidebar ul li:nth-child(3) {
+    --i: 3;
+  }
+  .sidebar ul li:nth-child(4) {
+    --i: 4;
+  }
+  .sidebar ul li:nth-child(5) {
+    --i: 5;
+  }
+
+  .contenedor-proyectos {
+    grid-template-columns: 1fr; /* Una sola columna en móvil */
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .listado-proyectos {
+    max-height: 250px; /* Altura más pequeña para la lista en móvil */
+  }
+
+  .contenido-proyecto {
+    grid-template-areas:
+      "info"
+      "visor"
+      "elementos";
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .info-proyecto {
+    padding: 0.8rem;
+  }
+
+  .visor-elementos {
+    padding: 0.8rem;
+  }
+
+  #modeloPersonaje {
+    width: 250px; /* Mantener tamaño fijo para el modelo en móvil */
+    height: 250px; /* Mantener tamaño fijo para el modelo en móvil */
+    max-width: 100%; /* Asegurar que no se desborde */
+  }
+
+  .listado-elementos-proyecto {
+    padding: 0.8rem;
+    display: flex; /* Cambiar a flex para scroll horizontal */
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    flex-wrap: nowrap;
+  }
+
+  #thumbnailsPersonajes {
+    display: flex; /* Cambiar a flex para scroll horizontal */
+    flex-direction: row;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    max-height: none; /* Eliminar altura máxima para flex horizontal */
+    overflow-y: visible; /* Permitir que las miniaturas se muestren */
+  }
+
+  .thumbnail-personaje {
+    width: 80px; /* Original de .personajes-lista img en móvil */
+    height: 80px; /* Original de .personajes-lista img en móvil */
+    flex-shrink: 0; /* Evitar que se encojan */
+    scroll-snap-align: center;
+  }
+
+  .boton-rotador {
+    font-size: 2rem;
+  }
+
+  .layout-juegos {
+    flex-direction: column;
+  }
+
+  .contenedor-juego {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .panel-juego {
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .panel-info {
+    max-width: 100%;
+  }
+
+  .flecha {
+    margin-top: 1rem;
+  }
+
+  .fila-doble {
+    flex-direction: column;
+  }
+
+  .contacto-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contacto-formulario,
+  .contacto-info {
+    max-width: 100%;
+  }
+
+  /* Responsive para Ilustración */
+  .contenido-proyecto-ilustracion {
+    grid-template-areas:
+      "visor"
+      "info";
+    grid-template-rows: auto auto; /* Ajuste automático */
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .visor-ilustracion {
+    min-height: 250px; /* Reducir altura mínima en móvil */
+  }
+
+  .ilustracion-card {
+    width: 150px; /* Reducir tamaño de cartas en móvil */
+    height: 200px;
+  }
+
+  .ilustracion-card.prev-1 {
+    transform: translateX(-70px) rotateY(10deg) scale(0.8);
+  }
+  .ilustracion-card.prev-2 {
+    transform: translateX(-110px) rotateY(15deg) scale(0.7);
+  }
+
+  .ilustracion-card.next-1 {
+    transform: translateX(70px) rotateY(-10deg) scale(0.8);
+  }
+  .ilustracion-card.next-2 {
+    transform: translateX(110px) rotateY(-15deg) scale(0.7);
+  }
+
+  .ilustracion-principal {
+    width: 200px; /* Adjust main illustration size for mobile */
+    height: 270px;
+  }
+
+  .info-ilustracion {
+    text-align: center; /* Centrar texto en móvil */
+    align-items: center;
+  }
+
   .lightbox-content {
-    grid-template-columns: 1fr; /* Single column for mobile */
-    grid-template-rows: auto auto auto auto;
+    /* Mobile specific grid for lightbox */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto; /* Close, Image, Nav, Info */
     grid-template-areas:
       "close-btn"
       "image"
-      "info"
-      "nav";
+      "nav"
+      "info"; /* Reordered for mobile */
     gap: 1rem;
     padding: 1rem;
+  }
+
+  .lightbox-image {
+    max-height: 70vh; /* Make image much larger on mobile */
+    width: 100%; /* Allow image to take full width */
   }
 
   .lightbox-close {
@@ -1102,46 +1689,48 @@ main section::before {
     margin-bottom: 0; /* Remove negative margin */
   }
 
-  .lightbox-image {
-    max-height: 50vh;
-  }
-
-  .lightbox-info {
-    text-align: justify; /* Keep justified for mobile */
-    align-items: center; /* Center align for mobile */
-    padding-right: 0; /* Remove padding */
+  .lightbox-arrow {
+    font-size: 2rem;
   }
 }
 
-/* New animation for card click in illustration section */
-.ilustracion-card-stack.scroll-left {
-  animation: scrollLeftAnimation 0.3s ease-out forwards;
+/* ================================
+🎨 Scroll personalizado para .listado-proyectos y .listado-elementos-proyecto
+================================ */
+.listado-proyectos::-webkit-scrollbar,
+.listado-elementos-proyecto::-webkit-scrollbar {
+  height: 8px; /* Altura del scroll horizontal */
+  width: 8px; /* Ancho del scroll vertical */
 }
 
-.ilustracion-card-stack.scroll-right {
-  animation: scrollRightAnimation 0.3s ease-out forwards;
+.listado-proyectos::-webkit-scrollbar-track,
+.listado-elementos-proyecto::-webkit-scrollbar-track {
+  background: transparent; /* Fondo invisible */
 }
 
-@keyframes scrollLeftAnimation {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-20px);
-  } /* Brief movement to the left */
-  100% {
-    transform: translateX(0);
-  }
+.listado-proyectos::-webkit-scrollbar-thumb,
+.listado-elementos-proyecto::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to right,
+    #93bff9,
+    #aebaf6
+  ); /* Color tipo sistema */
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(147, 249, 185, 0.4); /* Sombra elegante */
 }
 
-@keyframes scrollRightAnimation {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(20px);
-  } /* Brief movement to the right */
-  100% {
-    transform: translateX(0);
-  }
+.listado-proyectos::-webkit-scrollbar-thumb:hover,
+.listado-elementos-proyecto::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to right,
+    #aebaf6,
+    #93bff9
+  ); /* Reverso al pasar el ratón */
+}
+
+/* Firefox */
+.listado-proyectos,
+.listado-elementos-proyecto {
+  scrollbar-width: thin;
+  scrollbar-color: #93bff9 transparent;
 }
