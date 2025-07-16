@@ -2,16 +2,16 @@
 const datosIlustracionesProyectos = {
   bocetosConceptuales: {
     nombre: "En Tiempos de Estrés...",
-    subtitulo: "Haz lo que importa",
+    subtitulo: "",
     ilustraciones: [
       {
         id: "boceto-1",
         src: "assets/illustrations/fondoDibujo.jpg",
         alt: "Boceto de personaje fantástico",
-        nombre: "Guerrera Estelar",
-        subtitulo: "Concepto Inicial",
+        nombre: "En Tiempos de Estrés Haz lo que Importa",
+        subtitulo: "Portada",
         description:
-          "Este boceto representa mi exploración inicial de un personaje para un RPG de fantasía, centrándome en la silueta y la pose dinámica. Buscaba una figura que combinara agilidad con una presencia imponente, pensando en sus movimientos en combate.",
+          "Este boceto representa una exploración inicial de un personaje para un RPG de fantasía, centrándome en la silueta y la pose dinámica. Buscaba una figura que combinara agilidad con una presencia imponente, pensando en sus movimientos en combate.",
       },
       {
         id: "boceto-2",
@@ -195,6 +195,11 @@ function actualizarVisorIlustracion() {
   subtituloIlustracionEl.textContent = currentIlustracion.subtitulo;
   descripcionIlustracionEl.textContent = currentIlustracion.description;
 
+  // Trigger a pulse animation on the main image
+  ilustracionPrincipalImg.classList.remove("pulse-active"); // Remove to allow re-triggering
+  void ilustracionPrincipalImg.offsetWidth; // Trigger reflow
+  ilustracionPrincipalImg.classList.add("pulse-active");
+
   // Crear las cartas de fondo
   const numIlustraciones = proyecto.ilustraciones.length;
   const maxCards = 2; // Mostrar 2 cartas a cada lado (prev y next)
@@ -202,7 +207,7 @@ function actualizarVisorIlustracion() {
   for (let i = -maxCards; i <= maxCards; i++) {
     const cardIndex = ilustracionActualIndex + i;
 
-    // Asegurarse de que el índice esté dentro de los límites del array
+    // Asegurarse de que el índice esté dentro de los límites del array y no sea la carta central
     if (cardIndex >= 0 && cardIndex < numIlustraciones && i !== 0) {
       const cardData = proyecto.ilustraciones[cardIndex];
       const cardDiv = document.createElement("div");
@@ -220,6 +225,10 @@ function actualizarVisorIlustracion() {
       } else if (i > 0) {
         cardDiv.classList.add(`next-${i}`);
       }
+      // Add click event listener to background cards
+      cardDiv.addEventListener("click", () =>
+        seleccionarIlustracionPorIndice(cardIndex)
+      ); // Added click listener
       ilustracionCardStack.appendChild(cardDiv);
     }
   }
@@ -241,6 +250,12 @@ function navegarIlustracion(direccion) {
   ilustracionActualIndex =
     (ilustracionActualIndex + direccion + proyecto.ilustraciones.length) %
     proyecto.ilustraciones.length;
+  actualizarVisorIlustracion();
+}
+
+// New function to select illustration by index (for clicking background cards)
+function seleccionarIlustracionPorIndice(index) {
+  ilustracionActualIndex = index;
   actualizarVisorIlustracion();
 }
 

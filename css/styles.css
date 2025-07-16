@@ -795,7 +795,7 @@ main section::before {
   background-color: rgba(0, 0, 0, 0.2); /* Fondo sutil para el visor */
   border-radius: 10px;
   box-shadow: inset 0 0 15px rgba(147, 249, 185, 0.1);
-  min-height: 300px; /* Altura mínima para el visor */
+  aspect-ratio: 4 / 3; /* Fixed aspect ratio for consistent size */
   overflow: hidden; /* Para contener las cartas */
 }
 
@@ -807,6 +807,7 @@ main section::before {
   align-items: center;
   justify-content: center;
   perspective: 1000px; /* Para el efecto 3D */
+  z-index: 1; /* Lower z-index than the main illustration */
 }
 
 .ilustracion-card {
@@ -822,8 +823,9 @@ main section::before {
   justify-content: center;
   transition: transform 0.5s ease-out, opacity 0.5s ease-out,
     box-shadow 0.3s ease;
-  cursor: pointer;
+  cursor: pointer; /* Change cursor for clickable cards */
   border: 2px solid transparent;
+  pointer-events: auto; /* Make background cards interactive */
 }
 
 .ilustracion-card img {
@@ -833,37 +835,66 @@ main section::before {
   border-radius: 8px;
 }
 
-.ilustracion-card.active {
-  z-index: 10;
-  transform: translateZ(0) scale(1);
-  opacity: 1;
-  border-color: #93bff9;
-  box-shadow: 0 10px 30px rgba(147, 249, 185, 0.6);
-}
-
 .ilustracion-card.prev-1 {
-  transform: translateX(-120px) rotateY(15deg) scale(0.9) translateZ(-50px);
-  opacity: 0.5;
-  z-index: 9;
+  transform: translateX(-150px) rotateY(15deg) scale(0.8); /* Adjust translateX and scale */
+  opacity: 0.4; /* More opaque for closer cards */
+  z-index: 4;
 }
 .ilustracion-card.prev-2 {
-  transform: translateX(-200px) rotateY(25deg) scale(0.8) translateZ(-100px);
-  opacity: 0.3;
-  z-index: 8;
+  transform: translateX(-250px) rotateY(25deg) scale(0.7); /* Adjust translateX and scale */
+  opacity: 0.2; /* Less opaque for further cards */
+  z-index: 3;
 }
 
 .ilustracion-card.next-1 {
-  transform: translateX(120px) rotateY(-15deg) scale(0.9) translateZ(-50px);
-  opacity: 0.5;
-  z-index: 9;
+  transform: translateX(150px) rotateY(-15deg) scale(0.8); /* Adjust translateX and scale */
+  opacity: 0.4;
+  z-index: 4;
 }
 .ilustracion-card.next-2 {
-  transform: translateX(200px) rotateY(-25deg) scale(0.8) translateZ(-100px);
-  opacity: 0.3;
-  z-index: 8;
+  transform: translateX(250px) rotateY(-25deg) scale(0.7); /* Adjust translateX and scale */
+  opacity: 0.2;
+  z-index: 3;
 }
 
-/* Ocultar cartas más allá de las visibles */
+/* Main illustration styling */
+.ilustracion-principal {
+  position: absolute;
+  width: 300px; /* Standard size for the main image */
+  height: 400px;
+  object-fit: contain; /* Ensure image fits */
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(147, 249, 185, 0.6); /* Prominent shadow */
+  border: 2px solid #93bff9; /* Border for the main image */
+  z-index: 10; /* Ensure it's on top */
+  cursor: pointer; /* Indicate it's clickable */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ilustracion-principal:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px rgba(147, 249, 185, 0.8);
+}
+
+.ilustracion-principal.pulse-active {
+  animation: quickPulse 0.3s ease-out;
+}
+
+@keyframes quickPulse {
+  0% {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 .ilustracion-card.hidden {
   opacity: 0;
   transform: scale(0.7);
@@ -916,68 +947,91 @@ main section::before {
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease, backdrop-filter 0.3s ease;
+  transform: scaleY(0); /* Start closed for blinds effect */
+  transform-origin: center center;
+  transition: transform 0.5s ease-out, backdrop-filter 0.3s ease,
+    opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .lightbox-overlay.active {
   opacity: 1;
   visibility: visible;
+  transform: scaleY(1); /* Open blinds */
 }
 
 .lightbox-content {
-  position: relative;
-  background-color: rgba(17, 17, 17, 0.9);
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 0 30px rgba(147, 249, 185, 0.5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* Removed background, padding, shadows for a more integrated look */
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+
+  /* Grid layout for large screens */
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 1.2fr 0.5fr; /* Empty, Image, Info, Empty */
+  grid-template-rows: auto 1fr auto; /* Close button row, Content row, Nav row */
+  grid-template-areas:
+    ". . close-btn ."
+    ". image info ."
+    ". nav nav .";
+  gap: 2rem; /* Gap between image and info */
+  align-items: start; /* Align content to top */
+  justify-items: center; /* Center horizontally */
   max-width: 90vw;
   max-height: 90vh;
-  overflow: auto; /* Para permitir scroll si el contenido es muy grande */
-  transform: scale(0.8);
-  opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  overflow: auto; /* Keep scroll for content */
+  transform: none; /* Remove previous scaling animation */
+  opacity: 1; /* Keep visible once overlay is active */
+  transition: none; /* Remove previous transition */
+
+  /* Custom scrollbar for lightbox content */
+  scrollbar-width: thin;
+  scrollbar-color: #93bff9 transparent;
 }
 
-.lightbox-overlay.active .lightbox-content {
-  transform: scale(1);
-  opacity: 1;
+.lightbox-content::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.lightbox-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.lightbox-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #93bff9, #aebaf6);
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(147, 249, 185, 0.4);
+}
+.lightbox-content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, #aebaf6, #93bff9);
 }
 
 .lightbox-close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: #93bff9;
-  cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease;
-  z-index: 2001;
-}
-
-.lightbox-close:hover {
-  transform: rotate(90deg) scale(1.1);
-  color: #fff;
+  grid-area: close-btn;
+  justify-self: end; /* Align to the right within its grid area */
+  align-self: start;
+  position: static; /* Remove absolute positioning */
+  margin-bottom: -2rem; /* Pull it up a bit to overlap with content */
+  z-index: 10; /* Ensure it's above other content */
 }
 
 .lightbox-image {
+  grid-area: image;
   max-width: 100%;
-  max-height: 60vh; /* Limita la altura de la imagen en el lightbox */
+  max-height: 100%; /* Allow image to fill grid area */
   object-fit: contain;
   border-radius: 10px;
-  margin-bottom: 1rem;
   box-shadow: 0 0 15px rgba(174, 187, 246, 0.5);
+  margin-bottom: 0; /* Remove margin-bottom */
+  justify-self: center; /* Center horizontally within its grid cell */
+  align-self: center; /* Center vertically within its grid cell */
 }
 
 .lightbox-nav {
+  grid-area: nav;
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 1rem;
+  justify-content: center; /* Center arrows at the bottom */
+  gap: 2rem;
+  margin-top: 1rem; /* Add margin from info/image */
 }
 
 .lightbox-arrow {
@@ -995,9 +1049,11 @@ main section::before {
 }
 
 .lightbox-info {
-  text-align: center;
-  margin-top: 1.5rem;
-  width: 100%; /* Ocupa todo el ancho del contenido */
+  grid-area: info;
+  text-align: right; /* Keep justified right */
+  align-items: flex-end; /* Keep aligned to flex-end */
+  margin-top: 0; /* Remove margin-top */
+  padding-right: 1rem; /* Add some padding to the right */
 }
 
 .lightbox-info h4 {
@@ -1568,22 +1624,27 @@ footer {
   }
 
   .ilustracion-card {
-    width: 180px; /* Reducir tamaño de cartas en móvil */
-    height: 250px;
+    width: 150px; /* Reducir tamaño de cartas en móvil */
+    height: 200px;
   }
 
   .ilustracion-card.prev-1 {
-    transform: translateX(-80px) rotateY(10deg) scale(0.8);
+    transform: translateX(-70px) rotateY(10deg) scale(0.8);
   }
   .ilustracion-card.prev-2 {
-    transform: translateX(-130px) rotateY(15deg) scale(0.7);
+    transform: translateX(-110px) rotateY(15deg) scale(0.7);
   }
 
   .ilustracion-card.next-1 {
-    transform: translateX(80px) rotateY(-10deg) scale(0.8);
+    transform: translateX(70px) rotateY(-10deg) scale(0.8);
   }
   .ilustracion-card.next-2 {
-    transform: translateX(130px) rotateY(-15deg) scale(0.7);
+    transform: translateX(110px) rotateY(-15deg) scale(0.7);
+  }
+
+  .ilustracion-principal {
+    width: 200px; /* Adjust main illustration size for mobile */
+    height: 270px;
   }
 
   .info-ilustracion {
@@ -1592,6 +1653,15 @@ footer {
   }
 
   .lightbox-content {
+    /* Mobile specific grid for lightbox */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "close-btn"
+      "image"
+      "info"
+      "nav";
+    gap: 1rem;
     padding: 1rem;
   }
 
@@ -1603,6 +1673,7 @@ footer {
     font-size: 1.5rem;
     top: 5px;
     right: 5px;
+    justify-self: end; /* Ensure it stays right-aligned */
   }
 
   .lightbox-arrow {
