@@ -186,6 +186,7 @@ a {
     transform: translateX(-50%) translateY(20px);
   }
   100% {
+    opacity: 1;
     transform: translateX(-50%) translateY(0);
   }
 }
@@ -281,7 +282,7 @@ header {
 }
 
 /* ================================
- � NAVEGACIÓN
+ 🌐 NAVEGACIÓN
 ================================ */
 nav ul {
   list-style: none;
@@ -463,6 +464,70 @@ main section::before {
   overflow: hidden;
 }
 
+/* Fondo para Diseño Gráfico / Animación */
+#diseno-animacion::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../assets/3d.png"); /* Reemplaza con tu imagen */
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  opacity: 0.6;
+  z-index: -2;
+}
+
+/* Fondo para Ilustración */
+#dibujo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../assets/fondoDibujo.jpg"); /* Fondo de ilustración */
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  opacity: 0.6;
+  z-index: -2;
+}
+
+/* Fondo para Videojuegos */
+#videojuegos::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../assets/fondoVideojuegos.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  opacity: 0.6;
+  z-index: -2;
+}
+
+/* Fondo para Software */
+#software::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../assets/fondoSoftware.png"); /* Reemplaza con tu imagen */
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  opacity: 0.6;
+  z-index: -2;
+}
+
 /* Contenedor de proyectos general (para Diseño y Ilustración) */
 .contenedor-proyectos {
   display: grid;
@@ -614,7 +679,7 @@ main section::before {
 }
 
 .datos-personaje h4 {
-  font-size: 1.5rem; /* Reduced from 1.6rem */
+  font-size: 1.4rem; /* Reduced from 1.5rem */
   margin-bottom: 0.5rem;
 }
 
@@ -753,20 +818,6 @@ main section::before {
 /* ================================
  🖼️ SECCIÓN ILUSTRACIÓN (NUEVOS ESTILOS)
 ================================ */
-#dibujo::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("../assets/fondoDibujo.jpg"); /* Fondo de ilustración */
-  background-size: cover;
-  background-position: center;
-  filter: blur(10px);
-  opacity: 0.6;
-  z-index: -2;
-}
 
 .contenido-proyecto-ilustracion {
   display: grid;
@@ -1069,13 +1120,20 @@ main section::before {
 }
 
 .lightbox-info h4 {
-  font-size: 1.4rem; /* Reduced from 1.5rem */
+  font-size: 1.3rem; /* Reduced from 1.4rem */
   color: #aebaf6;
   margin-bottom: 0.5rem;
 }
 
+.lightbox-info h5 {
+  /* New style for h5 */
+  font-size: 1rem; /* Increased from default */
+  color: #f0f0f0;
+  margin-bottom: 0.6rem;
+}
+
 .lightbox-info p {
-  font-size: 0.9rem; /* Slightly smaller */
+  font-size: 0.95rem; /* Slightly increased from 0.9rem */
   color: #f0f0f0;
   line-height: 1.5;
 }
