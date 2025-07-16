@@ -831,14 +831,15 @@ main section::before {
 
 /* Nuevo contenedor para el visor y la información */
 .ilustracion-content-wrapper {
-  display: flex;
-  flex-direction: column; /* Apila el visor y la info */
+  display: grid; /* Cambiado a grid para control de columnas */
+  grid-template-columns: 3fr 2fr; /* Dos columnas en escritorio */
   gap: 2rem; /* Espacio entre el visor y la info */
   background-color: rgba(255, 255, 255, 0.03);
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(147, 183, 249, 0.08);
   height: 100%; /* Asegura que ocupe la altura disponible en la grilla */
+  align-items: stretch; /* Alinea los elementos para que tengan la misma altura */
 }
 
 .visor-ilustracion {
@@ -852,25 +853,25 @@ main section::before {
   box-shadow: inset 0 0 15px rgba(147, 183, 249, 0.1);
   aspect-ratio: 4 / 3; /* Fixed aspect ratio for consistent size on desktop */
   overflow: hidden; /* Para contener las cartas */
-  min-height: 350px; /* Altura mínima para el visor en móvil, aumentada */
-  flex-grow: 1; /* Permite que el visor crezca y ocupe espacio */
+  min-height: 550px; /* Altura mínima para el visor en móvil, aumentada */
+  max-width: 100%; /* Asegura que el visor ocupe todo el ancho disponible */
 }
 
 .ilustracion-card-stack {
   position: absolute; /* Posicionamiento absoluto para el efecto 3D en desktop */
-  width: 100%; /* Ocupa el 100% del ancho del visor */
-  height: 100%; /* Ocupa el 100% del alto del visor */
+  min-width: 100%; /* Ocupa el 100% del ancho del visor */
+  min-height: 100%; /* Ocupa el 100% del alto del visor */
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 1000px; /* Para el efecto 3D */
+  perspective: 1500px; /* Para el efecto 3D */
   z-index: 1; /* Lower z-index than the main illustration */
 }
 
 .ilustracion-card {
-  position: absolute; /* Posicionamiento absoluto para el efecto 3D en desktop */
-  max-width: 40%; /* Reducido para que las cartas estén más separadas */
-  max-height: 90%; /* Aumentado para que el stack sea más alto */
+  position: absolute;
+  max-width: 40%;
+  max-height: 100%;
   width: auto;
   height: auto;
   background-color: #222;
@@ -882,12 +883,14 @@ main section::before {
   justify-content: center;
   transition: transform 0.5s ease-out, opacity 0.5s ease-out,
     box-shadow 0.3s ease;
-  cursor: pointer; /* Change cursor for clickable cards */
+  cursor: pointer;
   border: 2px solid transparent;
-  pointer-events: auto; /* Make background cards interactive */
+  pointer-events: auto;
 }
 
 .ilustracion-card img {
+  min-width: 100%;
+  min-height: 100%;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -895,32 +898,28 @@ main section::before {
 }
 /* Ajustes de transformaciones 3D para móviles */
 .ilustracion-card.prev-1 {
-  transform: translateX(-65%) rotateY(25deg) scale(0.8); /* Ajustado para mayor separación y visibilidad */
-  opacity: 0.6; /* Aumentado para mayor visibilidad */
+  transform: translateX(-85%) rotateY(25deg) scale(0.8); /* Ajustado para mayor separación y visibilidad */
   z-index: 4;
 }
 .ilustracion-card.prev-2 {
-  transform: translateX(-85%) rotateY(30deg) scale(0.5); /* Ajustado para mayor separación y clicabilidad */
-  opacity: 0.3; /* Aumentado para mayor visibilidad */
+  transform: translateX(-105%) rotateY(30deg) scale(0.5); /* Ajustado para mayor separación y clicabilidad */
   z-index: 3;
 }
 
 .ilustracion-card.next-1 {
-  transform: translateX(65%) rotateY(-25deg) scale(0.8); /* Ajustado para mayor separación y visibilidad */
-  opacity: 0.6;
+  transform: translateX(85%) rotateY(-25deg) scale(0.8); /* Ajustado para mayor separación y visibilidad */
   z-index: 4;
 }
 .ilustracion-card.next-2 {
-  transform: translateX(85%) rotateY(-30deg) scale(0.5); /* Ajustado para mayor separación y clicabilidad */
-  opacity: 0.3; /* Aumentado para mayor visibilidad */
+  transform: translateX(105%) rotateY(-30deg) scale(0.5); /* Ajustado para mayor separación y clicabilidad */
   z-index: 3;
 }
 
 /* Main illustration styling */
 .ilustracion-principal {
   position: absolute; /* Posicionamiento absoluto para el efecto 3D en desktop */
-  max-width: 70%; /* Aumentado para mayor prominencia en móvil */
-  max-height: 95%; /* Tamaño relativo al visor */
+  max-width: 80%; /* Aumentado para mayor prominencia en móvil */
+  max-height: 100%; /* Tamaño relativo al visor */
   width: auto;
   height: auto;
   object-fit: contain; /* Asegura que la imagen se ajuste completamente dentro del contenedor */
@@ -971,13 +970,24 @@ main section::before {
   background-color: rgba(255, 255, 255, 0.03);
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(147, 183, 249, 0.06);
-  flex-shrink: 0; /* Evita que se encoja */
+  max-width: 100%; /* Ajusta el ancho al contenido */
+  max-height: 100%; /* Evita que se desborde en pantallas pequeñas */
 }
 
 .info-ilustracion h4 {
   font-size: 1.6rem;
   margin-bottom: 0.5rem;
   color: #69cddf;
+  text-align: right; /* Alineado a la derecha */
+  width: 100%; /* Asegura que ocupe todo el ancho para la alineación */
+}
+
+.info-ilustracion h5 {
+  font-size: 1.2rem; /* Tamaño para h5 */
+  margin-bottom: 1rem; /* Espacio debajo de h5 */
+  color: #239ad1; /* Color para h5 */
+  text-align: right; /* Alineado a la derecha */
+  width: 100%; /* Asegura que ocupe todo el ancho para la alineación */
 }
 
 .info-ilustracion p {
@@ -985,6 +995,7 @@ main section::before {
   line-height: 1.6;
   margin-bottom: 0.6rem;
   color: #f0f0f0;
+  text-align: left;
 }
 
 .descripcion-justificada {
@@ -1131,9 +1142,19 @@ main section::before {
 }
 
 .lightbox-info h4 {
-  font-size: 1.3rem; /* Reduced from 1.4rem */
-  color: #239ad1;
+  font-size: 1.6rem;
   margin-bottom: 0.5rem;
+  color: #69cddf;
+  text-align: right; /* Alineado a la derecha */
+  width: 100%; /* Asegura que ocupe todo el ancho para la alineación */
+}
+
+.lightbox-info h5 {
+  font-size: 1.2rem; /* Tamaño para h5 */
+  margin-bottom: 1rem; /* Espacio debajo de h5 */
+  color: #239ad1; /* Color para h5 */
+  text-align: right; /* Alineado a la derecha */
+  width: 100%; /* Asegura que ocupe todo el ancho para la alineación */
 }
 
 .lightbox-info p {
@@ -1690,7 +1711,7 @@ footer {
   }
 
   .ilustracion-content-wrapper {
-    flex-direction: column; /* Apila el visor y la info */
+    grid-template-columns: 1fr; /* Una sola columna en móvil */
     gap: 1rem; /* Espacio entre el visor y la info en móvil */
     padding: 1rem; /* Reducir padding en móvil */
   }
@@ -1719,30 +1740,26 @@ footer {
   /* Ajustes de transformaciones 3D para móviles */
   .ilustracion-card.prev-1 {
     transform: translateX(-65%) rotateY(25deg) scale(0.8); /* Ajustado para mayor separación y visibilidad */
-    opacity: 0.6; /* Aumentado para mayor visibilidad */
     z-index: 4;
   }
   .ilustracion-card.prev-2 {
     transform: translateX(-85%) rotateY(30deg) scale(0.5); /* Ajustado para mayor separación y clicabilidad */
-    opacity: 0.3; /* Aumentado para mayor visibilidad */
     z-index: 3;
   }
 
   .ilustracion-card.next-1 {
     transform: translateX(65%) rotateY(-25deg) scale(0.8); /* Ajustado para mayor separación y visibilidad */
-    opacity: 0.6;
     z-index: 4;
   }
   .ilustracion-card.next-2 {
     transform: translateX(85%) rotateY(-30deg) scale(0.5); /* Ajustado para mayor separación y clicabilidad */
-    opacity: 0.3; /* Aumentado para mayor visibilidad */
     z-index: 3;
   }
 
   .ilustracion-principal {
     /* Mantiene el posicionamiento absoluto y el efecto 3D */
-    max-width: 70%; /* Tamaño ajustado para móvil, porcentaje del visor */
-    max-height: 95%; /* Tamaño ajustado para móvil, porcentaje del visor */
+    max-width: 80%; /* Tamaño ajustado para móvil, porcentaje del visor */
+    max-height: 100%; /* Tamaño ajustado para móvil, porcentaje del visor */
   }
 
   .info-ilustracion {
