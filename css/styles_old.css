@@ -1,0 +1,1839 @@
+/* ================================
+   ✨ FUENTES PERSONALIZADAS
+================================ */
+@font-face {
+  font-family: "Symtext";
+  src: url("../fonts/Symtext.woff2") format("woff2"),
+    url("../fonts/Symtext.woff") format("woff"),
+    url("../fonts/Symtext.ttf") format("truetype");
+  font-display: swap; /* Mejora la carga de fuentes */
+}
+
+@font-face {
+  font-family: "Stanberry";
+  src: url("../fonts/Stanberry.woff2") format("woff2"),
+    url("../fonts/Stanberry.woff") format("woff"),
+    url("../fonts/Stanberry.ttf") format("truetype");
+  font-display: swap; /* Mejora la carga de fuentes */
+}
+
+/* ================================
+ 🌌 RESET Y ESTILOS BASE
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Ajuste para el header fijo */
+}
+
+body {
+  font-family: "Stanberry", sans-serif;
+  background-color: #111;
+  color: #f0f0f0;
+  line-height: 1.6; /* Propiedad añadida para mejor legibilidad */
+  overflow-x: visible !important;
+  overscroll-behavior-y: contain;
+}
+
+html,
+body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+a {
+  text-decoration: none;
+  color: inherit; /* Propiedad añadida para que los enlaces hereden el color */
+}
+
+.section {
+  opacity: 0;
+  transform: translateZ(-120px) scale(0.8) rotateX(6deg);
+  filter: blur(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease, filter 0.8s ease;
+  will-change: opacity, transform, filter;
+}
+
+.section.mostrar {
+  opacity: 1;
+  transform: translateZ(0px) scale(1) rotateX(0deg);
+  filter: blur(0px);
+}
+
+.section::before {
+  opacity: 0;
+  transform: scale(1.2);
+  filter: blur(25px);
+  transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+  will-change: opacity, transform, filter;
+}
+
+.section.mostrar::before {
+  opacity: 0.6;
+  transform: scale(1);
+  filter: blur(10px);
+}
+
+.section.mostrar h2 {
+  animation: fadeInTitle 0.2s ease forwards;
+}
+
+@keyframes fadeInTitle {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+/* ================================
+ 🌀 HERO
+================================ */
+.hero {
+  display: flex; /* Añadido para centrar el contenido */
+  align-items: center; /* Añadido para centrar el contenido */
+  justify-content: center; /* Añadido para centrar el contenido */
+
+  position: relative;
+  height: 100vh;
+  /*overflow: visible; /* permite que el personaje se muestre completo */
+  overflow: hidden;
+}
+
+.hero img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  transition: filter 0.6s ease, transform 0.6s ease;
+}
+
+.frase-hero {
+  animation: fadeInHero 2s ease-out forwards;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  max-width: 90%;
+  width: 460px;
+
+  backdrop-filter: blur(4px);
+  background-color: rgba(40, 40, 40, 0.4);
+  padding: 1em 1.5em;
+
+  font-size: 1rem;
+  font-family: "Stanberry", sans-serif;
+  color: #239ad1;
+  text-align: center;
+
+  opacity: 0;
+  z-index: 7;
+}
+
+@keyframes fadeInHero {
+  to {
+    opacity: 1;
+  }
+}
+
+.arrow {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  color: #69cddf;
+  animation: bounce 1.5s infinite;
+  text-decoration: none;
+  z-index: 10;
+  display: block; /* Asegura que la flecha sea un bloque para el posicionamiento */
+}
+
+.filtro-oscuro {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.55); /* Ajusta la opacidad */
+  z-index: -1;
+}
+
+.personaje-flotante {
+  position: absolute;
+  bottom: -190px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  height: auto;
+  width: auto;
+  max-width: 95vh; /* limita el ancho en pantallas grandes */
+  max-height: 95vh; /* limita la altura para evitar cortes */
+
+  object-fit: contain;
+  z-index: 6;
+}
+@keyframes fadeInHero {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+@keyframes entrada-flotante {
+  0% {
+    transform: translateX(-50%) translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Flotación suave */
+@keyframes flotar {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+/* ================================
+ 🚀 HEADER
+================================ */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra añadida */
+}
+
+.nombre-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.logo-transformada {
+  transform: rotate(90deg) scale(0.8);
+  filter: brightness(1.2);
+  box-shadow: none;
+}
+
+.nombre-estilo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.nombre {
+  font-family: "Symtext", sans-serif;
+  font-size: 1.6rem;
+  color: #69cddf;
+}
+
+.apellido {
+  font-family: "Symtext", sans-serif;
+  font-size: 1rem;
+  color: #ee9b3c;
+  /* color: #7164a1; */
+  opacity: 0.8;
+  letter-spacing: 1px;
+}
+
+/* ================================
+ 🌐 NAVEGACIÓN
+================================ */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem; /* Espacio entre elementos de navegación ajustado */
+}
+
+nav ul li a {
+  color: #69cddf;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease, transform 0.3s ease; /* Transición de transformación añadida */
+  padding: 0.5rem 0.2rem; /* Padding ajustado */
+  position: relative; /* Para el pseudo-elemento after */
+}
+
+nav ul li a:hover {
+  color: #fff;
+  transform: translateY(-2px); /* Efecto de elevación al pasar el ratón */
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background-color: #239ad1;
+  /* background-color: #239ad1; */
+  transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* ================================
+ ☰ MENÚ HAMBURGUESA Y LATERAL
+================================ */
+/* .hamburguesa se ha eliminado porque no se usa un botón de hamburguesa dedicado en el HTML */
+
+.sidebar {
+  position: fixed;
+  top: 60px;
+  right: -100%;
+  width: 70%;
+  max-width: 300px;
+  height: calc(100% - 60px); /* Altura ajustada al header */
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 20, 25, 0.95),
+    rgba(10, 10, 15, 0.98)
+  );
+  backdrop-filter: blur(6px);
+  transition: right 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+  z-index: 999;
+  padding: 2rem 1.5rem; /* Padding ajustado */
+  box-shadow: -4px 0 15px rgba(0, 145, 255, 0.3); /* Sombra ajustada */
+  display: flex; /* Añadido para flexbox */
+  flex-direction: column; /* Añadido para flexbox */
+  align-items: flex-start; /* Añadido para flexbox */
+}
+
+.sidebar.open {
+  right: 0;
+  opacity: 1;
+}
+
+.sidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, #69cddf, #239ad1);
+  animation: pulsoBarra 4s infinite ease-in-out;
+}
+
+@keyframes pulsoBarra {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Espacio ajustado */
+  width: 100%; /* Ocupa todo el ancho */
+}
+
+.sidebar ul li {
+  opacity: 0;
+  transform: translateX(20px);
+  animation: fadeIn 0.5s forwards;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+.sidebar ul li a {
+  color: #239ad1;
+  text-decoration: none;
+  font-size: 1.3rem; /* Tamaño de fuente ajustado */
+  display: block; /* Para que ocupe todo el ancho del li */
+  padding: 0.5rem 0; /* Padding ajustado */
+  transition: color 0.3s ease, transform 0.3s ease; /* Transición de transformación añadida */
+}
+
+.sidebar ul li a:hover {
+  color: #69cddf; /* Color ajustado al pasar el ratón */
+  transform: translateX(5px); /* Efecto de deslizamiento */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ================================
+ 📄 SECCIONES
+================================ */
+main section {
+  position: relative;
+  padding: 120px 5% 80px;
+  min-height: 100vh;
+  color: #fff;
+  overflow: hidden;
+}
+
+h2 {
+  font-family: "Symtext", sans-serif;
+  font-size: 2em;
+  margin-bottom: 1rem;
+}
+
+/* ================================
+ 🖼️ FONDOS BLUR DIFERENCIADOS
+================================ */
+main section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(10px);
+  background-color: rgba(17, 17, 17, 0.4);
+  z-index: -1;
+}
+
+/* ================================
+ 🌫️ FONDOS BLUR INDIVIDUALES
+================================ */
+
+#diseno-animacion,
+#dibujo,
+#videojuegos,
+#software {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Fondo para Diseño Gráfico / Animación */
+#diseno-animacion::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../assets/3d.png"); /* Reemplaza con tu imagen */
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  opacity: 0.6;
+  z-index: -2;
+}
+
+/* Fondo para Ilustración */
+#dibujo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../assets/fondoDibujo.jpg"); /* Fondo de ilustración */
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  opacity: 0.6;
+  z-index: -2;
+}
+
+/* Fondo para Videojuegos */
+#videojuegos::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../assets/fondoVideojuegos.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  opacity: 0.6;
+  z-index: -2;
+}
+
+/* Fondo para Software */
+#software::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../assets/fondoSoftware.png"); /* Reemplaza con tu imagen */
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  opacity: 0.6;
+  z-index: -2;
+}
+
+/* Contenedor de proyectos general (para Diseño y Ilustración) */
+.contenedor-proyectos {
+  display: grid;
+  grid-template-columns: 0.8fr 2fr; /* Columna para lista y columna para contenido */
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 30px rgba(147, 208, 249, 0.2);
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: visible;
+  align-items: stretch;
+}
+
+/* Estilo para el listado de proyectos (similar a WinForms ListBox) */
+.listado-proyectos {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #69cddf;
+  border-radius: 8px;
+  padding: 1rem;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #239ad1 transparent;
+}
+
+.listado-proyectos h3 {
+  font-family: "Symtext", sans-serif;
+  font-size: 1.3rem;
+  color: #f0f0f0;
+  margin-bottom: 1rem;
+  opacity: 0.85;
+  text-align: center;
+}
+
+.listado-proyectos ul {
+  list-style: none;
+  padding: 0;
+}
+
+.listado-proyectos .proyecto-item {
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.3rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.listado-proyectos .proyecto-item:hover {
+  background-color: rgba(147, 183, 249, 0.1);
+  box-shadow: 0 0 8px rgba(147, 183, 249, 0.3);
+}
+
+.listado-proyectos .proyecto-item.activo {
+  background-color: #239ad1;
+  color: #111;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(174, 187, 246, 0.7);
+  border: 1px solid #69cddf;
+}
+
+.listado-proyectos .proyecto-item.activo::before {
+  content: "➡️ ";
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #111;
+  font-size: 1.2em;
+}
+
+.listado-proyectos .proyecto-item .proyecto-nombre {
+  display: block;
+  font-size: 1.1em;
+  margin-left: 20px;
+}
+
+.listado-proyectos .proyecto-item .proyecto-subtitulo-lista {
+  display: block;
+  font-size: 0.85em;
+  color: rgba(240, 240, 240, 0.7);
+  margin-left: 20px;
+  margin-top: 0.2em;
+}
+
+.listado-proyectos .proyecto-item.activo .proyecto-subtitulo-lista {
+  color: rgba(17, 17, 17, 0.7);
+}
+
+/* Contenido del proyecto seleccionado (para Diseño) */
+.contenido-proyecto {
+  display: grid;
+  grid-template-areas:
+    "info visor"
+    "elementos elementos";
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  height: 100%;
+  align-items: stretch;
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(147, 183, 249, 0.08);
+}
+
+.info-proyecto {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(147, 183, 249, 0.06);
+}
+
+.info-proyecto .icono-wrapper {
+  width: 110px;
+  height: 110px;
+  margin-bottom: 1rem;
+}
+
+#iconoPersonaje {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(147, 217, 249, 0.4);
+  animation: salto 0.5s ease-out forwards;
+}
+
+.datos-personaje {
+  color: #69cddf;
+  font-size: 1rem;
+  line-height: 1.6;
+  width: 100%;
+  text-align: left;
+}
+
+.datos-personaje h4 {
+  font-size: 1.4rem; /* Reduced from 1.5rem */
+  margin-bottom: 0.5rem;
+}
+
+.datos-personaje p {
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+#subtituloPersonaje {
+  margin-bottom: 1.2rem;
+}
+
+.habilidades-list ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  font-size: 0.9em;
+  color: #b0c4de;
+}
+
+.habilidades-list li {
+  margin-bottom: 0.3rem;
+  padding-left: 1.2em;
+  position: relative;
+}
+
+.habilidades-list li::before {
+  content: "•";
+  color: #69cddf;
+  position: absolute;
+  left: 0;
+}
+
+.visor-elements {
+  grid-area: visor;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(147, 183, 249, 0.08);
+  padding: 1rem;
+}
+
+.iframe-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px #239ad1; /* Default shadow */
+  transition: box-shadow 0.6s ease-in-out; /* Smooth transition for glow */
+}
+
+.iframe-wrapper.iluminando {
+  animation: glowFade 0.6s ease-in-out forwards;
+}
+
+#modeloPersonaje {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: opacity 0.4s ease, transform 0.3s ease;
+}
+
+#modeloPersonaje:hover {
+  transform: scale(1.02);
+}
+
+.nombre-elemento-visor {
+  font-size: 1.1rem;
+  color: #69cddf;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.navegacion-elementos {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.boton-rotador {
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  color: #69cddf;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.boton-rotador:hover {
+  transform: scale(1.2);
+  color: #239ad1;
+}
+
+.listado-elementos-proyecto {
+  grid-area: elementos;
+  background-color: rgba(255, 255, 255, 0.02);
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(147, 183, 249, 0.05);
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #69cddf transparent;
+}
+
+#thumbnailsPersonajes {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  padding-bottom: 0.5rem;
+  overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  align-items: center;
+}
+
+.thumbnail-personaje {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  transition: transform 0.3s, box-shadow 0.3s;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+}
+
+.thumbnail-personaje:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #69cddf;
+  border-color: #69cddf;
+}
+
+.thumbnail-personaje.activo {
+  border: 2px solid #69cddf;
+  box-shadow: 0 0 15px rgba(147, 183, 249, 0.7);
+}
+
+/* ================================
+ 🖼️ SECCIÓN ILUSTRACIÓN (NUEVOS ESTILOS)
+================================ */
+
+/* Contenedor de proyectos para Ilustración */
+#dibujo .contenedor-proyectos {
+  grid-template-columns: 0.8fr 2fr; /* Listado y el nuevo wrapper */
+  grid-template-areas: none; /* Resetear áreas de la grilla */
+}
+
+/* Nuevo contenedor para el visor y la información */
+.ilustracion-content-wrapper {
+  display: grid; /* Cambiado a grid para control de columnas */
+  grid-template-columns: 3fr 2fr; /* Dos columnas en escritorio */
+  gap: 2rem; /* Espacio entre el visor y la info */
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(147, 183, 249, 0.08);
+  height: 100%; /* Asegura que ocupe la altura disponible en la grilla */
+  align-items: stretch; /* Alinea los elementos para que tengan la misma altura */
+}
+
+.visor-ilustracion {
+  position: relative; /* Para posicionar las cartas */
+  display: flex;
+  flex-direction: column; /* Apila la imagen principal y el stack de cartas */
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2); /* Fondo sutil para el visor */
+  border-radius: 10px;
+  box-shadow: inset 0 0 15px rgba(147, 183, 249, 0.1);
+  aspect-ratio: 4 / 3; /* Fixed aspect ratio for consistent size on desktop */
+  overflow: hidden; /* Para contener las cartas */
+  min-height: 550px; /* Altura mínima para el visor en móvil, aumentada */
+  max-width: 100%; /* Asegura que el visor ocupe todo el ancho disponible */
+}
+
+.ilustracion-card-stack {
+  position: absolute; /* Posicionamiento absoluto para el efecto 3D en desktop */
+  min-width: 100%; /* Ocupa el 100% del ancho del visor */
+  min-height: 100%; /* Ocupa el 100% del alto del visor */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1500px; /* Para el efecto 3D */
+  z-index: 1; /* Lower z-index than the main illustration */
+}
+
+.ilustracion-card {
+  position: absolute;
+  max-width: 40%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  background-color: #222;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  pointer-events: auto;
+}
+
+.ilustracion-card img {
+  min-width: 100%;
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+/* Ajustes de transformaciones 3D para móviles */
+.ilustracion-card.prev-1 {
+  transform: translateX(-85%) rotateY(25deg) scale(0.8); /* Ajustado para mayor separación y visibilidad */
+  z-index: 4;
+}
+.ilustracion-card.prev-2 {
+  transform: translateX(-105%) rotateY(30deg) scale(0.5); /* Ajustado para mayor separación y clicabilidad */
+  z-index: 3;
+}
+
+.ilustracion-card.next-1 {
+  transform: translateX(85%) rotateY(-25deg) scale(0.8); /* Ajustado para mayor separación y visibilidad */
+  z-index: 4;
+}
+.ilustracion-card.next-2 {
+  transform: translateX(105%) rotateY(-30deg) scale(0.5); /* Ajustado para mayor separación y clicabilidad */
+  z-index: 3;
+}
+
+/* Main illustration styling */
+.ilustracion-principal {
+  position: absolute; /* Posicionamiento absoluto para el efecto 3D en desktop */
+  max-width: 80%; /* Aumentado para mayor prominencia en móvil */
+  max-height: 100%; /* Tamaño relativo al visor */
+  width: auto;
+  height: auto;
+  object-fit: contain; /* Asegura que la imagen se ajuste completamente dentro del contenedor */
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(147, 183, 249, 0.6); /* Prominent shadow */
+  border: 2px solid #69cddf; /* Border for the main image */
+  z-index: 10; /* Ensure it's on top */
+  cursor: pointer; /* Indicate it's clickable */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ilustracion-principal:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px rgba(147, 183, 249, 0.8);
+}
+
+.ilustracion-principal.pulse-active {
+  animation: quickPulse 0.3s ease-out;
+}
+
+@keyframes quickPulse {
+  0% {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.ilustracion-card.hidden {
+  opacity: 0;
+  transform: scale(0.7);
+  pointer-events: none; /* No interactuable */
+}
+
+.info-ilustracion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alineado a la izquierda */
+  text-align: left; /* Justificar texto a la izquierda */
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(147, 183, 249, 0.06);
+  max-width: 100%; /* Ajusta el ancho al contenido */
+  max-height: 100%; /* Evita que se desborde en pantallas pequeñas */
+}
+
+.info-ilustracion h4 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: #69cddf;
+  text-align: right; /* Alineado a la derecha */
+  width: 100%; /* Asegura que ocupe todo el ancho para la alineación */
+}
+
+.info-ilustracion h5 {
+  font-size: 1.2rem; /* Tamaño para h5 */
+  margin-bottom: 1rem; /* Espacio debajo de h5 */
+  color: #239ad1; /* Color para h5 */
+  text-align: right; /* Alineado a la derecha */
+  width: 100%; /* Asegura que ocupe todo el ancho para la alineación */
+}
+
+.info-ilustracion p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0.6rem;
+  color: #f0f0f0;
+  text-align: left;
+}
+
+.descripcion-justificada {
+  text-align: justify; /* Justificar el texto */
+}
+
+/* ================================
+ 💡 LIGHTBOX GLOBAL
+================================ */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+  backdrop-filter: blur(8px); /* Efecto blur */
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: scaleY(0); /* Start closed for blinds effect */
+  transform-origin: center center;
+  transition: transform 0.3s ease-out, backdrop-filter 0.3s ease,
+    opacity 0.3s ease, visibility 0.3s ease; /* Faster transition */
+}
+
+.lightbox-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scaleY(1); /* Open blinds */
+}
+
+.lightbox-content {
+  /* Removed background, padding, shadows for a more integrated look */
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+
+  /* Grid layout for large screens */
+  display: grid;
+  grid-template-columns: 0.2fr 2fr 1fr 0.2fr; /* More space for image, less for info, empty columns for padding */
+  grid-template-rows: auto 1fr auto; /* Close button row, Content row, Nav row */
+  grid-template-areas:
+    ". . close-btn ."
+    ". image info ."
+    ". nav nav ."; /* Arrows span full width at bottom */
+  gap: 2rem; /* Gap between image and info */
+  align-items: center; /* Center vertically within grid cells */
+  justify-items: center; /* Center horizontally within grid cells */
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto; /* Keep scroll for content */
+  transform: none; /* Remove previous scaling animation */
+  opacity: 1; /* Keep visible once overlay is active */
+  transition: none; /* Remove previous transition */
+
+  /* Custom scrollbar for lightbox content */
+  scrollbar-width: thin;
+  scrollbar-color: #69cddf transparent;
+}
+
+.lightbox-content::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.lightbox-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.lightbox-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #69cddf, #239ad1);
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(147, 217, 249, 0.4);
+}
+.lightbox-content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, #239ad1, #69cddf);
+}
+
+.lightbox-close {
+  grid-area: close-btn;
+  position: absolute; /* Absolute positioning within overlay */
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 2.5rem; /* Slightly larger for emoji */
+  color: #69cddf;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+  z-index: 2002; /* Higher z-index to be on top */
+}
+
+.lightbox-close:hover {
+  transform: rotate(90deg) scale(1.1);
+  color: #fff;
+}
+
+.lightbox-image {
+  grid-area: image;
+  max-width: 100%;
+  max-height: 100%; /* Allow image to fill grid area */
+  width: auto; /* Allow natural width */
+  height: auto; /* Allow natural height */
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(174, 187, 246, 0.5);
+  margin-bottom: 0; /* Remove margin-bottom */
+  justify-self: center; /* Center horizontally within its grid cell */
+  align-self: center; /* Center vertically within its grid cell */
+}
+
+.lightbox-nav {
+  grid-area: nav;
+  display: flex;
+  justify-content: center; /* Center arrows at the bottom */
+  gap: 2rem;
+  margin-top: 1rem; /* Add margin from info/image */
+  width: 100%; /* Ensure it spans the grid area */
+}
+
+.lightbox-arrow {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: #69cddf;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.lightbox-arrow:hover {
+  transform: scale(1.1);
+  color: #fff;
+}
+
+.lightbox-info {
+  grid-area: info;
+  text-align: left; /* Alineado a la izquierda */
+  align-items: flex-start; /* Alineado a la izquierda */
+  margin-top: 0; /* Remove margin-top */
+  padding-right: 1rem; /* Add some padding to the right */
+}
+
+.lightbox-info h4 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: #69cddf;
+  text-align: right; /* Alineado a la derecha */
+  width: 100%; /* Asegura que ocupe todo el ancho para la alineación */
+}
+
+.lightbox-info h5 {
+  font-size: 1.2rem; /* Tamaño para h5 */
+  margin-bottom: 1rem; /* Espacio debajo de h5 */
+  color: #239ad1; /* Color para h5 */
+  text-align: right; /* Alineado a la derecha */
+  width: 100%; /* Asegura que ocupe todo el ancho para la alineación */
+}
+
+.lightbox-info p {
+  font-size: 0.95rem; /* Slightly increased from 0.9rem */
+  color: #f0f0f0;
+  line-height: 1.5;
+}
+
+/* ================================
+ 🚀 VIDEOJUEGOS (EXISTENTE)
+================================ */
+.layout-juegos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: nowrap;
+}
+
+.flecha {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #93d0f9;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.contenedor-juego {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-info {
+  width: 100%;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+#iconoJuego {
+  width: 100px; /* Reducido */
+  height: 100px; /* Reducido */
+  object-fit: contain;
+  opacity: 0.8; /* Ligeramente más discreto */
+}
+
+.panel-info h4 {
+  font-size: 1.3rem; /* Reducido */
+  opacity: 0.9; /* Ligeramente más discreto */
+}
+
+.panel-info p {
+  font-size: 0.9rem; /* Reducido */
+  opacity: 0.7; /* Más discreto */
+}
+
+.panel-juego {
+  flex-grow: 1;
+  max-width: 950px;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px #239ad1;
+  background-color: #000;
+}
+
+.panel-juego iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Fondo desenfocado de Videojuegos */
+#videojuegos::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../assets/fondoVideojuegos.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  opacity: 0.6;
+  z-index: -2;
+}
+
+/* ================================
+ 📨 FORMULARIO
+================================ */
+.contacto-formulario button:hover {
+  background-color: #69cddf;
+}
+.contacto-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Formulario */
+.contacto-formulario {
+  flex: 1 1 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contacto-formulario input,
+.contacto-formulario textarea {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.contacto-formulario button {
+  background-color: #239ad1;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 5px;
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Info del perfil */
+.contacto-info {
+  flex: 1 1 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+/* Foto circular principal */
+.foto-principal img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 8px #93d0f9;
+}
+
+/* Foto secundaria más pequeña */
+.foto-secundaria img {
+  /* width: 80px; */
+  height: 60px;
+  /* border-radius: 50%; */
+  object-fit: cover;
+  opacity: 0.7;
+}
+
+/* Fila con nombre y correo */
+.fila-doble {
+  display: flex;
+  gap: 1rem;
+}
+
+.fila-doble .campo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mensaje ocupa todo el ancho */
+.fila-unica {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-me-text {
+  text-align: justify; /* Justificado */
+  margin-top: 1rem;
+  padding: 0 1rem;
+  color: #e0e0e0;
+  line-height: 1.7;
+  font-size: 0.95em;
+  hyphens: auto; /* Añadido para mejorar la justificación */
+  -webkit-hyphens: auto; /* Para compatibilidad con Webkit */
+  -moz-hyphens: auto; /* Para compatibilidad con Mozilla */
+}
+
+.about-me-text p {
+  margin-bottom: 1em;
+}
+
+/* ================================
+ ✨ INTRO OVERLAY (ANIMACIÓN DE CARGA)
+================================ */
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #111;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.puerta {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 2px solid #69cddf;
+  animation: giro 2s ease-out forwards;
+  display: flex; /* Añadido para centrar el cierre */
+  align-items: center; /* Añadido para centrar el cierre */
+  justify-content: center; /* Añadido para centrar el cierre */
+}
+
+.cierre {
+  position: absolute; /* Cambiado de relative a absolute */
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #239ad1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px rgba(174, 187, 246, 0.7); /* Sombra añadida */
+}
+
+/* Animación de giro */
+@keyframes giro {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Puertas laterales simuladas */
+.intro-overlay::before,
+.intro-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #111;
+  z-index: 1999;
+  animation: abrirPuertas 2s ease-in-out forwards;
+}
+
+.intro-overlay::before {
+  left: 0;
+}
+.intro-overlay::after {
+  right: 0;
+}
+
+@keyframes abrirPuertas {
+  0% {
+    width: 50%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+/* 🌟 ANIMACIONES EXTRA (GLOBALES) */
+@keyframes salto {
+  0% {
+    transform: translateY(10px) scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulsoRender {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes glowVisor {
+  0% {
+    box-shadow: 0 0 0px transparent;
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 0 20px #69cddf;
+    filter: brightness(1.4);
+  }
+  100% {
+    box-shadow: 0 0 0px transparent;
+    filter: brightness(1);
+  }
+}
+
+@keyframes pulseFrame {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#modeloPersonaje.pulsando {
+  animation: pulseFrame 0.6s ease-out;
+}
+
+#modeloPersonaje.iluminando {
+  animation: glowVisor 0.6s ease-out;
+}
+.iluminando {
+  animation: glowFade 0.6s ease-in-out;
+}
+
+@keyframes glowFade {
+  0% {
+    box-shadow: 0 0 25px #239ad1;
+  }
+  50% {
+    box-shadow: 0 0 40px #93d0f9;
+  }
+  100% {
+    box-shadow: 0 0 15px #239ad1;
+  }
+}
+/* ================================
+ 🦶 FOOTER
+================================ */
+footer {
+  text-align: center;
+  padding: 1.2em 0;
+  background: #000;
+  font-size: 0.85em;
+  color: #999;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 30px;
+}
+
+/* ================================
+ 📱 RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .nombre-estilo .nombre {
+    font-size: 1.3rem;
+  }
+
+  .nombre-estilo .apellido {
+    font-size: 0.9rem;
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  .nav-desktop {
+    display: none;
+  }
+
+  /* .hamburguesa se ha eliminado */
+
+  main section {
+    padding: 100px 1.5em 60px;
+  }
+
+  h2 {
+    font-size: 2em;
+    margin-bottom: 1.5rem;
+  }
+
+  .galeria {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .galeria img {
+    max-width: 90%;
+  }
+
+  .arrow {
+    font-size: 2rem;
+    bottom: 40px;
+  }
+
+  /* Animación por item en el menú lateral */
+  .sidebar ul li:nth-child(1) {
+    --i: 1;
+  }
+  .sidebar ul li:nth-child(2) {
+    --i: 2;
+  }
+  .sidebar ul li:nth-child(3) {
+    --i: 3;
+  }
+  .sidebar ul li:nth-child(4) {
+    --i: 4;
+  }
+  .sidebar ul li:nth-child(5) {
+    --i: 5;
+  }
+
+  .contenedor-proyectos {
+    grid-template-columns: 1fr; /* Una sola columna en móvil */
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .listado-proyectos {
+    max-height: 250px; /* Altura más pequeña para la lista en móvil */
+  }
+
+  .contenido-proyecto {
+    grid-template-areas:
+      "info"
+      "visor"
+      "elementos";
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .info-proyecto {
+    padding: 0.8rem;
+  }
+
+  .visor-elements {
+    padding: 0.8rem;
+  }
+
+  #modeloPersonaje {
+    width: 250px; /* Mantener tamaño fijo para el modelo en móvil */
+    height: 250px; /* Mantener tamaño fijo para el modelo en móvil */
+    max-width: 100%; /* Asegurar que no se desborde */
+  }
+
+  .listado-elementos-proyecto {
+    padding: 0.8rem;
+    display: flex; /* Cambiar a flex para scroll horizontal */
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #69cddf transparent;
+  }
+
+  #thumbnailsPersonajes {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    max-height: none; /* Eliminar altura máxima para flex horizontal */
+    overflow-y: visible; /* Permitir que las miniaturas se muestren */
+  }
+
+  .thumbnail-personaje {
+    width: 80px; /* Original de .personajes-lista img en móvil */
+    height: 80px; /* Original de .personajes-lista img en móvil */
+    flex-shrink: 0; /* Evitar que se encojan */
+    scroll-snap-align: center;
+  }
+
+  .boton-rotador {
+    font-size: 2rem;
+  }
+
+  .layout-juegos {
+    flex-direction: column;
+  }
+
+  .contenedor-juego {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .panel-juego {
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .panel-info {
+    max-width: 100%;
+  }
+
+  .flecha {
+    margin-top: 1rem;
+  }
+
+  .fila-doble {
+    flex-direction: column;
+  }
+
+  .contacto-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contacto-formulario,
+  .contacto-info {
+    max-width: 100%;
+  }
+
+  /* Responsive para Ilustración */
+  #dibujo .contenedor-proyectos {
+    grid-template-columns: 1fr; /* Una sola columna en móvil */
+    grid-template-areas: none; /* Resetear áreas de la grilla */
+  }
+
+  .ilustracion-content-wrapper {
+    grid-template-columns: 1fr; /* Una sola columna en móvil */
+    gap: 1rem; /* Espacio entre el visor y la info en móvil */
+    padding: 1rem; /* Reducir padding en móvil */
+  }
+
+  .visor-ilustracion {
+    min-height: 550px; /* Altura mínima para el visor en móvil, aumentada */
+    aspect-ratio: auto; /* Remover aspect ratio fijo */
+  }
+
+  .ilustracion-card-stack {
+    /* Mantiene el posicionamiento absoluto y el efecto 3D */
+    overflow-x: hidden; /* Asegura que no haya scroll */
+    white-space: normal;
+    scroll-snap-type: none;
+    -webkit-overflow-scrolling: auto;
+    gap: 0;
+    padding: 0;
+  }
+
+  .ilustracion-card {
+    /* Mantiene el posicionamiento absoluto y el efecto 3D */
+    max-width: 50%; /* Tamaño ajustado para móvil, porcentaje del visor */
+    max-height: 95%; /* Tamaño ajustado para móvil, porcentaje del visor */
+  }
+
+  /* Ajustes de transformaciones 3D para móviles */
+  .ilustracion-card.prev-1 {
+    transform: translateX(-65%) rotateY(25deg) scale(0.8); /* Ajustado para mayor separación y visibilidad */
+    z-index: 4;
+  }
+  .ilustracion-card.prev-2 {
+    transform: translateX(-85%) rotateY(30deg) scale(0.5); /* Ajustado para mayor separación y clicabilidad */
+    z-index: 3;
+  }
+
+  .ilustracion-card.next-1 {
+    transform: translateX(65%) rotateY(-25deg) scale(0.8); /* Ajustado para mayor separación y visibilidad */
+    z-index: 4;
+  }
+  .ilustracion-card.next-2 {
+    transform: translateX(85%) rotateY(-30deg) scale(0.5); /* Ajustado para mayor separación y clicabilidad */
+    z-index: 3;
+  }
+
+  .ilustracion-principal {
+    /* Mantiene el posicionamiento absoluto y el efecto 3D */
+    max-width: 80%; /* Tamaño ajustado para móvil, porcentaje del visor */
+    max-height: 100%; /* Tamaño ajustado para móvil, porcentaje del visor */
+  }
+
+  .info-ilustracion {
+    text-align: center; /* Centrar texto en móvil */
+    align-items: center;
+  }
+
+  .lightbox-content {
+    /* Mobile specific grid for lightbox */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto; /* Close, Image, Nav, Info */
+    grid-template-areas:
+      "close-btn"
+      "image"
+      "nav"
+      "info"; /* Reordered for mobile */
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .lightbox-image {
+    max-height: 70vh; /* Make image much larger on mobile */
+    width: 100%; /* Allow image to take full width */
+  }
+
+  .lightbox-close {
+    position: static; /* Reset to static for grid flow */
+    justify-self: end; /* Align to the right within its grid area */
+    align-self: start;
+    margin-bottom: 0; /* Remove negative margin */
+  }
+
+  .lightbox-arrow {
+    font-size: 2rem;
+  }
+}
+
+/* ================================
+🎨 Scroll personalizado para .listado-proyectos y .listado-elementos-proyecto
+================================ */
+.listado-proyectos::-webkit-scrollbar,
+.listado-elementos-proyecto::-webkit-scrollbar {
+  height: 8px; /* Altura del scroll horizontal */
+  width: 8px; /* Ancho del scroll vertical */
+}
+
+.listado-proyectos::-webkit-scrollbar-track,
+.listado-elementos-proyecto::-webkit-scrollbar-track {
+  background: transparent; /* Fondo invisible */
+}
+
+.listado-proyectos::-webkit-scrollbar-thumb,
+.listado-elementos-proyecto::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to right,
+    #69cddf,
+    #239ad1
+  ); /* Color tipo sistema */
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(147, 217, 249, 0.4); /* Sombra elegante */
+}
+
+.listado-proyectos::-webkit-scrollbar-thumb:hover,
+.listado-elementos-proyecto::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to right,
+    #239ad1,
+    #69cddf
+  ); /* Reverso al pasar el ratón */
+}
+
+/* Firefox */
+.listado-proyectos,
+.listado-elementos-proyecto {
+  scrollbar-width: thin;
+  scrollbar-color: #69cddf transparent;
+}
