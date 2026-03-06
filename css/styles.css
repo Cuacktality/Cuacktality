@@ -1018,6 +1018,7 @@ main section > h2::after {
   clip-path: var(--clip-card);
   overflow: hidden;
   position: relative;
+  min-height: 620px;
 }
 
 /* ── Dial
@@ -1210,7 +1211,7 @@ main section > h2::after {
 /* Canvas */
 .tablet-canvas {
   flex: 1;
-  height: 520px;
+  height: 620px;
   position: relative;
   background: #060a10;
   overflow: hidden;
@@ -1269,7 +1270,7 @@ main section > h2::after {
 }
 
 .canvas-image {
-  max-width: 100%;
+  max-width: 80%;
   max-height: 100%;
   width: auto;
   height: auto;
@@ -1301,7 +1302,7 @@ main section > h2::after {
 
 /* Panel de detalles — derecha del canvas */
 .tablet-details {
-  width: 240px;
+  width: 320px;
   flex-shrink: 0;
   background: var(--bg-deep);
   border-left: 1px solid rgba(255, 107, 43, 0.15);
@@ -2361,7 +2362,7 @@ footer {
 /* ── 1280px — detalles de ilustración más angostos ── */
 @media (max-width: 1280px) {
   .tablet-details {
-    width: 200px;
+    width: 320px;
   }
 }
 

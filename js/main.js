@@ -63,73 +63,78 @@ const observer = new IntersectionObserver(
     entradas.forEach((entrada) => {
       if (entrada.isIntersecting) {
         entrada.target.classList.add("mostrar");
+        console.log("Mostrando sección Intersección:", entrada.target.id);
       } else {
         entrada.target.classList.remove("mostrar"); // Ocultar al salir de la vista
+        console.log("Mostrando sección:", entrada.target.id);
       }
     });
   },
   {
     threshold: 0.15, // porcentaje de visibilidad que activa el efecto
-  }
+  },
 );
 
 secciones.forEach((seccion) => {
   observer.observe(seccion);
+  console.log("Observando sección:", seccion.id);
 });
 
 // js/software.js  (o al final de main.js)
 
 const SOFTWARE_PROJECTS = {
   PROJ_001: {
-    nombre: 'ACTivamente',
-    imagen: 'assets/software/activamente.png', // tu screenshot/imagen
+    nombre: "ACTivamente",
+    imagen: "assets/software/activamente.png", // tu screenshot/imagen
     logs: [
-      '> init ACTivamente.project',
-      '> loading Unity 2022 LTS...',
-      '[ OK ] PlayFab SDK conectado',
-      '[ OK ] 6 islas cargadas',
-      '[ OK ] Sistema de jardín: ONLINE',
-      '> BUILD READY — Android APK',
-    ]
+      "> init ACTivamente.project",
+      "> loading Unity 2022 LTS...",
+      "[ OK ] PlayFab SDK conectado",
+      "[ OK ] 6 islas cargadas",
+      "[ OK ] Sistema de jardín: ONLINE",
+      "> BUILD READY — Android APK",
+    ],
   },
   PROJ_002: {
-    nombre: 'Epimoni RDA FHIR',
-    imagen: 'assets/software/epimoni.png',
+    nombre: "Epimoni RDA FHIR",
+    imagen: "assets/software/epimoni.png",
     logs: [
-      '> init Epimoni.RDA',
-      '> loading HL7 FHIR R4...',
-      '[ OK ] Bundle FHIR generado',
-      '[ OK ] Validación Minsalud: PASS',
-      '[ OK ] Endpoint ASP.NET activo',
-      '> DEPLOY — Producción',
-    ]
+      "> init Epimoni.RDA",
+      "> loading HL7 FHIR R4...",
+      "[ OK ] Bundle FHIR generado",
+      "[ OK ] Validación Minsalud: PASS",
+      "[ OK ] Endpoint ASP.NET activo",
+      "> DEPLOY — Producción",
+    ],
   },
   PROJ_003: {
-    nombre: 'Unity Game Tools',
-    imagen: 'assets/software/unitytools.png',
+    nombre: "Unity Game Tools",
+    imagen: "assets/software/unitytools.png",
     logs: [
-      '> init UnityTools.suite',
-      '> loading módulos...',
-      '[ OK ] AES Encryption: ACTIVO',
-      '[ OK ] UIPanel Manager: LISTO',
-      '[ OK ] Android Notifications: OK',
-      '> SUITE COMPLETA — v2.6',
-    ]
-  }
+      "> init UnityTools.suite",
+      "> loading módulos...",
+      "[ OK ] AES Encryption: ACTIVO",
+      "[ OK ] UIPanel Manager: LISTO",
+      "[ OK ] Android Notifications: OK",
+      "> SUITE COMPLETA — v2.6",
+    ],
+  },
 };
 
 let isAnimating = false;
 
-document.querySelectorAll('.software-card').forEach(card => {
-  card.addEventListener('click', () => {
+document.querySelectorAll(".software-card").forEach((card) => {
+  card.addEventListener("click", () => {
     if (isAnimating) return;
-    const id = card.getAttribute('data-id');
+    const id = card.getAttribute("data-id");
     const project = SOFTWARE_PROJECTS[id];
     if (!project) return;
 
     // Highlight card activa
-    document.querySelectorAll('.software-card').forEach(c => c.classList.remove('activo'));
-    card.classList.add('activo');
+    document
+      .querySelectorAll(".software-card")
+      .forEach((c) => c.classList.remove("activo"));
+    card.classList.add("activo");
 
     animarCargaProyecto(project);
   });
@@ -137,11 +142,17 @@ document.querySelectorAll('.software-card').forEach(card => {
 
 async function animarCargaProyecto(project) {
   isAnimating = true;
-  const logsContainer = document.querySelector('.terminal-logs');
-  const body = document.querySelector('.terminal-body');
+  const logsContainer = document.querySelector(".terminal-logs");
+  const body = document.querySelector(".terminal-body");
+
+  const softwareSection = document.getElementById("software");
+  if (softwareSection) {
+    softwareSection.classList.add("mostrar");
+    softwareSection.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 
   // Limpiar logs
-  logsContainer.innerHTML = '';
+  logsContainer.innerHTML = "";
 
   // Mostrar estado "cargando" en el body
   body.innerHTML = `
@@ -154,11 +165,11 @@ async function animarCargaProyecto(project) {
   // Animar cada línea de log con delay
   for (const linea of project.logs) {
     await delay(320);
-    const div = document.createElement('div');
-    div.classList.add('terminal-line');
-    div.innerHTML = linea.startsWith('[ OK ]')
+    const div = document.createElement("div");
+    div.classList.add("terminal-line");
+    div.innerHTML = linea.startsWith("[ OK ]")
       ? `<span class="terminal-output">${linea}</span>`
-      : `<span class="terminal-prompt">DC@portfolio:~$</span><span class="terminal-cmd"> ${linea.replace('> ', '')}</span>`;
+      : `<span class="terminal-prompt">DC@portfolio:~$</span><span class="terminal-cmd"> ${linea.replace("> ", "")}</span>`;
     logsContainer.appendChild(div);
     logsContainer.scrollTop = logsContainer.scrollHeight;
   }
@@ -176,8 +187,8 @@ async function animarCargaProyecto(project) {
   `;
 
   // Agregar cursor al final de logs
-  const cursor = document.createElement('div');
-  cursor.classList.add('terminal-line');
+  const cursor = document.createElement("div");
+  cursor.classList.add("terminal-line");
   cursor.innerHTML = `<span class="terminal-prompt">DC@portfolio:~$</span><span class="terminal-cursor"></span>`;
   logsContainer.appendChild(cursor);
 
@@ -185,5 +196,5 @@ async function animarCargaProyecto(project) {
 }
 
 function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
