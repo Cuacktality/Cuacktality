@@ -95,6 +95,9 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 70px;
+  /* FIX: evita desbordamiento horizontal global */
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -104,6 +107,8 @@ body {
   font-weight: 400;
   line-height: 1.6;
   overflow-x: hidden;
+  /* FIX: garantiza que el body nunca exceda el viewport */
+  max-width: 100vw;
 }
 
 body::before {
@@ -114,6 +119,12 @@ body::before {
   pointer-events: none;
   z-index: 9999;
   opacity: 0.4;
+}
+
+/* FIX: contenedor principal también contiene desbordamientos */
+main {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* ── 04. INTRO OVERLAY ──────────────────────────────────────── */
@@ -240,7 +251,6 @@ header::after {
   transition: all 0.25s;
 }
 
-/* hover base — sobreescrito por colores de sección abajo */
 .nav-desktop a:hover {
   color: var(--cyan);
   border-color: var(--border-cyan);
@@ -314,12 +324,14 @@ header::after {
   top: 64px;
   left: -280px;
   width: 280px;
-  height: calc(100vh - 64px);
+  /* FIX: altura completa desde donde empieza, no solo 100vh - 64px */
+  height: 100%;
   background: rgba(4, 6, 10, 0.97);
   border-right: 1px solid var(--border-cyan);
   z-index: 999;
   transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 24px 0;
+  overflow-y: auto;
 }
 
 .sidebar.open {
@@ -374,7 +386,10 @@ header::after {
 .filtro-oscuro {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(4, 6, 10, 0.2) 0%, rgba(4, 6, 10, 0.5) 60%, rgba(4, 6, 10, 0.95) 100%);
+  background: linear-gradient(180deg,
+      rgba(4, 6, 10, 0.2) 0%,
+      rgba(4, 6, 10, 0.5) 60%,
+      rgba(4, 6, 10, 0.95) 100%);
 }
 
 .hero::after {
@@ -466,7 +481,6 @@ header::after {
 }
 
 /* ── 08. SECCIONES — COMÚN ──────────────────────────────────── */
-/* Alto estándar de cada sección-widget: 620px               */
 .section {
   opacity: 0;
   transform: translateY(40px);
@@ -482,6 +496,9 @@ main section {
   padding: 50px 60px;
   min-height: 100vh;
   position: relative;
+  /* FIX: cada sección también contiene sus hijos */
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .titulo-seccion,
@@ -532,7 +549,6 @@ main section>h2::after {
   clip-path: var(--clip-card);
   overflow: hidden;
   min-height: 620px;
-  /* ← estándar */
 }
 
 /* Titlebar */
@@ -740,12 +756,9 @@ main section>h2::after {
   pointer-events: none;
 }
 
-/* FIX: min-height y max-height eran contradictorios (620 vs 400).
-   La imagen se adapta al canvas-area flexible. */
 .canvas-render {
   max-width: 85%;
   max-height: 520px;
-  /* ← corregido: un solo límite coherente */
   object-fit: contain;
   position: relative;
   z-index: 1;
@@ -758,6 +771,7 @@ main section>h2::after {
   filter: brightness(1.15) drop-shadow(0 0 24px var(--cyan));
 }
 
+/* FIX: el ring se escala con transform pero overflow:hidden en .canvas-area lo contiene */
 .canvas-selection-ring {
   position: absolute;
   width: 200px;
@@ -1050,7 +1064,6 @@ main section>h2::after {
   overflow: hidden;
   position: relative;
   min-height: 620px;
-  /* ← estándar */
 }
 
 /* Dial — esquina superior izquierda, 160×160px */
@@ -1097,7 +1110,6 @@ main section>h2::after {
   border-radius: 2px;
   box-shadow: 0 0 6px var(--orange);
   transform-origin: 50% 36px;
-  /* dial 82px: center=41, top=5 → 41-5=36 */
   animation: dial-spin 8s linear infinite;
 }
 
@@ -1132,7 +1144,7 @@ main section>h2::after {
   min-height: 0;
 }
 
-/* Botones — 2 columnas, padding-top = dial (160px) + 10px separación */
+/* Botones — 2 columnas, padding-top = dial (160px) + 10px */
 .tablet-buttons {
   width: 160px;
   background: var(--bg-deep);
@@ -1228,7 +1240,7 @@ main section>h2::after {
   color: rgba(255, 107, 43, 0.7);
 }
 
-/* Canvas central — altura fija = estándar */
+/* Canvas central */
 .tablet-canvas {
   flex: 1;
   height: 620px;
@@ -1325,7 +1337,7 @@ main section>h2::after {
   animation: pixel-blink 2.5s step-end infinite;
 }
 
-/* Panel de detalles — derecha del canvas en desktop */
+/* Panel de detalles */
 .tablet-details {
   width: 320px;
   flex-shrink: 0;
@@ -1382,7 +1394,7 @@ main section>h2::after {
   font-weight: 300;
 }
 
-/* Statusbar — padding-left = tablet-buttons (160px) + gap (16px) */
+/* Statusbar tablet — padding-left = tablet-buttons (160px) + gap (16px) */
 .tablet-statusbar {
   display: flex;
   align-items: center;
@@ -1454,7 +1466,7 @@ main section>h2::after {
   border-color: rgba(255, 107, 43, 0.5);
 }
 
-/* Lightbox fullscreen — vive fuera de <section> para no heredar transform */
+/* Lightbox fullscreen ilustración */
 .tablet-lightbox {
   position: fixed;
   inset: 0;
@@ -1561,7 +1573,6 @@ main section>h2::after {
 
 /* ══════════════════════════════════════════════════════════════
    11. VIDEOJUEGOS — Arcade Cabinet   (acento: blue)
-   Alto total ≈ 620px: marquee(44) + carousel(112) + screen(480) - no es 100% estándar pero sí consistente
    ══════════════════════════════════════════════════════════════ */
 #videojuegos {
   background: var(--bg-void);
@@ -1902,7 +1913,9 @@ main section>h2::after {
 .idle-grid {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(rgba(26, 110, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(26, 110, 255, 0.04) 1px, transparent 1px);
+  background-image:
+    linear-gradient(rgba(26, 110, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 110, 255, 0.04) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -2035,7 +2048,6 @@ main section>h2::after {
   min-width: 0;
   padding: 15px;
   min-height: 620px;
-  /* ← estándar */
   overflow-y: auto;
 }
 
@@ -2204,9 +2216,10 @@ main section>h2::after {
   padding-bottom: 80px;
 }
 
+/* FIX: grid con columna fija de 480px reemplazada por minmax para evitar desbordamiento */
 .contacto-container {
   display: grid;
-  grid-template-columns: 1fr 480px;
+  grid-template-columns: 1fr minmax(0, 480px);
   gap: 48px;
   align-items: start;
 }
@@ -2255,6 +2268,9 @@ main section>h2::after {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  /* FIX: el formulario no puede exceder su columna */
+  width: 100%;
+  min-width: 0;
 }
 
 .fila-doble {
@@ -2273,6 +2289,7 @@ main section>h2::after {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
 }
 
 label {
@@ -2293,6 +2310,9 @@ textarea {
   outline: none;
   clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
   transition: border-color 0.2s, box-shadow 0.2s;
+  /* FIX: los inputs respetan el ancho de su contenedor */
+  width: 100%;
+  min-width: 0;
 }
 
 input:focus,
@@ -2489,9 +2509,13 @@ footer {
     height: 96px;
   }
 
-  /* Contacto */
+  /* FIX Contacto: una sola columna, formulario ocupa todo el ancho */
   .contacto-container {
     grid-template-columns: 1fr;
+  }
+
+  .contacto-formulario {
+    max-width: 100%;
   }
 }
 
@@ -2761,6 +2785,20 @@ footer {
   .arcade-statusbar .status-pixel:last-child {
     display: none;
   }
+
+  /* FIX Contacto — apila nombre/correo en móvil */
+  .fila-doble {
+    grid-template-columns: 1fr;
+  }
+
+  .contacto-formulario {
+    padding: 24px 20px;
+  }
+
+  .contacto-formulario button[type="submit"] {
+    align-self: stretch;
+    text-align: center;
+  }
 }
 
 /* ── 480px ── */
@@ -2849,6 +2887,12 @@ footer {
     width: 36px;
     height: 36px;
     font-size: 0.85rem;
+  }
+
+  /* FIX Contacto — clip-path angular puede recortar en pantallas muy pequeñas */
+  .contacto-formulario {
+    padding: 20px 16px;
+    clip-path: none;
   }
 }
 
