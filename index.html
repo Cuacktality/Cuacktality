@@ -1,640 +1,535 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Portafolio de Daniel Contreras: Diseño Gráfico, Animación, Videojuegos y Software"
-    />
-    <title>Daniel Contreras | Portfolio</title>
-    <link rel="icon" type="image/x-icon" href="assets/LG.png" />
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
 
-  <body>
-    <!-- ── INTRO OVERLAY ── -->
-    <div class="intro-overlay" id="introOverlay">
-      <div class="puerta">
-        <div class="cierre"></div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Portafolio de Daniel Contreras: Diseño Gráfico, Animación, Videojuegos y Software" />
+  <title>Daniel Contreras | Portfolio</title>
+  <link rel="icon" type="image/x-icon" href="assets/LG.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <!-- ── INTRO OVERLAY ── -->
+  <div class="intro-overlay" id="introOverlay">
+    <div class="puerta">
+      <div class="cierre"></div>
     </div>
+  </div>
 
-    <!-- ── HERO ── -->
-    <section class="hero" id="inicio">
-      <img src="assets/FG_006.png" alt="Fondo principal" />
-      <div class="filtro-oscuro"></div>
-      <!-- <div class="frase-hero">
+  <!-- ── HERO ── -->
+  <section class="hero" id="inicio">
+    <img src="assets/FG_006.png" alt="Fondo principal" />
+    <div class="filtro-oscuro"></div>
+    <!-- <div class="frase-hero">
       "Con preparación y disciplina somos amos de nuestro destino"
     </div> -->
 
-      <div class="hero-content">
-        <div class="hero-tag">// PORTFOLIO_2026 — DANIEL CONTRERAS</div>
-        <div class="hero-quote">
-          "Con preparación y disciplina somos amos de nuestro destino"
-        </div>
-        <div class="hero-badge">
-          <div class="hero-dot"></div>
-          <span>GAME DEV · 3D ARTIST · SOFTWARE ENG</span>
-        </div>
+    <div class="hero-content">
+      <div class="hero-tag">// PORTFOLIO_2026 — DANIEL CONTRERAS</div>
+      <div class="hero-quote">
+        "Con preparación y disciplina somos amos de nuestro destino"
       </div>
-
-      <img
-        class="personaje-flotante"
-        src="assets/characters/VCT.png"
-        alt="Personaje"
-      />
-      <a href="#diseno-animacion" class="arrow">⬇</a>
-    </section>
-
-    <!-- ── HEADER ── -->
-    <header>
-      <div class="nombre-container">
-        <img
-          src="assets/LG.png"
-          alt="Logo personal"
-          class="logo"
-          id="logoMetyd"
-          onclick="toggleMenu()"
-          title="Abrir menú"
-        />
-        <div class="nombre-estilo">
-          <span class="nombre">Daniel</span>
-          <span class="apellido">Contreras</span>
-        </div>
+      <div class="hero-badge">
+        <div class="hero-dot"></div>
+        <span>GAME DEV · 3D ARTIST · SOFTWARE ENG</span>
       </div>
-
-      <nav class="nav-desktop">
-        <ul>
-          <li>
-            <a class="col-swatch" href="#diseno-animacion">DISEÑO / ANIM.</a>
-          </li>
-          <li><a class="col-swatch" href="#dibujo">ILUSTRACIÓN</a></li>
-          <li><a class="col-swatch" href="#videojuegos">VIDEOJUEGOS</a></li>
-          <li><a class="col-swatch" href="#software">SOFTWARE</a></li>
-          <li><a class="col-swatch" href="#contacto">CONTACTO</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <!-- ── SIDEBAR MÓVIL ── -->
-    <div class="sidebar" id="mobileMenu">
-      <ul>
-        <li>
-          <a href="#diseno-animacion" onclick="closeMenu()"
-            >DISEÑO / ANIMACIÓN</a
-          >
-        </li>
-        <li><a href="#dibujo" onclick="closeMenu()">ILUSTRACIÓN</a></li>
-        <li><a href="#videojuegos" onclick="closeMenu()">VIDEOJUEGOS</a></li>
-        <li><a href="#software" onclick="closeMenu()">SOFTWARE</a></li>
-        <li><a href="#contacto" onclick="closeMenu()">CONTACTO</a></li>
-      </ul>
     </div>
 
-    <main>
-      <!-- ════════════════════════════════════════════
+    <img class="personaje-flotante" src="assets/characters/VCT.png" alt="Personaje" />
+    <a href="#diseno-animacion" class="arrow">⬇</a>
+  </section>
+
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="nombre-container">
+      <img src="assets/LG.png" alt="Logo personal" class="logo" id="logoMetyd" onclick="toggleMenu()"
+        title="Abrir menú" />
+      <div class="nombre-estilo">
+        <span class="nombre">Daniel</span>
+        <span class="apellido">Contreras</span>
+      </div>
+    </div>
+
+    <nav class="nav-desktop">
+      <ul>
+        <li>
+          <a class="col-swatch" href="#diseno-animacion">DISEÑO / ANIM.</a>
+        </li>
+        <li><a class="col-swatch" href="#dibujo">ILUSTRACIÓN</a></li>
+        <li><a class="col-swatch" href="#videojuegos">VIDEOJUEGOS</a></li>
+        <li><a class="col-swatch" href="#software">SOFTWARE</a></li>
+        <li><a class="col-swatch" href="#contacto">CONTACTO</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ── SIDEBAR MÓVIL ── -->
+  <div class="sidebar" id="mobileMenu">
+    <ul>
+      <li>
+        <a href="#diseno-animacion" onclick="closeMenu()">DISEÑO / ANIMACIÓN</a>
+      </li>
+      <li><a href="#dibujo" onclick="closeMenu()">ILUSTRACIÓN</a></li>
+      <li><a href="#videojuegos" onclick="closeMenu()">VIDEOJUEGOS</a></li>
+      <li><a href="#software" onclick="closeMenu()">SOFTWARE</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">CONTACTO</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- ════════════════════════════════════════════
      DISEÑO / ANIMACIÓN — Editor Window
      ════════════════════════════════════════════ -->
-      <section class="section animada" id="diseno-animacion">
-        <h2 class="titulo-seccion">Diseño Gráfico / Animación</h2>
+    <section class="section animada" id="diseno-animacion">
+      <h2 class="titulo-seccion">Diseño Gráfico / Animación</h2>
 
-        <div class="editor-window">
-          <!-- ── Titlebar ── -->
-          <div class="editor-titlebar">
-            <div class="editor-titlebar-left">
-              <div class="win-btn win-btn--close"></div>
-              <div class="win-btn win-btn--min"></div>
-              <div class="win-btn win-btn--max"></div>
-            </div>
-            <span class="editor-titlebar-name">
-              DC_CREATIVE_SUITE —
-              <span id="editorProyectoActivo">Personajes 3D</span>
-            </span>
-            <div class="editor-titlebar-right">
-              <span class="editor-zoom" id="editorZoom">100%</span>
-            </div>
+      <div class="editor-window">
+        <!-- ── Titlebar ── -->
+        <div class="editor-titlebar">
+          <div class="editor-titlebar-left">
+            <div class="win-btn win-btn--close"></div>
+            <div class="win-btn win-btn--min"></div>
+            <div class="win-btn win-btn--max"></div>
           </div>
-
-          <!-- ── Menubar ── -->
-          <div class="editor-menubar">
-            <span>Archivo</span>
-            <span>Editar</span>
-            <span>Imagen</span>
-            <span>Capa</span>
-            <span>Vista</span>
+          <span class="editor-titlebar-name">
+            DC_CREATIVE_SUITE —
+            <span id="editorProyectoActivo">Personajes 3D</span>
+          </span>
+          <div class="editor-titlebar-right">
+            <span class="editor-zoom" id="editorZoom">100%</span>
           </div>
+        </div>
 
-          <!-- ── Contenido principal ──
+        <!-- ── Menubar ── -->
+        <div class="editor-menubar">
+          <span>Archivo</span>
+          <span>Editar</span>
+          <span>Imagen</span>
+          <span>Capa</span>
+          <span>Vista</span>
+        </div>
+
+        <!-- ── Contenido principal ──
          Desktop:  toolbar(col) | canvas(flex:1) | panels(col 220px)
          Móvil:    toolbar(row) → canvas → panels(col) apilados
     ── -->
-          <div class="editor-content">
-            <!-- Toolbar única — CSS decide orientación -->
-            <div class="editor-toolbar">
-              <button class="tool-btn tool-btn--active" title="Seleccionar">
-                ⬡
-              </button>
-              <button class="tool-btn" title="Mover">↖</button>
-              <div class="tool-separator"></div>
-              <button
-                class="tool-btn"
-                title="Anterior"
-                onclick="rotarPersonaje(-1)"
-              >
-                ◀
-              </button>
-              <button
-                class="tool-btn"
-                title="Siguiente"
-                onclick="rotarPersonaje(1)"
-              >
-                ▶
-              </button>
-              <div class="tool-separator"></div>
-              <button class="tool-btn" title="Zoom +">+</button>
-              <button class="tool-btn" title="Zoom -">−</button>
-              <div class="tool-separator"></div>
-              <button class="tool-btn" title="Info">ℹ</button>
+        <div class="editor-content">
+          <!-- Toolbar única — CSS decide orientación -->
+          <div class="editor-toolbar">
+            <button class="tool-btn tool-btn--active" title="Seleccionar">
+              ⬡
+            </button>
+            <button class="tool-btn" title="Mover">↖</button>
+            <div class="tool-separator"></div>
+            <button class="tool-btn" title="Anterior" onclick="rotarPersonaje(-1)">
+              ◀
+            </button>
+            <button class="tool-btn" title="Siguiente" onclick="rotarPersonaje(1)">
+              ▶
+            </button>
+            <div class="tool-separator"></div>
+            <button class="tool-btn" title="Zoom +">+</button>
+            <button class="tool-btn" title="Zoom -">−</button>
+            <div class="tool-separator"></div>
+            <button class="tool-btn" title="Info">ℹ</button>
+          </div>
+
+          <!-- Canvas central -->
+          <div class="editor-canvas">
+            <div class="canvas-ruler-h">
+              <span>0</span><span>100</span><span>200</span><span>300</span><span>400</span>
+            </div>
+            <div class="canvas-ruler-v">
+              <span>0</span><span>100</span><span>200</span><span>300</span>
+            </div>
+            <div class="canvas-area">
+              <div class="canvas-grid"></div>
+              <img id="modeloPersonaje" src="assets/renders/default.png" alt="Render" class="canvas-render" />
+              <div class="canvas-selection-ring"></div>
+              <p id="nombreElementoVisor" class="canvas-label"></p>
+            </div>
+          </div>
+
+          <!-- Panels — derecha en desktop, debajo en móvil -->
+          <div class="editor-panels">
+            <div class="editor-panel">
+              <div class="editor-panel-header">
+                <span class="panel-icon">▣</span>
+                CAPAS
+              </div>
+              <ul id="listaProyectos" class="layers-list"></ul>
             </div>
 
-            <!-- Canvas central -->
-            <div class="editor-canvas">
-              <div class="canvas-ruler-h">
-                <span>0</span><span>100</span><span>200</span><span>300</span
-                ><span>400</span>
+            <div class="editor-panel editor-panel--props">
+              <div class="editor-panel-header">
+                <span class="panel-icon">◈</span>
+                PROPIEDADES
               </div>
-              <div class="canvas-ruler-v">
-                <span>0</span><span>100</span><span>200</span><span>300</span>
-              </div>
-              <div class="canvas-area">
-                <div class="canvas-grid"></div>
-                <img
-                  id="modeloPersonaje"
-                  src="assets/renders/default.png"
-                  alt="Render"
-                  class="canvas-render"
-                />
-                <div class="canvas-selection-ring"></div>
-                <p id="nombreElementoVisor" class="canvas-label"></p>
-              </div>
-            </div>
-
-            <!-- Panels — derecha en desktop, debajo en móvil -->
-            <div class="editor-panels">
-              <div class="editor-panel">
-                <div class="editor-panel-header">
-                  <span class="panel-icon">▣</span>
-                  CAPAS
-                </div>
-                <ul id="listaProyectos" class="layers-list"></ul>
-              </div>
-
-              <div class="editor-panel editor-panel--props">
-                <div class="editor-panel-header">
-                  <span class="panel-icon">◈</span>
-                  PROPIEDADES
-                </div>
-                <div class="props-body">
-                  <div class="prop-icon-wrap">
-                    <img
-                      id="iconoPersonaje"
-                      src="assets/icons/default.png"
-                      alt="Icono"
-                      class="icono-activo"
-                      onerror="
+              <div class="props-body">
+                <div class="prop-icon-wrap">
+                  <img id="iconoPersonaje" src="assets/icons/default.png" alt="Icono" class="icono-activo" onerror="
                         this.onerror = null;
                         this.src =
                           'https://placehold.co/80x80/0D1520/00E5FF?text=?';
-                      "
-                    />
-                  </div>
-                  <div class="prop-row">
-                    <span class="prop-label">NOMBRE</span>
-                    <span class="prop-value" id="nombrePersonaje">—</span>
-                  </div>
-                  <div class="prop-row">
-                    <span class="prop-label">ROL</span>
-                    <span
-                      class="prop-value prop-value--cyan"
-                      id="subtituloPersonaje"
-                    ></span>
-                  </div>
-                  <div class="prop-row prop-row--desc">
-                    <span class="prop-label">DESC.</span>
-                    <span
-                      class="prop-value prop-value--desc"
-                      id="descripcionPersonaje"
-                    ></span>
-                  </div>
-                  <div id="habilidadesPersonaje" class="habilidades-list"></div>
+                      " />
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ── Filmstrip ── -->
-          <div class="editor-filmstrip">
-            <div class="filmstrip-label">FRAMES</div>
-            <div class="filmstrip-track" id="thumbnailsPersonajes"></div>
-          </div>
-
-          <!-- ── Statusbar ── -->
-          <div class="editor-statusbar">
-            <span id="editorStatus">Listo</span>
-            <span class="status-sep">|</span>
-            <span id="editorFrameCount">Frame 1 / 1</span>
-            <span class="status-sep">|</span>
-            <span>DC_CREATIVE_SUITE v2.6</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- ════════════════════════════════════════════
-     ILUSTRACIÓN — Drawing Tablet Aesthetic
-     ════════════════════════════════════════════ -->
-      <section class="section animada" id="dibujo">
-        <h2>Ilustración</h2>
-
-        <div class="tablet-frame">
-          <!-- ── Dial — esquina superior izquierda ── -->
-          <div class="tablet-dial-zone">
-            <div class="tablet-dial" id="tabletDial">
-              <div class="dial-ring"></div>
-              <div class="dial-indicator"></div>
-              <div class="dial-center"><span class="dial-label">◉</span></div>
-            </div>
-            <div class="tablet-brand">DECO·03</div>
-          </div>
-
-          <!-- ── Cuerpo: botones + canvas + detalles ── -->
-          <div class="tablet-body">
-            <!-- Botones laterales — 2 columnas como la tableta real -->
-            <div class="tablet-buttons" id="tabletButtons">
-              <!-- JS puebla -->
-            </div>
-
-            <!-- Canvas central — altura fija, imagen no la modifica -->
-            <div class="tablet-canvas" id="tabletCanvas">
-              <div class="canvas-empty" id="canvasEmpty">
-                <div class="canvas-crosshair"></div>
-                <span class="canvas-empty-label">SELECCIONA UN PACK</span>
-              </div>
-              <img
-                id="ilustracionPrincipal"
-                class="canvas-image"
-                src=""
-                alt=""
-                style="display: none"
-              />
-              <div
-                class="canvas-click-hint"
-                id="canvasHint"
-                style="display: none"
-              >
-                <span>🔍 CLICK PARA AMPLIAR</span>
-              </div>
-            </div>
-
-            <!-- Detalles — derecha en desktop, debajo en móvil. JS puebla -->
-            <div class="tablet-details" id="tabletDetails"></div>
-          </div>
-
-          <!-- ── Statusbar ── -->
-          <div class="tablet-statusbar">
-            <div class="statusbar-left">
-              <span class="tb-label">PACK</span>
-              <span class="tb-val" id="tbPackName">—</span>
-            </div>
-            <div class="statusbar-center">
-              <button class="tb-nav" onclick="navegarIlustracion(-1)">◀</button>
-              <span class="tb-counter" id="tbCounter">—</span>
-              <button class="tb-nav" onclick="navegarIlustracion(1)">▶</button>
-            </div>
-            <div class="statusbar-right">
-              <span class="tb-label">OBRA</span>
-              <span class="tb-val" id="tbIlustNombre">—</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── Lightbox fullscreen ── -->
-        <div class="tablet-lightbox" id="tabletLightbox">
-          <button class="lightbox-x" id="lightboxX">✕</button>
-          <div class="lightbox-inner">
-            <img id="lightboxImg" src="" alt="" class="lightbox-img-full" />
-            <div class="lightbox-meta">
-              <span class="lb-nombre" id="lbNombre"></span>
-              <span class="lb-sep">—</span>
-              <span class="lb-subtitulo" id="lbSubtitulo"></span>
-            </div>
-            <div class="lightbox-nav-row">
-              <button class="tb-nav" id="lbPrev">◀</button>
-              <button class="tb-nav" id="lbNext">▶</button>
-            </div>
-            <!-- ID único — distinto de tabletDetails -->
-            <p class="lb-description" id="lbDescription"></p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ════════════════════════════════════════════
-     VIDEOJUEGOS — Arcade Cabinet Aesthetic
-     ════════════════════════════════════════════ -->
-      <section class="section animada" id="videojuegos">
-        <h2>Videojuegos</h2>
-
-        <div class="arcade-cabinet">
-          <!-- ── Marquee superior ── -->
-          <div class="arcade-marquee">
-            <div class="marquee-left">
-              <span class="marquee-label">PLAYER 1</span>
-              <div class="marquee-lives">
-                <span class="life-icon">▲</span>
-                <span class="life-icon">▲</span>
-                <span class="life-icon">▲</span>
-              </div>
-            </div>
-            <div class="marquee-center">
-              <span class="marquee-blink">INSERT COIN</span>
-              <span class="marquee-sep">◆</span>
-              <span class="marquee-title">DC_ARCADE</span>
-              <span class="marquee-sep">◆</span>
-              <span class="marquee-blink">PRESS START</span>
-            </div>
-            <div class="marquee-right">
-              <span class="marquee-label">HI-SCORE</span>
-              <span class="marquee-score">100000</span>
-            </div>
-          </div>
-
-          <!-- ── Pantalla principal ── -->
-          <div class="arcade-screen">
-            <!-- Info del juego seleccionado -->
-            <div class="screen-info">
-              <div class="screen-info-header">
-                <img
-                  id="iconoJuego"
-                  src=""
-                  alt="Icono del juego"
-                  class="game-icon-screen"
-                />
-                <div>
-                  <div class="screen-label">// SELECTED</div>
-                  <h4 id="tituloJuego">—</h4>
+                <div class="prop-row">
+                  <span class="prop-label">NOMBRE</span>
+                  <span class="prop-value" id="nombrePersonaje">—</span>
                 </div>
-              </div>
-              <p id="descripcionJuego" class="screen-desc"></p>
-              <button class="btn-play" onclick="activarJuego()">
-                <span class="btn-play-icon">▶</span> PLAY
-              </button>
-            </div>
-
-            <!-- Iframe / pantalla de juego -->
-            <div class="screen-display">
-              <div class="crt-overlay"></div>
-              <div class="screen-idle" id="screenIdle">
-                <div class="idle-grid"></div>
-                <div class="idle-text">
-                  <span class="idle-blink">▶ PRESS PLAY TO START ◀</span>
+                <div class="prop-row">
+                  <span class="prop-label">ROL</span>
+                  <span class="prop-value prop-value--cyan" id="subtituloPersonaje"></span>
                 </div>
+                <div class="prop-row prop-row--desc">
+                  <span class="prop-label">DESC.</span>
+                  <span class="prop-value prop-value--desc" id="descripcionPersonaje"></span>
+                </div>
+                <div id="habilidadesPersonaje" class="habilidades-list"></div>
               </div>
-              <div
-                class="iframe-wrapper"
-                id="iframeWrapper"
-                style="display: none"
-              >
-                <iframe id="iframeJuego" src="" allowfullscreen></iframe>
-              </div>
-            </div>
-          </div>
-
-          <!-- ── Statusbar arcade ── -->
-          <div class="arcade-statusbar">
-            <span class="status-pixel">STAGE</span>
-            <span id="arcadeStage" class="status-val">01</span>
-            <span class="status-sep">—</span>
-            <span class="status-pixel">GAME</span>
-            <span id="arcadeGameName" class="status-val">—</span>
-            <span class="status-sep">—</span>
-            <span class="status-pixel">© 610 Interactive</span>
-          </div>
-
-          <!-- ── Selector de juegos — estilo dashboard ── -->
-          <div class="game-selector">
-            <button
-              class="arcade-arrow arcade-arrow--left"
-              onclick="cambiarJuego(-1)"
-            >
-              ◀
-            </button>
-
-            <div class="game-carousel" id="gameCarousel">
-              <!-- JS puebla esto con .game-card elementos -->
-            </div>
-
-            <button
-              class="arcade-arrow arcade-arrow--right"
-              onclick="cambiarJuego(1)"
-            >
-              ▶
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ════════════════════════════════════════════
-         SOFTWARE — Terminal Console Aesthetic
-         ════════════════════════════════════════════ -->
-      <section class="section animada" id="software">
-        <h2>Software</h2>
-        <div id="demo-interactiva">
-          <div class="terminal-header">
-            <div class="terminal-dot"></div>
-            <div
-              class="terminal-dot"
-              style="
-                background: var(--orange);
-                box-shadow: 0 0 6px var(--orange);
-              "
-            ></div>
-            <div
-              class="terminal-dot"
-              style="background: var(--cyan); box-shadow: 0 0 6px var(--cyan)"
-            ></div>
-            <span class="terminal-title"
-              >DANIEL_CONTRERAS — SOFTWARE.SYS v2.6</span
-            >
-          </div>
-          <div class="terminal-main">
-            <div class="terminal-body">
-              <p>
-                Acá, en este P, no va un P sino un panel, un canvas o una imágen
-                de alguno de los programas
-              </p>
-            </div>
-            <div class="terminal-logs">
-              <div class="terminal-line">
-                <span class="terminal-prompt">DC@portfolio:~$</span>
-                <span class="terminal-cmd">ls projects/</span>
-              </div>
-              <div class="terminal-line">
-                <span class="terminal-output"
-                  >ACTivamente/>&nbsp;&nbsp;MedilaboralSys/>&nbsp;&nbsp;UnityTools/>&nbsp;&nbsp;WebApps/></span
-                >
-              </div>
-              <div class="terminal-line">
-                <span class="terminal-prompt">DC@portfolio:~$</span>
-                <span class="terminal-cmd">cat status.log</span>
-              </div>
-              <div class="terminal-line">
-                <span class="terminal-output"
-                  >[ OK ] Unity 2022 LTS — C# · FHIR · ASP.NET · PlayFab</span
-                >
-              </div>
-              <div class="terminal-line">
-                <span class="terminal-output"
-                  >[ OK ] Full-stack: Angular · .NET · EF Core ·
-                  PostgreSQL</span
-                >
-              </div>
-              <div class="terminal-line">
-                <span class="terminal-output"
-                  >[ OK ] Tools: Git · Jira · Azure DevOps</span
-                >
-              </div>
-              <div class="terminal-line">
-                <span class="terminal-prompt">DC@portfolio:~$</span>
-                <span class="terminal-cursor"></span>
-              </div>
-            </div>
-          </div>
-          <div class="software-cards">
-            <div class="software-card" data-id="PROJ_001">
-              <h4>ACTivamente</h4>
-              <p>
-                App móvil de psicoeducación basada en Terapia de Aceptación y
-                Compromiso. 6 Islas, gamificación, sistema de jardín generativo,
-                PlayFab backend.
-              </p>
-              <span class="software-tag">Unity · C# · PlayFab · Android</span>
-            </div>
-            <div class="software-card" data-id="PROJ_002">
-              <h4>Epimoni — RDA FHIR</h4>
-              <p>
-                Módulo de interoperabilidad para Historia Clínica. Generación de
-                Bundle FHIR R4 compatible con estándar Minsalud Colombia.
-              </p>
-              <span class="software-tag">.NET · HL7 FHIR · ASP.NET · SQL</span>
-            </div>
-            <div class="software-card" data-id="PROJ_003">
-              <h4>Unity Game Tools</h4>
-              <p>
-                Suite de herramientas para desarrollo de videojuegos: sistemas
-                de UI, gestor de configuración cifrada AES, sistema de
-                notificaciones Android.
-              </p>
-              <span class="software-tag">Unity · C# · AES · Android API</span>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- ════════════════════════════════════════════
-         CONTACTO
-         ════════════════════════════════════════════ -->
-      <section id="contacto">
-        <h2>Contacto</h2>
-        <div class="contacto-container">
-          <div class="contacto-info">
-            <div class="foto-principal">
-              <img src="assets/LG.png" alt="Daniel" />
-            </div>
-            <div class="about-me-text">
-              <p>
-                Una filosofía simple: claridad sin rodeos, pero con estrategia.
-                Creo en iterar rápido, en escuchar la historia que el sistema
-                quiere contar, y en mejorar constantemente hasta que cada parte
-                funcione con propósito.
-              </p>
-            </div>
-            <div class="foto-secundaria">
-              <img src="assets/helms.png" alt="Daniel alterno" />
-            </div>
-          </div>
-          <form
-            class="contacto-formulario"
-            action="https://formspree.io/f/YOUR_ID"
-            method="POST"
-          >
-            <div class="fila-doble">
-              <div class="campo">
-                <label for="nombre">// NOMBRE</label>
-                <input
-                  type="text"
-                  id="nombre"
-                  name="nombre"
-                  placeholder="Tu nombre"
-                />
-              </div>
-              <div class="campo">
-                <label for="correo">// CORREO</label>
-                <input
-                  type="email"
-                  id="correo"
-                  name="correo"
-                  placeholder="Tu correo"
-                />
-              </div>
-            </div>
-            <div class="fila-unica">
-              <label for="mensaje">// MENSAJE</label>
-              <textarea
-                id="mensaje"
-                name="mensaje"
-                rows="5"
-                placeholder="Tu mensaje"
-              ></textarea>
-            </div>
-            <button type="submit">TRANSMITIR ▶</button>
-          </form>
+        <!-- ── Filmstrip ── -->
+        <div class="editor-filmstrip">
+          <div class="filmstrip-label">FRAMES</div>
+          <div class="filmstrip-track" id="thumbnailsPersonajes"></div>
         </div>
-      </section>
-    </main>
 
-    <!-- ── LIGHTBOX ── -->
-    <div class="lightbox-overlay" id="lightboxOverlay">
-      <div class="lightbox-content" id="lightboxContent">
-        <button class="lightbox-close" id="lightboxClose">✕</button>
-        <img
-          src=""
-          alt="Ilustración"
-          class="lightbox-image"
-          id="lightboxImage"
-        />
-        <div class="lightbox-nav">
-          <button class="lightbox-arrow" id="lightboxPrev">◀</button>
-          <button class="lightbox-arrow" id="lightboxNext">▶</button>
-        </div>
-        <div class="lightbox-info">
-          <h4 id="lightboxNombreIlustracion"></h4>
-          <h5 id="lightboxSubtituloIlustracion"></h5>
-          <p
-            id="lightboxDescripcionIlustracion"
-            class="descripcion-justificada"
-          ></p>
+        <!-- ── Statusbar ── -->
+        <div class="editor-statusbar">
+          <span id="editorStatus">Listo</span>
+          <span class="status-sep">|</span>
+          <span id="editorFrameCount">Frame 1 / 1</span>
+          <span class="status-sep">|</span>
+          <span>DC_CREATIVE_SUITE v2.6</span>
         </div>
       </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+     ILUSTRACIÓN — Drawing Tablet Aesthetic
+     ════════════════════════════════════════════ -->
+    <section class="section animada" id="dibujo">
+      <h2>Ilustración</h2> 
+      <div class="tablet-frame">
+        <!-- ── Dial — esquina superior izquierda ── -->
+        <div class="tablet-dial-zone">
+          <div class="tablet-dial" id="tabletDial">
+            <div class="dial-ring"></div>
+            <div class="dial-indicator"></div>
+            <div class="dial-center"><span class="dial-label">◉</span></div>
+          </div>
+          <div class="tablet-brand">DECO·03</div>
+        </div>
+
+        <!-- ── Cuerpo: botones + canvas + detalles ── -->
+        <div class="tablet-body">
+          <!-- Botones laterales — 2 columnas como la tableta real -->
+          <div class="tablet-buttons" id="tabletButtons">
+            <!-- JS puebla -->
+          </div>
+
+          <!-- Canvas central — altura fija, imagen no la modifica -->
+          <div class="tablet-canvas" id="tabletCanvas">
+            <div class="canvas-empty" id="canvasEmpty">
+              <div class="canvas-crosshair"></div>
+              <span class="canvas-empty-label">SELECCIONA UN PACK</span>
+            </div>
+            <img id="ilustracionPrincipal" class="canvas-image" src="" alt="" style="display: none" />
+            <div class="canvas-click-hint" id="canvasHint" style="display: none">
+              <span>🔍 CLICK PARA AMPLIAR</span>
+            </div>
+          </div>
+          <!-- Detalles — derecha en desktop, debajo en móvil. JS puebla -->
+          <div class="tablet-details" id="tabletDetails"></div>
+        </div>
+
+        <!-- ── Statusbar ── -->
+        <div class="tablet-statusbar">
+          <div class="statusbar-left">
+            <span class="tb-label">PACK</span>
+            <span class="tb-val" id="tbPackName">—</span>
+          </div>
+          <div class="statusbar-center">
+            <button class="tb-nav" onclick="navegarIlustracion(-1)">◀</button>
+            <span class="tb-counter" id="tbCounter">—</span>
+            <button class="tb-nav" onclick="navegarIlustracion(1)">▶</button>
+          </div>
+          <div class="statusbar-right">
+            <span class="tb-label">OBRA</span>
+            <span class="tb-val" id="tbIlustNombre">—</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+     VIDEOJUEGOS — Arcade Cabinet Aesthetic
+     ════════════════════════════════════════════ -->
+    <section class="section animada" id="videojuegos">
+      <h2>Videojuegos</h2>
+
+      <div class="arcade-cabinet">
+        <!-- ── Marquee superior ── -->
+        <div class="arcade-marquee">
+          <div class="marquee-left">
+            <span class="marquee-label">PLAYER 1</span>
+            <div class="marquee-lives">
+              <span class="life-icon">▲</span>
+              <span class="life-icon">▲</span>
+              <span class="life-icon">▲</span>
+            </div>
+          </div>
+          <div class="marquee-center">
+            <span class="marquee-blink">INSERT COIN</span>
+            <span class="marquee-sep">◆</span>
+            <span class="marquee-title">DC_ARCADE</span>
+            <span class="marquee-sep">◆</span>
+            <span class="marquee-blink">PRESS START</span>
+          </div>
+          <div class="marquee-right">
+            <span class="marquee-label">HI-SCORE</span>
+            <span class="marquee-score">100000</span>
+          </div>
+        </div>
+
+        <!-- ── Pantalla principal ── -->
+        <div class="arcade-screen">
+          <!-- Info del juego seleccionado -->
+          <div class="screen-info">
+            <div class="screen-info-header">
+              <img id="iconoJuego" src="" alt="Icono del juego" class="game-icon-screen" />
+              <div>
+                <div class="screen-label">// SELECTED</div>
+                <h4 id="tituloJuego">—</h4>
+              </div>
+            </div>
+            <p id="descripcionJuego" class="screen-desc"></p>
+            <button class="btn-play" onclick="activarJuego()">
+              <span class="btn-play-icon">▶</span> PLAY
+            </button>
+          </div>
+
+          <!-- Iframe / pantalla de juego -->
+          <div class="screen-display">
+            <div class="crt-overlay"></div>
+            <div class="screen-idle" id="screenIdle">
+              <div class="idle-grid"></div>
+              <div class="idle-text">
+                <span class="idle-blink">▶ PRESS PLAY TO START ◀</span>
+              </div>
+            </div>
+            <div class="iframe-wrapper" id="iframeWrapper" style="display: none">
+              <iframe id="iframeJuego" src="" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Statusbar arcade ── -->
+        <div class="arcade-statusbar">
+          <span class="status-pixel">STAGE</span>
+          <span id="arcadeStage" class="status-val">01</span>
+          <span class="status-sep">—</span>
+          <span class="status-pixel">GAME</span>
+          <span id="arcadeGameName" class="status-val">—</span>
+          <span class="status-sep">—</span>
+          <span class="status-pixel">© 610 Interactive</span>
+        </div>
+
+        <!-- ── Selector de juegos — estilo dashboard ── -->
+        <div class="game-selector">
+          <button class="arcade-arrow arcade-arrow--left" onclick="cambiarJuego(-1)">
+            ◀
+          </button>
+
+          <div class="game-carousel" id="gameCarousel">
+            <!-- JS puebla esto con .game-card elementos -->
+          </div>
+
+          <button class="arcade-arrow arcade-arrow--right" onclick="cambiarJuego(1)">
+            ▶
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         SOFTWARE — Terminal Console Aesthetic
+         ════════════════════════════════════════════ -->
+    <section class="section animada" id="software">
+      <h2>Software</h2>
+      <div id="demo-interactiva">
+        <div class="terminal-header">
+          <div class="terminal-dot"></div>
+          <div class="terminal-dot" style="
+                background: var(--orange);
+                box-shadow: 0 0 6px var(--orange);
+              "></div>
+          <div class="terminal-dot" style="background: var(--cyan); box-shadow: 0 0 6px var(--cyan)"></div>
+          <span class="terminal-title">DANIEL_CONTRERAS — SOFTWARE.SYS v2.6</span>
+        </div>
+        <div class="terminal-main">
+          <div class="terminal-body">
+            <p>
+              Acá, en este P, no va un P sino un panel, un canvas o una imágen
+              de alguno de los programas
+            </p>
+          </div>
+          <div class="terminal-logs">
+            <div class="terminal-line">
+              <span class="terminal-prompt">DC@portfolio:~$</span>
+              <span class="terminal-cmd">ls projects/</span>
+            </div>
+            <div class="terminal-line">
+              <span
+                class="terminal-output">ACTivamente/>&nbsp;&nbsp;MedilaboralSys/>&nbsp;&nbsp;UnityTools/>&nbsp;&nbsp;WebApps/></span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">DC@portfolio:~$</span>
+              <span class="terminal-cmd">cat status.log</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-output">[ OK ] Unity 2022 LTS — C# · FHIR · ASP.NET · PlayFab</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-output">[ OK ] Full-stack: Angular · .NET · EF Core ·
+                PostgreSQL</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-output">[ OK ] Tools: Git · Jira · Azure DevOps</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">DC@portfolio:~$</span>
+              <span class="terminal-cursor"></span>
+            </div>
+          </div>
+        </div>
+        <div class="software-cards">
+          <div class="software-card" data-id="PROJ_001">
+            <h4>ACTivamente</h4>
+            <p>
+              App móvil de psicoeducación basada en Terapia de Aceptación y
+              Compromiso. 6 Islas, gamificación, sistema de jardín generativo,
+              PlayFab backend.
+            </p>
+            <span class="software-tag">Unity · C# · PlayFab · Android</span>
+          </div>
+          <div class="software-card" data-id="PROJ_002">
+            <h4>Epimoni — RDA FHIR</h4>
+            <p>
+              Módulo de interoperabilidad para Historia Clínica. Generación de
+              Bundle FHIR R4 compatible con estándar Minsalud Colombia.
+            </p>
+            <span class="software-tag">.NET · HL7 FHIR · ASP.NET · SQL</span>
+          </div>
+          <div class="software-card" data-id="PROJ_003">
+            <h4>Unity Game Tools</h4>
+            <p>
+              Suite de herramientas para desarrollo de videojuegos: sistemas
+              de UI, gestor de configuración cifrada AES, sistema de
+              notificaciones Android.
+            </p>
+            <span class="software-tag">Unity · C# · AES · Android API</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         CONTACTO
+         ════════════════════════════════════════════ -->
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <div class="contacto-container">
+        <div class="contacto-info">
+          <div class="foto-principal">
+            <img src="assets/LG.png" alt="Daniel" />
+          </div>
+          <div class="about-me-text">
+            <p>
+              Una filosofía simple: claridad sin rodeos, pero con estrategia.
+              Creo en iterar rápido, en escuchar la historia que el sistema
+              quiere contar, y en mejorar constantemente hasta que cada parte
+              funcione con propósito.
+            </p>
+          </div>
+          <div class="foto-secundaria">
+            <img src="assets/helms.png" alt="Daniel alterno" />
+          </div>
+        </div>
+        <form class="contacto-formulario" action="https://formspree.io/f/YOUR_ID" method="POST">
+          <div class="fila-doble">
+            <div class="campo">
+              <label for="nombre">// NOMBRE</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" />
+            </div>
+            <div class="campo">
+              <label for="correo">// CORREO</label>
+              <input type="email" id="correo" name="correo" placeholder="Tu correo" />
+            </div>
+          </div>
+          <div class="fila-unica">
+            <label for="mensaje">// MENSAJE</label>
+            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Tu mensaje"></textarea>
+          </div>
+          <button type="submit">TRANSMITIR ▶</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── LIGHTBOX ── -->
+  <div class="lightbox-overlay" id="lightboxOverlay">
+    <div class="lightbox-content" id="lightboxContent">
+      <button class="lightbox-close" id="lightboxClose">✕</button>
+      <img src="" alt="Ilustración" class="lightbox-image" id="lightboxImage" />
+      <div class="lightbox-nav">
+        <button class="lightbox-arrow" id="lightboxPrev">◀</button>
+        <button class="lightbox-arrow" id="lightboxNext">▶</button>
+      </div>
+      <div class="lightbox-info">
+        <h4 id="lightboxNombreIlustracion"></h4>
+        <h5 id="lightboxSubtituloIlustracion"></h5>
+        <p id="lightboxDescripcionIlustracion" class="descripcion-justificada"></p>
+      </div>
     </div>
+  </div>
 
-    <footer>
-      <p>© 2026 Daniel Contreras — >//:TODOS LOS SISTEMAS OPERANDO//.</p>
-    </footer>
+  <footer>
+    <p>© 2026 Daniel Contreras — >//:TODOS LOS SISTEMAS OPERANDO//.</p>
+  </footer>
 
-    <script src="js/script.js" defer></script>
-    <script src="js/game.js" defer></script>
-    <script src="js/color-extractor.js" defer></script>
-    <script src="js/illustration.js" defer></script>
-    <script src="js/main.js" defer></script>
-  </body>
+  <script src="js/script.js" defer></script>
+  <script src="js/game.js" defer></script>
+  <script src="js/color-extractor.js" defer></script>
+  <script src="js/illustration.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+
+  <!-- ── Lightbox fullscreen ── -->
+  <div class="tablet-lightbox" id="tabletLightbox">
+    <button class="lightbox-x" id="lightboxX">✕</button>
+    <div class="lightbox-inner">
+      <img id="lightboxImg" src="" alt="" class="lightbox-img-full" />
+      <div class="lightbox-meta">
+        <span class="lb-nombre" id="lbNombre"></span>
+        <span class="lb-sep">—</span>
+        <span class="lb-subtitulo" id="lbSubtitulo"></span>
+      </div>
+      <div class="lightbox-nav-row">
+        <button class="tb-nav" id="lbPrev">◀</button>
+        <button class="tb-nav" id="lbNext">▶</button>
+      </div>
+      <!-- ID único — distinto de tabletDetails -->
+      <p class="lb-description" id="lbDescription"></p>
+    </div>
+  </div>
+
+</body>
+
 </html>

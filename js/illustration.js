@@ -14,8 +14,7 @@ const PACKS_ILUSTRACION = {
         alt: "Boceto de personaje fantástico",
         nombre: "En Tiempos de Estrés Haz lo que Importa",
         subtitulo: "Portada",
-        description:
-          "Este boceto representa una exploración inicial de un personaje para un RPG de fantasía, centrándome en la silueta y la pose dinámica. Buscaba una figura que combinara agilidad con una presencia imponente, pensando en sus movimientos en combate.",
+        description: "Este boceto representa una exploración inicial de un personaje para un RPG de fantasía, centrándome en la silueta y la pose dinámica. Buscaba una figura que combinara agilidad con una presencia imponente, pensando en sus movimientos en combate.",
       },
       {
         id: "boceto-2",
@@ -23,8 +22,7 @@ const PACKS_ILUSTRACION = {
         alt: "Concepto de entorno futurista",
         nombre: "Ciudad Flotante",
         subtitulo: "Estudio de Ambiente",
-        description:
-          "Un estudio de ambiente para un nivel de ciencia ficción, experimentando con iluminación y arquitectura modular. La idea era capturar la sensación de una metrópolis suspendida, con detalles que sugirieran su funcionalidad y vida cotidiana.",
+        description: "Un estudio de ambiente para un nivel de ciencia ficción, experimentando con iluminación y arquitectura modular. La idea era capturar la sensación de una metrópolis suspendida, con detalles que sugirieran su funcionalidad y vida cotidiana.",
       },
       {
         id: "boceto-3",
@@ -32,8 +30,7 @@ const PACKS_ILUSTRACION = {
         alt: "Ilustración de criatura mítica",
         nombre: "Dragón Antiguo",
         subtitulo: "Criatura Mítica",
-        description:
-          "Una ilustración detallada de una criatura alada, combinando elementos orgánicos y fantásticos en su diseño. Me enfoqué en la textura de las escamas y la expresión para transmitir su sabiduría ancestral y poder latente.",
+        description: "Una ilustración detallada de una criatura alada, combinando elementos orgánicos y fantásticos en su diseño. Me enfoqué en la textura de las escamas y la expresión para transmitir su sabiduría ancestral y poder latente.",
       },
       {
         id: "boceto-4",
@@ -41,8 +38,7 @@ const PACKS_ILUSTRACION = {
         alt: "Boceto de arma de ciencia ficción",
         nombre: "Rifle de Plasma",
         subtitulo: "Diseño de Arma",
-        description:
-          "Diseño conceptual de un arma energética, explorando formas ergonómicas y detalles tecnológicos. Quería que se sintiera potente y futurista, pero también práctica para un personaje humano.",
+        description: "Diseño conceptual de un arma energética, explorando formas ergonómicas y detalles tecnológicos. Quería que se sintiera potente y futurista, pero también práctica para un personaje humano.",
       },
       {
         id: "boceto-5",
@@ -50,12 +46,10 @@ const PACKS_ILUSTRACION = {
         alt: "Escena de batalla épica",
         nombre: "Confrontación Cósmica",
         subtitulo: "Composición Narrativa",
-        description:
-          "Una composición de una escena de acción, enfocada en la narrativa visual y el movimiento de los personajes. El desafío fue guiar la mirada del espectador a través de la tensión del momento, usando líneas de fuerza y contraste.",
+        description: "Una composición de una escena de acción, enfocada en la narrativa visual y el movimiento de los personajes. El desafío fue guiar la mirada del espectador a través de la tensión del momento, usando líneas de fuerza y contraste.",
       },
     ],
   },
-
   ilustracionesFinales: {
     nombre: "Ilustraciones Finales",
     subtitulo: "Arte pulido y detallado",
@@ -67,8 +61,7 @@ const PACKS_ILUSTRACION = {
         alt: "Ilustración de paisaje fantástico",
         nombre: "Valle de los Ecos",
         subtitulo: "Paisaje Místico",
-        description:
-          "Ilustración final de un valle místico, donde la luz y la sombra juegan un papel crucial para crear una atmósfera de misterio y asombro. Cada elemento fue pensado para contribuir a la sensación de un lugar inexplorado.",
+        description: "Ilustración final de un valle místico, donde la luz y la sombra juegan un papel crucial para crear una atmósfera de misterio y asombro. Cada elemento fue pensado para contribuir a la sensación de un lugar inexplorado.",
       },
       {
         id: "final-2",
@@ -76,8 +69,7 @@ const PACKS_ILUSTRACION = {
         alt: "Retrato de personaje principal",
         nombre: "Comandante Anya",
         subtitulo: "Retrato Heroico",
-        description:
-          "Retrato detallado de un personaje principal, capturando su determinación y liderazgo. Me centré en los detalles de la armadura y la expresión facial para transmitir su personalidad.",
+        description: "Retrato detallado de un personaje principal, capturando su determinación y liderazgo. Me centré en los detalles de la armadura y la expresión facial para transmitir su personalidad.",
       },
     ],
   },
@@ -88,7 +80,17 @@ let packActivo = null;
 let ilustrActivo = 0;
 let lbIndex = 0;
 
-const $ = (id) => document.getElementById(id);
+const $ = id => document.getElementById(id);
+
+/* ─────────────────────────────────────────────
+   Scroll a la sección — mismo patrón que software.js
+───────────────────────────────────────────── */
+function scrollToSection(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+  section.classList.add("mostrar");
+  section.scrollIntoView({ behavior: "smooth", block: "center" });
+}
 
 /* ─────────────────────────────────────────────
    Inicializar botones de packs
@@ -96,10 +98,8 @@ const $ = (id) => document.getElementById(id);
 function inicializarPacks() {
   const container = $("tabletButtons");
   if (!container) return;
-
   container.innerHTML = "";
   const keys = Object.keys(PACKS_ILUSTRACION);
-
   keys.forEach((key, i) => {
     const pack = PACKS_ILUSTRACION[key];
     const btn = document.createElement("button");
@@ -117,16 +117,17 @@ function inicializarPacks() {
 }
 
 /* ─────────────────────────────────────────────
-   Seleccionar pack
+   Seleccionar pack — hace scroll a la sección
 ───────────────────────────────────────────── */
 function seleccionarPack(key) {
   packActivo = key;
   ilustrActivo = 0;
 
-  document.querySelectorAll(".pack-btn").forEach((btn) => {
+  document.querySelectorAll(".pack-btn").forEach(btn => {
     btn.classList.toggle("activo", btn.dataset.key === key);
   });
 
+  scrollToSection("dibujo");
   mostrarIlustracion();
 }
 
@@ -140,7 +141,6 @@ function mostrarIlustracion() {
   const ilust = pack.ilustraciones[ilustrActivo];
   const total = pack.ilustraciones.length;
 
-  /* Canvas */
   $("canvasEmpty").style.display = "none";
 
   const img = $("ilustracionPrincipal");
@@ -151,7 +151,6 @@ function mostrarIlustracion() {
 
   $("canvasHint").style.display = "block";
 
-  /* Color extractor si está disponible */
   const aplicarColor = () => {
     if (typeof getDominantColor === "function") {
       const color = getDominantColor(img);
@@ -162,22 +161,19 @@ function mostrarIlustracion() {
   if (img.complete) aplicarColor();
   else img.onload = aplicarColor;
 
-  /* Statusbar */
   $("tbPackName").textContent = pack.nombre;
   $("tbCounter").textContent = `${ilustrActivo + 1} / ${total}`;
   $("tbIlustNombre").textContent = ilust.nombre;
 
-  /* Panel de detalles lateral */
   poblarDetalles("tabletDetails", ilust);
 }
 
 /* ─────────────────────────────────────────────
-   Poblar panel de detalles (reutilizable)
+   Poblar panel de detalles
 ───────────────────────────────────────────── */
 function poblarDetalles(contenedorId, ilust) {
   const panel = $(contenedorId);
   if (!panel) return;
-
   panel.innerHTML = `
     <div class="details-header">
       <span class="details-header-label">// DESCRIPCIÓN</span>
@@ -215,7 +211,6 @@ function abrirLightbox(index) {
 function actualizarLightbox() {
   const ilust = PACKS_ILUSTRACION[packActivo].ilustraciones[lbIndex];
   if (!ilust) return;
-
   $("lightboxImg").src = ilust.src;
   $("lightboxImg").alt = ilust.alt;
   $("lbNombre").textContent = ilust.nombre;
@@ -236,21 +231,29 @@ function navegarLightbox(dir) {
 }
 
 /* ─────────────────────────────────────────────
-   Init — event listeners
+   Init
 ───────────────────────────────────────────── */
 document.addEventListener("DOMContentLoaded", () => {
   inicializarPacks();
 
-  /* Fondo del lightbox cierra */
-  $("tabletLightbox").addEventListener("click", (e) => {
+  const primerKey = Object.keys(PACKS_ILUSTRACION)[0];
+  if (primerKey) {
+    packActivo = primerKey;
+    ilustrActivo = 0;
+    document.querySelectorAll(".pack-btn").forEach(btn => {
+      btn.classList.toggle("activo", btn.dataset.key === primerKey);
+    });
+    mostrarIlustracion();   // no llama scrollToSection
+  }
+
+  $("tabletLightbox").addEventListener("click", e => {
     if (e.target === $("tabletLightbox")) cerrarLightbox();
   });
-
   $("lightboxX").addEventListener("click", cerrarLightbox);
   $("lbPrev").addEventListener("click", () => navegarLightbox(-1));
   $("lbNext").addEventListener("click", () => navegarLightbox(1));
 
-  /* Dial → siguiente pack */
+  /* Dial → siguiente pack (también hace scroll) */
   const dial = $("tabletDial");
   if (dial) {
     dial.addEventListener("click", () => {
@@ -261,8 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-/* ESC cierra lightbox */
-document.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", e => {
   if (e.key === "Escape" && $("tabletLightbox")?.classList.contains("active")) {
     cerrarLightbox();
   }
