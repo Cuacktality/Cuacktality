@@ -1,14 +1,12 @@
-/**
- * @fileoverview illustration.js: Gestiona la interactividad de la sección de Ilustración,
- * incluyendo la carga de proyectos, la navegación entre ilustraciones y la funcionalidad del lightbox.
- * También integra la extracción de color para un efecto de resplandor dinámico.
- */
+/* ═══════════════════════════════════════════════════════
+   illustration.js — Sección Ilustración (Tablet Deco 03)
+   ═══════════════════════════════════════════════════════ */
 
-// Datos de los proyectos de Ilustración
-const datosIlustracionesProyectos = {
+const PACKS_ILUSTRACION = {
   bocetosConceptuales: {
     nombre: "En Tiempos de Estrés...",
-    subtitulo: "",
+    subtitulo: "Bocetos Conceptuales",
+    icono: "✏",
     ilustraciones: [
       {
         id: "boceto-1",
@@ -57,9 +55,11 @@ const datosIlustracionesProyectos = {
       },
     ],
   },
+
   ilustracionesFinales: {
     nombre: "Ilustraciones Finales",
     subtitulo: "Arte pulido y detallado",
+    icono: "◈",
     ilustraciones: [
       {
         id: "final-1",
@@ -83,335 +83,187 @@ const datosIlustracionesProyectos = {
   },
 };
 
-let proyectoIlustracionActualKey = "bocetosConceptuales"; // Proyecto de ilustración inicialmente seleccionado
-let ilustracionActualIndex = 0; // Índice de la ilustración actual dentro del proyecto
+/* ── Estado ── */
+let packActivo = null;
+let ilustrActivo = 0;
+let lbIndex = 0;
 
-// Elementos del DOM
-const listaProyectosIlustracion = document.getElementById(
-  "listaProyectosIlustracion"
-);
-const ilustracionCardStack = document.getElementById("ilustracionCardStack");
-const ilustracionPrincipal = document.getElementById("ilustracionPrincipal"); // Renombrado para consistencia
-const nombreIlustracion = document.getElementById("nombreIlustracion"); // Renombrado para consistencia
-const subtituloIlustracion = document.getElementById("subtituloIlustracion"); // Renombrado para consistencia
-const descripcionIlustracion = document.getElementById(
-  "descripcionIlustracion"
-); // Renombrado para consistencia
+const $ = (id) => document.getElementById(id);
 
-// Lightbox Elements
-const lightboxOverlay = document.getElementById("lightboxOverlay");
-const lightboxImage = document.getElementById("lightboxImage");
-const lightboxNombreIlustracion = document.getElementById(
-  "lightboxNombreIlustracion"
-);
-const lightboxSubtituloIlustracion = document.getElementById(
-  "lightboxSubtituloIlustracion"
-);
-const lightboxDescripcionIlustracion = document.getElementById(
-  "lightboxDescripcionIlustracion"
-);
-const lightboxClose = document.getElementById("lightboxClose"); // Renombrado para consistencia
-const lightboxPrev = document.getElementById("lightboxPrev"); // Renombrado para consistencia
-const lightboxNext = document.getElementById("lightboxNext"); // Renombrado para consistencia
+/* ─────────────────────────────────────────────
+   Inicializar botones de packs
+───────────────────────────────────────────── */
+function inicializarPacks() {
+  const container = $("tabletButtons");
+  if (!container) return;
 
-// Variable para almacenar el índice de la imagen actual en el lightbox
-let currentLightboxImageIndex = 0; // Se mantiene, ya que el lightbox usa un índice global
+  container.innerHTML = "";
+  const keys = Object.keys(PACKS_ILUSTRACION);
 
-/**
- * Obtiene el objeto del proyecto de ilustración actualmente seleccionado.
- * @returns {object} El objeto del proyecto de ilustración actual.
- */
-function obtenerProyectoIlustracionActual() {
-  return datosIlustracionesProyectos[proyectoIlustracionActualKey];
-}
-
-/**
- * Obtiene el objeto de la ilustración actual dentro del proyecto seleccionado.
- * @returns {object|null} El objeto de la ilustración actual, o null si no hay.
- */
-function obtenerIlustracionActual() {
-  const proyecto = obtenerProyectoIlustracionActual();
-  if (
-    !proyecto ||
-    !proyecto.ilustraciones ||
-    proyecto.ilustraciones.length === 0
-  ) {
-    return null;
-  }
-  return proyecto.ilustraciones[ilustracionActualIndex];
-}
-
-/**
- * Carga y muestra la lista de proyectos de ilustración en el menú lateral.
- * @function cargarListaProyectosIlustracion
- */
-function cargarListaProyectosIlustracion() {
-  listaProyectosIlustracion.innerHTML = ""; // Limpiar lista existente
-
-  for (const key in datosIlustracionesProyectos) {
-    const proyecto = datosIlustracionesProyectos[key];
-    const li = document.createElement("li");
-    li.setAttribute("data-proyecto-key", key);
-    li.classList.add("proyecto-item");
-    if (key === proyectoIlustracionActualKey) {
-      li.classList.add("activo");
-    }
-
-    li.innerHTML = `
-      <span class="proyecto-nombre">${proyecto.nombre}</span>
-      <span class="proyecto-subtitulo-lista">${proyecto.subtitulo}</span>
+  keys.forEach((key, i) => {
+    const pack = PACKS_ILUSTRACION[key];
+    const btn = document.createElement("button");
+    btn.classList.add("pack-btn");
+    btn.title = pack.nombre;
+    btn.dataset.key = key;
+    btn.innerHTML = `
+      <span class="pack-btn-num">B${i + 1}</span>
+      <span class="pack-btn-icon">${pack.icono}</span>
+      <span class="pack-btn-label">${pack.nombre}</span>
     `;
-    li.onclick = () => seleccionarProyectoIlustracion(key);
-    listaProyectosIlustracion.appendChild(li);
-  }
+    btn.addEventListener("click", () => seleccionarPack(key));
+    container.appendChild(btn);
+  });
 }
 
-/**
- * Selecciona un proyecto de ilustración por su clave y actualiza el visor.
- * @param {string} key - La clave del proyecto a seleccionar (ej. "bocetosConceptuales").
- * @function seleccionarProyectoIlustracion
- */
-function seleccionarProyectoIlustracion(key) {
-  proyectoIlustracionActualKey = key;
-  ilustracionActualIndex = 0; // Reiniciar al primer elemento del nuevo proyecto
+/* ─────────────────────────────────────────────
+   Seleccionar pack
+───────────────────────────────────────────── */
+function seleccionarPack(key) {
+  packActivo = key;
+  ilustrActivo = 0;
 
-  // Actualizar clase 'activo' en la lista de proyectos
-  document
-    .querySelectorAll("#listaProyectosIlustracion .proyecto-item")
-    .forEach((item) => {
-      item.classList.remove("activo");
-    });
-  document
-    .querySelector(`#listaProyectosIlustracion [data-proyecto-key="${key}"]`)
-    .classList.add("activo");
+  document.querySelectorAll(".pack-btn").forEach((btn) => {
+    btn.classList.toggle("activo", btn.dataset.key === key);
+  });
 
-  actualizarVisorIlustracion();
+  mostrarIlustracion();
 }
 
-/**
- * Actualiza el visor de ilustraciones, incluyendo la imagen principal y el stack de cartas 3D.
- * @function actualizarVisorIlustracion
- */
-function actualizarVisorIlustracion() {
-  const proyecto = obtenerProyectoIlustracionActual();
-  ilustracionCardStack.innerHTML = ""; // Limpiar cartas existentes
+/* ─────────────────────────────────────────────
+   Mostrar ilustración activa
+───────────────────────────────────────────── */
+function mostrarIlustracion() {
+  if (!packActivo) return;
 
-  if (
-    !proyecto ||
-    !proyecto.ilustraciones ||
-    proyecto.ilustraciones.length === 0
-  ) {
-    ilustracionPrincipal.src =
-      "https://placehold.co/400x300/000000/FFFFFF?text=Sin+Ilustraciones";
-    ilustracionPrincipal.alt = "Sin ilustraciones disponibles";
-    nombreIlustracion.textContent = "Sin Ilustración";
-    subtituloIlustracion.textContent = "N/A";
-    descripcionIlustracion.textContent =
-      "Este proyecto no tiene ilustraciones asociadas.";
-    return;
-  }
+  const pack = PACKS_ILUSTRACION[packActivo];
+  const ilust = pack.ilustraciones[ilustrActivo];
+  const total = pack.ilustraciones.length;
 
-  const currentIlustracion = proyecto.ilustraciones[ilustracionActualIndex];
+  /* Canvas */
+  $("canvasEmpty").style.display = "none";
 
-  // Actualizar la imagen principal y la información
-  ilustracionPrincipal.src = currentIlustracion.src;
-  ilustracionPrincipal.alt = currentIlustracion.alt;
-  nombreIlustracion.textContent = currentIlustracion.nombre;
-  subtituloIlustracion.textContent = currentIlustracion.subtitulo;
-  descripcionIlustracion.textContent = currentIlustracion.description;
+  const img = $("ilustracionPrincipal");
+  img.style.display = "block";
+  img.src = ilust.src;
+  img.alt = ilust.alt;
+  img.onclick = () => abrirLightbox(ilustrActivo);
 
-  // Trigger a pulse animation on the main image
-  ilustracionPrincipal.classList.remove("pulse-active"); // Remove to allow re-triggering
-  void ilustracionPrincipal.offsetWidth; // Trigger reflow
-  ilustracionPrincipal.classList.add("pulse-active");
+  $("canvasHint").style.display = "block";
 
-  // Llama a la función de extracción de color para actualizar el box-shadow
-  ilustracionPrincipal.onload = () => {
-    // Asegúrate de que getDominantColor esté definido (de color-extractor.js)
+  /* Color extractor si está disponible */
+  const aplicarColor = () => {
     if (typeof getDominantColor === "function") {
-      const dominantColor = getDominantColor(ilustracionPrincipal);
-      // Ajusta la opacidad del color extraído para el box-shadow si es necesario
-      const shadowColor = dominantColor.replace(/,(\s*\d+\.?\d*)\)/, ", 0.6)"); // Asegura opacidad de 0.6
-      ilustracionPrincipal.style.boxShadow = `0 10px 30px ${shadowColor}`;
-    } else {
-      console.warn(
-        "getDominantColor no está definido. Asegúrate de que color-extractor.js esté cargado."
-      );
-      ilustracionPrincipal.style.boxShadow = `0 10px 30px rgba(147, 249, 185, 0.6)`; // Fallback color
+      const color = getDominantColor(img);
+      const shadow = color.replace(/,(\s*\d+\.?\d*)\)/, ", 0.5)");
+      img.style.boxShadow = `0 8px 40px ${shadow}`;
     }
   };
-  // Si la imagen ya está en caché, onload no se dispara, así que la llamamos directamente
-  if (ilustracionPrincipal.complete) {
-    if (typeof getDominantColor === "function") {
-      const dominantColor = getDominantColor(ilustracionPrincipal);
-      const shadowColor = dominantColor.replace(/,(\s*\d+\.?\d*)\)/, ", 0.6)");
-      ilustracionPrincipal.style.boxShadow = `0 10px 30px ${shadowColor}`;
-    }
-  }
+  if (img.complete) aplicarColor();
+  else img.onload = aplicarColor;
 
-  // Crear las cartas de fondo
-  const numIlustraciones = proyecto.ilustraciones.length;
-  const maxCards = 2; // Mostrar 2 cartas a cada lado (prev y next)
+  /* Statusbar */
+  $("tbPackName").textContent = pack.nombre;
+  $("tbCounter").textContent = `${ilustrActivo + 1} / ${total}`;
+  $("tbIlustNombre").textContent = ilust.nombre;
 
-  for (let i = -maxCards; i <= maxCards; i++) {
-    const cardIndex = ilustracionActualIndex + i;
-
-    // Asegurarse de que el índice esté dentro de los límites del array y no sea la carta central
-    if (cardIndex >= 0 && cardIndex < numIlustraciones && i !== 0) {
-      const cardData = proyecto.ilustraciones[cardIndex];
-      const cardDiv = document.createElement("div");
-      cardDiv.classList.add("ilustracion-card");
-      cardDiv.setAttribute("data-index", cardIndex); // Guardar el índice real
-
-      const img = document.createElement("img");
-      img.src = cardData.src; // Usa 'src' de tu estructura original
-      img.alt = cardData.alt;
-      cardDiv.appendChild(img);
-
-      // Asignar clases para posicionamiento y opacidad
-      if (i < 0) {
-        cardDiv.classList.add(`prev-${Math.abs(i)}`);
-      } else if (i > 0) {
-        cardDiv.classList.add(`next-${i}`);
-      }
-      // Add click event listener to background cards for smooth transition
-      cardDiv.addEventListener("click", () => {
-        const clickedIndex = parseInt(cardDiv.getAttribute("data-index"));
-        seleccionarIlustracionPorIndiceConAnimacion(clickedIndex);
-      });
-      ilustracionCardStack.appendChild(cardDiv);
-    }
-  }
-
-  // Añadir evento de clic a la imagen principal para abrir el lightbox
-  ilustracionPrincipal.onclick = () => abrirLightbox(ilustracionActualIndex);
+  /* Panel de detalles lateral */
+  poblarDetalles("tabletDetails", ilust);
 }
 
-/**
- * Navega entre ilustraciones (cambia la carta central).
- * @param {number} direccion - -1 para anterior, 1 para siguiente.
- * @function navegarIlustracion
- */
-function navegarIlustracion(direccion) {
-  const proyecto = obtenerProyectoIlustracionActual();
-  if (
-    !proyecto ||
-    !proyecto.ilustraciones ||
-    proyecto.ilustraciones.length === 0
-  )
-    return;
+/* ─────────────────────────────────────────────
+   Poblar panel de detalles (reutilizable)
+───────────────────────────────────────────── */
+function poblarDetalles(contenedorId, ilust) {
+  const panel = $(contenedorId);
+  if (!panel) return;
 
-  ilustracionActualIndex =
-    (ilustracionActualIndex + direccion + proyecto.ilustraciones.length) %
-    proyecto.ilustraciones.length;
-  actualizarVisorIlustracion();
+  panel.innerHTML = `
+    <div class="details-header">
+      <span class="details-header-label">// DESCRIPCIÓN</span>
+      <span class="details-nombre">${ilust.nombre}</span>
+      <span class="details-subtitulo">${ilust.subtitulo}</span>
+    </div>
+    <div class="details-body">
+      <p class="details-desc">${ilust.description}</p>
+    </div>
+  `;
 }
 
-/**
- * Selecciona una ilustración por su índice con una animación de desplazamiento.
- * @param {number} index - El índice de la ilustración a seleccionar.
- * @function seleccionarIlustracionPorIndiceConAnimacion
- */
-function seleccionarIlustracionPorIndiceConAnimacion(index) {
-  const oldIndex = ilustracionActualIndex;
-  ilustracionActualIndex = index;
-
-  const direction = index > oldIndex ? 1 : -1; // 1 para derecha, -1 para izquierda
-  if (direction === 1) {
-    ilustracionCardStack.classList.add("scroll-right");
-  } else {
-    ilustracionCardStack.classList.add("scroll-left");
-  }
-
-  // Eliminar la clase de animación después de que se complete y luego actualizar el contenido
-  setTimeout(() => {
-    ilustracionCardStack.classList.remove("scroll-left", "scroll-right");
-    actualizarVisorIlustracion();
-  }, 300); // Esta duración debe coincidir con la duración de la animación CSS
+/* ─────────────────────────────────────────────
+   Navegar entre ilustraciones
+───────────────────────────────────────────── */
+function navegarIlustracion(dir) {
+  if (!packActivo) return;
+  const total = PACKS_ILUSTRACION[packActivo].ilustraciones.length;
+  ilustrActivo = (ilustrActivo + dir + total) % total;
+  mostrarIlustracion();
 }
 
-// =================================================================
-// Lógica del Lightbox
-// =================================================================
+/* ═══════════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════════ */
 
-/**
- * Abre el lightbox con la ilustración especificada.
- * @param {number} index - El índice de la ilustración a mostrar en el lightbox.
- * @function abrirLightbox
- */
 function abrirLightbox(index) {
-  currentLightboxImageIndex = index; // Sincroniza el índice del lightbox
-  const proyecto = obtenerProyectoIlustracionActual();
-  const ilustracion = proyecto.ilustraciones[currentLightboxImageIndex];
-
-  if (!ilustracion) return;
-
-  lightboxImage.src = ilustracion.src; // Usa 'src' de tu estructura original
-  lightboxImage.alt = ilustracion.alt;
-  lightboxNombreIlustracion.textContent = ilustracion.nombre;
-  lightboxSubtituloIlustracion.textContent = ilustracion.subtitulo;
-  lightboxDescripcionIlustracion.textContent = ilustracion.description;
-
-  lightboxOverlay.classList.add("active");
-  document.body.style.overflow = "hidden"; // Evitar scroll en el body
+  if (!packActivo) return;
+  lbIndex = index;
+  actualizarLightbox();
+  $("tabletLightbox").classList.add("active");
+  document.body.style.overflow = "hidden";
 }
 
-/**
- * Cierra el lightbox.
- * @function cerrarLightbox
- */
+function actualizarLightbox() {
+  const ilust = PACKS_ILUSTRACION[packActivo].ilustraciones[lbIndex];
+  if (!ilust) return;
+
+  $("lightboxImg").src = ilust.src;
+  $("lightboxImg").alt = ilust.alt;
+  $("lbNombre").textContent = ilust.nombre;
+  $("lbSubtitulo").textContent = ilust.subtitulo;
+  $("lbDescription").textContent = ilust.description;
+}
+
 function cerrarLightbox() {
-  lightboxOverlay.classList.remove("active");
-  document.body.style.overflow = ""; // Restaurar scroll en el body
+  $("tabletLightbox").classList.remove("active");
+  document.body.style.overflow = "";
 }
 
-/**
- * Navega a la ilustración anterior/siguiente en el lightbox.
- * @param {number} direccion - -1 para anterior, 1 para siguiente.
- * @function navegarLightbox
- */
-function navegarLightbox(direccion) {
-  const proyecto = obtenerProyectoIlustracionActual();
-  if (
-    !proyecto ||
-    !proyecto.ilustraciones ||
-    proyecto.ilustraciones.length === 0
-  )
-    return;
-
-  currentLightboxImageIndex =
-    (currentLightboxImageIndex + direccion + proyecto.ilustraciones.length) %
-    proyecto.ilustraciones.length;
-
-  const ilustracion = proyecto.ilustraciones[currentLightboxImageIndex];
-  lightboxImage.src = ilustracion.src; // Usa 'src' de tu estructura original
-  lightboxImage.alt = ilustracion.alt;
-  lightboxNombreIlustracion.textContent = ilustracion.nombre;
-  lightboxSubtituloIlustracion.textContent = ilustracion.subtitulo;
-  lightboxDescripcionIlustracion.textContent = ilustracion.description;
+function navegarLightbox(dir) {
+  if (!packActivo) return;
+  const total = PACKS_ILUSTRACION[packActivo].ilustraciones.length;
+  lbIndex = (lbIndex + dir + total) % total;
+  actualizarLightbox();
 }
 
-// Event Listeners para el Lightbox
-lightboxClose.addEventListener("click", cerrarLightbox);
-lightboxPrev.addEventListener("click", () => navegarLightbox(-1));
-lightboxNext.addEventListener("click", () => navegarLightbox(1));
+/* ─────────────────────────────────────────────
+   Init — event listeners
+───────────────────────────────────────────── */
+document.addEventListener("DOMContentLoaded", () => {
+  inicializarPacks();
 
-// Cerrar lightbox al hacer clic fuera del contenido
-lightboxOverlay.addEventListener("click", (e) => {
-  if (e.target === lightboxOverlay) {
-    cerrarLightbox();
+  /* Fondo del lightbox cierra */
+  $("tabletLightbox").addEventListener("click", (e) => {
+    if (e.target === $("tabletLightbox")) cerrarLightbox();
+  });
+
+  $("lightboxX").addEventListener("click", cerrarLightbox);
+  $("lbPrev").addEventListener("click", () => navegarLightbox(-1));
+  $("lbNext").addEventListener("click", () => navegarLightbox(1));
+
+  /* Dial → siguiente pack */
+  const dial = $("tabletDial");
+  if (dial) {
+    dial.addEventListener("click", () => {
+      const keys = Object.keys(PACKS_ILUSTRACION);
+      const actual = packActivo ? keys.indexOf(packActivo) : -1;
+      seleccionarPack(keys[(actual + 1) % keys.length]);
+    });
   }
 });
 
-// Cerrar lightbox con la tecla ESC
+/* ESC cierra lightbox */
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && lightboxOverlay.classList.contains("active")) {
+  if (e.key === "Escape" && $("tabletLightbox")?.classList.contains("active")) {
     cerrarLightbox();
   }
-});
-
-// Inicialización
-window.addEventListener("DOMContentLoaded", () => {
-  cargarListaProyectosIlustracion();
-  seleccionarProyectoIlustracion(proyectoIlustracionActualKey); // Cargar el proyecto inicial
 });
